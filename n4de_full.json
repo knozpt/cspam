@@ -1,0 +1,96 @@
+{
+  "site": "n4de.com",
+  "title": "N4DE CS2 Lineups",
+  "description": "Free, comprehensive database of CS2 utility lineups for all competitive maps.",
+  "maps": [
+    "Mirage",
+    "Dust 2",
+    "Ancient",
+    "Inferno",
+    "Nuke",
+    "Vertigo",
+    "Anubis",
+    "Overpass",
+    "Train"
+  ],
+  "filters": {
+    "side": ["All", "T", "CT"],
+    "utility": ["All", "Smoke", "Flash", "Molotov", "HE"],
+    "sort": ["Recently Added", "Votes"]
+  },
+  "lineups": [
+    {
+      "name": "CT from Xbox",
+      "side": "CT",
+      "type": "Smoke",
+      "difficulty": "Easy",
+      "description": "Describes your position and mouse input when releasing the grenade",
+      "image": "n4de.com/img1.jpg",
+      "votes": {
+        "up": 1,
+        "down": 0
+      }
+    },
+    {
+      "name": "Instant Elbow from Spawn 5",
+      "side": "CT",
+      "type": "Smoke",
+      "difficulty": "Easy",
+      "description": "Describes your position and mouse input when releasing the grenade",
+      "image": "n4de.com/img2.jpg",
+      "votes": {
+        "up": 1,
+        "down": 0
+      }
+    },
+    {
+      "name": "Instant Elbow from Spawn 4",
+      "side": "CT",
+      "type": "Smoke",
+      "difficulty": "Easy",
+      "description": "Describes your position and mouse input when releasing the grenade",
+      "image": "n4de.com/img3.jpg",
+      "votes": {
+        "up": 1,
+        "down": 0
+      }
+    },
+    {
+      "name": "Connector Smoke from Trash Can",
+      "side": "T",
+      "type": "Smoke",
+      "difficulty": "Easy",
+      "description": "Describes your position and mouse input when releasing the grenade",
+      "image": "n4de.com/img4.jpg",
+      "votes": {
+        "up": 0,
+        "down": 0
+      }
+    },
+    {
+      "name": "Mid Cross Smoke from Trash Can",
+      "side": "T",
+      "type": "Smoke",
+      "difficulty": "Easy",
+      "description": "Describes your position and mouse input when releasing the grenade",
+      "image": "n4de.com/img5.jpg",
+      "votes": {
+        "up": 0,
+        "down": 0
+      }
+    }
+  ],
+  "faq": [
+    "What is N4DE and how does it work?",
+    "How do I find CS2 smoke lineups for specific maps?",
+    "Can I submit my own CS2 utility lineups?",
+    "What is Game Mode and how do I use it?",
+    "Which CS2 maps are covered on N4DE?",
+    "Are N4DE lineups suitable for beginners?",
+    "How do I save my favorite CS2 lineups?",
+    "Can I watch video demonstrations of lineups?"
+  ],
+  "footer": {
+    "text": "N4DE.COM – CS2 Lineup Companion"
+  }
+}
