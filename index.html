@@ -1,34 +1,240 @@
+# Create an advanced visual clone with improved styling and working filters (frontend only)
+
+html_content = """
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>N4DE CS2 Lineups</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N4DE CS2 Lineups</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0b1220;
+    color: #e2e8f0;
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: radial-gradient(circle at top, #1e293b, #0b1220);
+}
+
+header h1 {
+    font-size: 42px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 20px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter-group {
+    background: #111827;
+    padding: 12px 16px;
+    border-radius: 12px;
+}
+
+.filter-group span.label {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.button {
+    background: #1f2937;
+    color: #e2e8f0;
+    padding: 7px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 6px;
+    font-size: 14px;
+    border: 1px solid #374151;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.button.active {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.lineups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #111827;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    border: 1px solid #1f2937;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #2563eb;
+}
+
+.card img {
+    width: 100%;
+    height: 190px;
+    background: #0b1220;
+}
+
+.card-content {
+    padding: 18px;
+}
+
+.card h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.meta {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 60px;
+    background: #111827;
+    color: #64748b;
+    font-size: 14px;
+}
+</style>
 </head>
 <body>
-  <h1>Master Every Nade in Counter-Strike 2</h1>
-  <p>Free, comprehensive database of CS2 utility lineups for all competitive maps.</p>
 
-  <h2>All Competitive Maps</h2>
-  <ul>
-    <li>Mirage</li>
-    <li>Dust 2</li>
-    <li>Ancient</li>
-    <li>Inferno</li>
-    <li>Nuke</li>
-    <li>Vertigo</li>
-    <li>Anubis</li>
-    <li>Overpass</li>
-    <li>Train</li>
-  </ul>
+<header>
+    <h1>Master Every Nade in Counter-Strike 2</h1>
+    <p>Free, comprehensive database of CS2 utility lineups for all competitive maps.</p>
+</header>
 
-  <h2>Every Utility Type</h2>
-  <p>Find the perfect lineup for any situation...</p>
+<div class="container">
 
-  <h2>Frequently Asked Questions</h2>
-  <p>Everything you need to know about CS2 utility lineups</p>
+    <div class="filters">
+        <div class="filter-group">
+            <span class="label">Side:</span>
+            <span class="button active" data-filter="side" data-value="All">All</span>
+            <span class="button" data-filter="side" data-value="T">T</span>
+            <span class="button" data-filter="side" data-value="CT">CT</span>
+        </div>
 
-  <footer>
-    <p>N4DE.COM</p>
-    <p>CS2 Lineup Companion</p>
-  </footer>
+        <div class="filter-group">
+            <span class="label">Utility:</span>
+            <span class="button active" data-filter="type" data-value="All">All</span>
+            <span class="button" data-filter="type" data-value="Smoke">Smoke</span>
+            <span class="button" data-filter="type" data-value="Flash">Flash</span>
+            <span class="button" data-filter="type" data-value="Molotov">Molotov</span>
+        </div>
+    </div>
+
+    <div class="lineups" id="lineups">
+
+        <div class="card" data-side="CT" data-type="Smoke">
+            <img>
+            <div class="card-content">
+                <h3>CT from Xbox</h3>
+                <div class="meta">CT • Smoke • Easy</div>
+                <p>Position and mouse input when releasing the grenade.</p>
+            </div>
+        </div>
+
+        <div class="card" data-side="CT" data-type="Smoke">
+            <img>
+            <div class="card-content">
+                <h3>Instant Elbow from Spawn 5</h3>
+                <div class="meta">CT • Smoke • Easy</div>
+                <p>Quick smoke for early control.</p>
+            </div>
+        </div>
+
+        <div class="card" data-side="T" data-type="Molotov">
+            <img>
+            <div class="card-content">
+                <h3>Connector Molotov</h3>
+                <div class="meta">T • Molotov • Medium</div>
+                <p>Forces AWPer out of position.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    N4DE.COM – CS2 Lineup Companion
+</footer>
+
+<script>
+const buttons = document.querySelectorAll('.button');
+let activeFilters = { side: "All", type: "All" };
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        const value = btn.dataset.value;
+
+        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        activeFilters[filter] = value;
+        filterCards();
+    });
+});
+
+function filterCards() {
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        const side = card.dataset.side;
+        const type = card.dataset.type;
+
+        const matchSide = activeFilters.side === "All" || activeFilters.side === side;
+        const matchType = activeFilters.type === "All" || activeFilters.type === type;
+
+        if (matchSide && matchType) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+</script>
+
 </body>
 </html>
+"""
+
+file_path = "/mnt/data/n4de_visual_clone_advanced.html"
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+file_path
