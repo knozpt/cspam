@@ -3,61 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CS2 Lineups Professional</title>
+<title>CS2 Lineups Full Page Background</title>
 <style>
-* { box-sizing: border-box; margin:0; padding:0; font-family:'Inter', sans-serif;}
+* { box-sizing:border-box; margin:0; padding:0; font-family:'Inter', sans-serif; }
+
 body {
-    background: #ff7f00; /* fundo laranja */
+    background: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg?t=1749053861') no-repeat center center fixed;
+    background-size: cover;
     color: #fff;
 }
 
-/* ===== HEADER FULL SCREEN HERO ===== */
-header {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* ocupa 100% da tela */
-    background: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg?t=1749053861') no-repeat center center;
-    background-size: cover;
-    overflow: hidden;
-}
-
-header::before {
-    content: '';
-    position: absolute;
+/* Overlay escura para o background */
+body::before {
+    content:'';
+    position: fixed;
     top:0; left:0; right:0; bottom:0;
     background: rgba(0,0,0,0.6);
+    z-index:0;
+}
+
+header {
+    position: relative;
+    text-align: center;
+    padding: 120px 20px 60px 20px;
     z-index:1;
 }
 
-.hero-content {
-    position: relative;
-    z-index:2;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ff7f00;
-    text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff;
-    padding: 0 20px;
-}
-
-.hero-content h1 {
+header h1 {
     font-size: 60px;
+    color: #ff7f00;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
     margin-bottom: 12px;
-    font-weight:700;
 }
 
-.hero-content p {
-    font-size:18px;
+header p {
+    font-size: 18px;
+    color: #ff7f00;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff;
 }
 
-/* ===== CONTAINER ===== */
+/* Container da página */
 .container {
     max-width: 1300px;
-    margin: auto;
-    padding: 20px;
+    margin:auto;
+    padding:20px;
+    position: relative;
+    z-index:1; /* para ficar acima do overlay */
 }
 
-/* ===== FILTERS ===== */
+/* Filters */
 .filters {
     display:flex;
     flex-wrap:wrap;
@@ -99,13 +93,11 @@ header::before {
 [data-filter="side"][data-value="T"] { background:#ff7f00; }
 [data-filter="side"][data-value="CT"] { background:#2563eb; }
 
-/* Utility and Map buttons */
+/* Utility e Map buttons */
 [data-filter="type"] .button,
-[data-filter="map"] .button {
-    background:#ff7f00;
-}
+[data-filter="map"] .button { background:#ff7f00; }
 
-/* ===== LINEUPS ===== */
+/* Lineups */
 .lineups {
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
@@ -114,7 +106,7 @@ header::before {
 
 /* Cards */
 .card {
-    background:#111827;
+    background: rgba(17,24,39,0.9); /* leve transparência para ver background */
     border-radius:16px;
     overflow:hidden;
     transition:all 0.25s ease;
@@ -159,27 +151,27 @@ header::before {
     border-radius:6px;
 }
 
-/* ===== FOOTER ===== */
+/* Footer */
 footer {
     text-align:center;
     padding:25px;
-    background:#ff7f00;
+    background: #ff7f00;
     color:#fff;
     font-size:14px;
     font-weight:bold;
+    position: relative;
+    z-index:1;
 }
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-    .hero-content h1{ font-size:36px; }
-    .hero-content p{ font-size:14px; }
+    header h1{ font-size:36px; }
+    header p{ font-size:14px; }
 
-    /* filtros coluna */
     .filters{ flex-direction:column; }
     .filter-group{ width:100%; display:flex; flex-wrap:wrap; gap:6px; }
     .button{ flex:1 1 30%; text-align:center; margin-bottom:4px; }
 
-    /* Cards empilhados e carrossel horizontal */
     .card-images{ flex-direction:column; }
     .card-images img{ width:100%; height:180px; }
 
@@ -201,10 +193,8 @@ footer {
 <body>
 
 <header>
-    <div class="hero-content">
-        <h1>Counter-Strike 2 Lineups</h1>
-        <p>Master every nade with our comprehensive CS2 lineup database.</p>
-    </div>
+    <h1>Counter-Strike 2 Lineups</h1>
+    <p>Master every nade with our comprehensive CS2 lineup database.</p>
 </header>
 
 <div class="container">
@@ -285,29 +275,27 @@ footer {
 const buttons = document.querySelectorAll('.button');
 let activeFilters = { side:"All", type:"All", map:"All" };
 
-buttons.forEach(btn => {
+buttons.forEach(btn=>{
     btn.addEventListener('click',()=>{
-        const filter = btn.dataset.filter;
-        const value = btn.dataset.value;
-
+        const filter=btn.dataset.filter;
+        const value=btn.dataset.value;
         document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-
-        activeFilters[filter] = value;
+        activeFilters[filter]=value;
         filterCards();
     });
 });
 
 function filterCards(){
-    const cards = document.querySelectorAll('.card');
+    const cards=document.querySelectorAll('.card');
     cards.forEach(card=>{
-        const side = card.dataset.side;
-        const type = card.dataset.type;
-        const map = card.dataset.map;
-        const matchSide = activeFilters.side==="All"||activeFilters.side===side;
-        const matchType = activeFilters.type==="All"||activeFilters.type===type;
-        const matchMap = activeFilters.map==="All"||activeFilters.map===map;
-        card.style.display=(matchSide && matchType && matchMap)?"block":"none";
+        const side=card.dataset.side;
+        const type=card.dataset.type;
+        const map=card.dataset.map;
+        const matchSide=activeFilters.side==="All"||activeFilters.side===side;
+        const matchType=activeFilters.type==="All"||activeFilters.type===type;
+        const matchMap=activeFilters.map==="All"||activeFilters.map===map;
+        card.style.display=(matchSide&&matchType&&matchMap)?"block":"none";
     });
 }
 </script>
