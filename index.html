@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CS2 Lineups Full Page Background</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://a1adrialeague.com/wp-content/uploads/2025/03/CS2.png">
+
 <style>
 * { box-sizing:border-box; margin:0; padding:0; font-family:'Inter', sans-serif; }
 
@@ -31,14 +34,14 @@ header {
 
 header h1 {
     font-size: 60px;
-    color: #b15800;
+    color: #703800;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
     margin-bottom: 12px;
 }
 
 header p {
     font-size: 18px;
-    color: #b15800;
+    color: #703800;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff;
 }
 
@@ -302,7 +305,7 @@ buttons.forEach(btn=>{
     btn.addEventListener('click',()=>{
         const filter=btn.dataset.filter;
         const value=btn.dataset.value;
-        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('[data-filter="'+filter+'"]').forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
         activeFilters[filter]=value;
         filterCards();
