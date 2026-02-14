@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>N4DE CS2 Lineups</title>
-<link href="https://profilerr.net/static/content/thumbs/560x555/9/e2/ggikyb---c560x555x50px50p--03341e42e23a2179c36d51034113ce29.png" rel="stylesheet">
 <style>
 * { box-sizing: border-box; }
 body {
@@ -98,8 +97,10 @@ header p {
 
 .card img {
     width: 100%;
-    height: 190px;
+    height: 160px;
+    object-fit: cover;
     background: #0b1220;
+    border-bottom: 1px solid #1f2937;
 }
 
 .card-content {
@@ -115,6 +116,13 @@ header p {
     font-size: 13px;
     color: #94a3b8;
     margin-bottom: 10px;
+}
+
+.card-map {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #94a3b8;
+    font-weight: 500;
 }
 
 footer {
@@ -151,34 +159,55 @@ footer {
             <span class="button" data-filter="type" data-value="Flash">Flash</span>
             <span class="button" data-filter="type" data-value="Molotov">Molotov</span>
         </div>
+
+        <div class="filter-group">
+            <span class="label">Map:</span>
+            <span class="button active" data-filter="map" data-value="All">All</span>
+            <span class="button" data-filter="map" data-value="Dust2">Dust2</span>
+            <span class="button" data-filter="map" data-value="Inferno">Inferno</span>
+            <span class="button" data-filter="map" data-value="Mirage">Mirage</span>
+        </div>
     </div>
 
     <div class="lineups" id="lineups">
 
-        <div class="card" data-side="CT" data-type="Smoke">
-            <img>
+        <div class="card" data-side="CT" data-type="Smoke" data-map="Dust2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Dust2_overview.png/320px-Dust2_overview.png" alt="Dust2 Map">
             <div class="card-content">
                 <h3>CT from Xbox</h3>
                 <div class="meta">CT • Smoke • Easy</div>
                 <p>Position and mouse input when releasing the grenade.</p>
+                <div class="card-map">Map: Dust2</div>
             </div>
         </div>
 
-        <div class="card" data-side="CT" data-type="Smoke">
-            <img>
+        <div class="card" data-side="CT" data-type="Smoke" data-map="Dust2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Dust2_overview.png/320px-Dust2_overview.png" alt="Dust2 Map">
             <div class="card-content">
                 <h3>Instant Elbow from Spawn 5</h3>
                 <div class="meta">CT • Smoke • Easy</div>
                 <p>Quick smoke for early control.</p>
+                <div class="card-map">Map: Dust2</div>
             </div>
         </div>
 
-        <div class="card" data-side="T" data-type="Molotov">
-            <img>
+        <div class="card" data-side="T" data-type="Molotov" data-map="Inferno">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Inferno_overview.png/320px-Inferno_overview.png" alt="Inferno Map">
             <div class="card-content">
                 <h3>Connector Molotov</h3>
                 <div class="meta">T • Molotov • Medium</div>
                 <p>Forces AWPer out of position.</p>
+                <div class="card-map">Map: Inferno</div>
+            </div>
+        </div>
+
+        <div class="card" data-side="T" data-type="Flash" data-map="Mirage">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Mirage_overview.png/320px-Mirage_overview.png" alt="Mirage Map">
+            <div class="card-content">
+                <h3>B Short Flash</h3>
+                <div class="meta">T • Flash • Medium</div>
+                <p>Useful to take control of B Short.</p>
+                <div class="card-map">Map: Mirage</div>
             </div>
         </div>
 
@@ -192,7 +221,7 @@ footer {
 
 <script>
 const buttons = document.querySelectorAll('.button');
-let activeFilters = { side: "All", type: "All" };
+let activeFilters = { side: "All", type: "All", map: "All" };
 
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -213,15 +242,13 @@ function filterCards() {
     cards.forEach(card => {
         const side = card.dataset.side;
         const type = card.dataset.type;
+        const map = card.dataset.map;
 
         const matchSide = activeFilters.side === "All" || activeFilters.side === side;
         const matchType = activeFilters.type === "All" || activeFilters.type === type;
+        const matchMap = activeFilters.map === "All" || activeFilters.map === map;
 
-        if (matchSide && matchType) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
+        card.style.display = (matchSide && matchType && matchMap) ? "block" : "none";
     });
 }
 </script>
