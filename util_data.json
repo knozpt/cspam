@@ -1,0 +1,338 @@
+{
+  "dust2": {
+    "name": "Dust2",
+    "image": "imgs/dust2.png",
+    "mapsize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "tr": [
+      {
+        "type": "smoke",
+        "name": "TR Smoke 1",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "img": "imgs/dust2_tr.png"
+      },
+      {
+        "type": "flash",
+        "name": "TR Flash 1",
+        "position": {
+          "x": 600,
+          "y": 500
+        },
+        "img": "imgs/dust2_tr.png"
+      }
+    ],
+    "ct": [
+      {
+        "type": "smoke",
+        "name": "CT Smoke 1",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "img": "imgs/dust2_ct.png"
+      },
+      {
+        "type": "molotov",
+        "name": "CT Molly 1",
+        "position": {
+          "x": 700,
+          "y": 600
+        },
+        "img": "imgs/dust2_ct.png"
+      }
+    ]
+  },
+  "mirage": {
+    "name": "Mirage",
+    "image": "imgs/mirage.png",
+    "mapsize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "tr": [
+      {
+        "type": "smoke",
+        "name": "TR Smoke 1",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "img": "imgs/mirage_tr.png"
+      },
+      {
+        "type": "flash",
+        "name": "TR Flash 1",
+        "position": {
+          "x": 600,
+          "y": 500
+        },
+        "img": "imgs/mirage_tr.png"
+      }
+    ],
+    "ct": [
+      {
+        "type": "smoke",
+        "name": "CT Smoke 1",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "img": "imgs/mirage_ct.png"
+      },
+      {
+        "type": "molotov",
+        "name": "CT Molly 1",
+        "position": {
+          "x": 700,
+          "y": 600
+        },
+        "img": "imgs/mirage_ct.png"
+      }
+    ]
+  },
+  "inferno": {
+    "name": "Inferno",
+    "image": "imgs/inferno.png",
+    "mapsize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "tr": [
+      {
+        "type": "smoke",
+        "name": "TR Smoke 1",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "img": "imgs/inferno_tr.png"
+      },
+      {
+        "type": "flash",
+        "name": "TR Flash 1",
+        "position": {
+          "x": 600,
+          "y": 500
+        },
+        "img": "imgs/inferno_tr.png"
+      }
+    ],
+    "ct": [
+      {
+        "type": "smoke",
+        "name": "CT Smoke 1",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "img": "imgs/inferno_ct.png"
+      },
+      {
+        "type": "molotov",
+        "name": "CT Molly 1",
+        "position": {
+          "x": 700,
+          "y": 600
+        },
+        "img": "imgs/inferno_ct.png"
+      }
+    ]
+  },
+  "nuke": {
+    "name": "Nuke",
+    "image": "imgs/nuke.png",
+    "mapsize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "tr": [
+      {
+        "type": "smoke",
+        "name": "TR Smoke 1",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "img": "imgs/nuke_tr.png"
+      },
+      {
+        "type": "flash",
+        "name": "TR Flash 1",
+        "position": {
+          "x": 600,
+          "y": 500
+        },
+        "img": "imgs/nuke_tr.png"
+      }
+    ],
+    "ct": [
+      {
+        "type": "smoke",
+        "name": "CT Smoke 1",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "img": "imgs/nuke_ct.png"
+      },
+      {
+        "type": "molotov",
+        "name": "CT Molly 1",
+        "position": {
+          "x": 700,
+          "y": 600
+        },
+        "img": "imgs/nuke_ct.png"
+      }
+    ]
+  },
+  "overpass": {
+    "name": "Overpass",
+    "image": "imgs/overpass.png",
+    "mapsize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "tr": [
+      {
+        "type": "smoke",
+        "name": "TR Smoke 1",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "img": "imgs/overpass_tr.png"
+      },
+      {
+        "type": "flash",
+        "name": "TR Flash 1",
+        "position": {
+          "x": 600,
+          "y": 500
+        },
+        "img": "imgs/overpass_tr.png"
+      }
+    ],
+    "ct": [
+      {
+        "type": "smoke",
+        "name": "CT Smoke 1",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "img": "imgs/overpass_ct.png"
+      },
+      {
+        "type": "molotov",
+        "name": "CT Molly 1",
+        "position": {
+          "x": 700,
+          "y": 600
+        },
+        "img": "imgs/overpass_ct.png"
+      }
+    ]
+  },
+  "ancient": {
+    "name": "Ancient",
+    "image": "imgs/ancient.png",
+    "mapsize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "tr": [
+      {
+        "type": "smoke",
+        "name": "TR Smoke 1",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "img": "imgs/ancient_tr.png"
+      },
+      {
+        "type": "flash",
+        "name": "TR Flash 1",
+        "position": {
+          "x": 600,
+          "y": 500
+        },
+        "img": "imgs/ancient_tr.png"
+      }
+    ],
+    "ct": [
+      {
+        "type": "smoke",
+        "name": "CT Smoke 1",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "img": "imgs/ancient_ct.png"
+      },
+      {
+        "type": "molotov",
+        "name": "CT Molly 1",
+        "position": {
+          "x": 700,
+          "y": 600
+        },
+        "img": "imgs/ancient_ct.png"
+      }
+    ]
+  },
+  "anubis": {
+    "name": "Anubis",
+    "image": "imgs/anubis.png",
+    "mapsize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "tr": [
+      {
+        "type": "smoke",
+        "name": "TR Smoke 1",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "img": "imgs/anubis_tr.png"
+      },
+      {
+        "type": "flash",
+        "name": "TR Flash 1",
+        "position": {
+          "x": 600,
+          "y": 500
+        },
+        "img": "imgs/anubis_tr.png"
+      }
+    ],
+    "ct": [
+      {
+        "type": "smoke",
+        "name": "CT Smoke 1",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "img": "imgs/anubis_ct.png"
+      },
+      {
+        "type": "molotov",
+        "name": "CT Molly 1",
+        "position": {
+          "x": 700,
+          "y": 600
+        },
+        "img": "imgs/anubis_ct.png"
+      }
+    ]
+  }
+}
