@@ -7,10 +7,13 @@
 <style>
 * { box-sizing:border-box; margin:0; padding:0; font-family:'Inter', sans-serif; }
 
+html, body { height: 100%; }
+
 body {
     background: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg?t=1749053861') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
+    padding-bottom: 60px; /* espaço para o footer fixo */
 }
 
 /* Overlay escura para o background */
@@ -87,13 +90,9 @@ header p {
     text-shadow: 0 0 5px rgba(0,0,0,0.8);
 }
 
-/* Hover */
 .button:hover { opacity:0.85; }
-
-/* Active */
 .button.active { opacity:1; }
 
-/* Ícones nos botões */
 .button .icon {
     width: 16px;
     height: 16px;
@@ -111,21 +110,12 @@ header p {
 [data-filter="map"] .button[data-value="All"]  { background:#703800; }
 
 /* Map buttons com imagens de fundo */
-[data-filter="map"] .button[data-value="Dust2"] {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Dust2_overview.png/320px-Dust2_overview.png');
-}
-[data-filter="map"] .button[data-value="Inferno"] {
-    background-image: url('https://i.imgur.com/mLQ0QdD.jpeg');
-}
-[data-filter="map"] .button[data-value="Mirage"] {
-    background-image: url('https://i.imgur.com/SjSB5ZV.jpeg');
-}
-[data-filter="map"] .button[data-value="Anubis"] {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Anubis_map_overview.png'); /* substitua por URL real */
-}
-[data-filter="map"] .button[data-value="Nuke"] {
-    background-image: url('https://i.imgur.com/UD25vIy.jpeg');
-}
+[data-filter="map"] .button[data-value="Dust2"] { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Dust2_overview.png/320px-Dust2_overview.png'); }
+[data-filter="map"] .button[data-value="Inferno"] { background-image: url('https://i.imgur.com/mLQ0QdD.jpeg'); }
+[data-filter="map"] .button[data-value="Mirage"] { background-image: url('https://i.imgur.com/SjSB5ZV.jpeg'); }
+[data-filter="map"] .button[data-value="Anubis"] { background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Anubis_map_overview.png'); }
+[data-filter="map"] .button[data-value="Nuke"] { background-image: url('https://i.imgur.com/UD25vIy.jpeg'); }
+
 /* Lineups */
 .lineups {
     display:grid;
@@ -167,16 +157,19 @@ header p {
     border-radius:6px;
 }
 
-/* Footer */
+/* Footer fixo */
 footer {
     text-align:center;
-    padding:25px;
+    padding:15px;
     background: #703800;
     color:#fff;
     font-size:14px;
     font-weight:bold;
-    position: relative;
-    z-index:1;
+    position: fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    z-index:2;
 }
 
 /* ===== RESPONSIVE ===== */
