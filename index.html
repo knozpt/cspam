@@ -11,6 +11,7 @@ body {
     background: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg?t=1749053861') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
+    padding-bottom: 70px; /* espaço para o footer fixo */
 }
 
 /* Overlay escura para o background */
@@ -121,11 +122,12 @@ header p {
     background-image: url('https://i.imgur.com/SjSB5ZV.jpeg');
 }
 [data-filter="map"] .button[data-value="Anubis"] {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Anubis_map_overview.png'); /* substitua por URL real */
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Anubis_map_overview.png');
 }
 [data-filter="map"] .button[data-value="Nuke"] {
     background-image: url('https://i.imgur.com/UD25vIy.jpeg');
 }
+
 /* Lineups */
 .lineups {
     display:grid;
@@ -167,16 +169,19 @@ header p {
     border-radius:6px;
 }
 
-/* Footer */
+/* Footer fixo */
 footer {
     text-align:center;
-    padding:25px;
+    padding:15px;
     background: #ff7f00;
     color:#fff;
     font-size:14px;
     font-weight:bold;
-    position: relative;
-    z-index:1;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
 }
 
 /* ===== RESPONSIVE ===== */
