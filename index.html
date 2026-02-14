@@ -17,7 +17,7 @@ body {
 header {
     text-align: center;
     padding: 100px 20px;
-    background: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg?t=1749053861') no-repeat center center;
+    background: url('https://i.imgur.com/Z7r1X5E.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
     color: #e2e8f0;
@@ -98,7 +98,7 @@ header p {
 
 .lineups {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
 }
 
@@ -183,8 +183,9 @@ footer {
         font-size: 14px;
     }
 
+    /* Cards: imagens empilhadas */
     .card-images {
-        flex-direction: column; /* imagens empilhadas */
+        flex-direction: column;
     }
 
     .card-images img {
@@ -192,6 +193,7 @@ footer {
         height: 180px;
     }
 
+    /* Filtros em coluna */
     .filters {
         flex-direction: column;
     }
@@ -207,6 +209,21 @@ footer {
         flex: 1 1 30%;
         text-align: center;
         margin-bottom: 4px;
+    }
+
+    /* Linha de lineups vira carrossel horizontal */
+    .lineups {
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        padding-bottom: 10px;
+        scroll-snap-type: x mandatory;
+    }
+
+    .card {
+        min-width: 280px;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
     }
 }
 </style>
