@@ -48,7 +48,7 @@ header p {
     margin:auto;
     padding:20px;
     position: relative;
-    z-index:1; /* para ficar acima do overlay */
+    z-index:1;
 }
 
 /* Filters */
@@ -81,15 +81,17 @@ header p {
     transition: all 0.2s ease;
     display:inline-flex;
     align-items:center;
+    justify-content:center;
+    background-size: cover;
+    background-position: center;
+    text-shadow: 0 0 5px rgba(0,0,0,0.8);
 }
 
-.button:hover {
-    opacity:0.85;
-}
+/* Hover */
+.button:hover { opacity:0.85; }
 
-.button.active {
-    opacity:1;
-}
+/* Active */
+.button.active { opacity:1; }
 
 /* Ícones nos botões */
 .button .icon {
@@ -104,9 +106,22 @@ header p {
 [data-filter="side"][data-value="T"] { background:#b15800; }
 [data-filter="side"][data-value="CT"] { background:#2563eb; }
 
-/* Utility e Map buttons */
-[data-filter="type"] .button,
-[data-filter="map"] .button { background:#9b4d00; }
+/* Utility buttons */
+[data-filter="type"] .button { background:#9b4d00; }
+
+/* Map buttons com imagens de fundo */
+[data-filter="map"] .button[data-value="Dust2"] {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Dust2_overview.png/320px-Dust2_overview.png');
+}
+[data-filter="map"] .button[data-value="Inferno"] {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Inferno_overview.png/320px-Inferno_overview.png');
+}
+[data-filter="map"] .button[data-value="Mirage"] {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Mirage_overview.png/320px-Mirage_overview.png');
+}
+[data-filter="map"] .button[data-value="Anubis"] {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Anubis_map_overview.png'); /* substitua por URL real */
+}
 
 /* Lineups */
 .lineups {
@@ -115,18 +130,15 @@ header p {
     gap:20px;
 }
 
-/* Cards com fundo por mapa */
+/* Cards */
 .card {
+    background: #9b4d00;
     border-radius:16px;
     overflow:hidden;
     transition:all 0.25s ease;
     border:1px solid #1f2937;
     box-shadow:0 5px 15px rgba(0,0,0,0.3);
     position:relative;
-    color:#fff;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .card:hover {
@@ -135,43 +147,13 @@ header p {
     box-shadow:0 12px 20px rgba(0,0,0,0.4);
 }
 
-/* Overlay leve para manter legibilidade do texto */
-.card::before {
-    content:'';
-    position:absolute;
-    top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.5);
-    z-index:0;
-}
+.card-wrapper { position:relative; }
 
-.card-wrapper {
-    position:relative;
-    z-index:1; /* conteúdo acima do overlay */
-}
-
-.card-images {
-    display:flex;
-    gap:4px;
-}
-
-.card-images img {
-    width:50%;
-    height:160px;
-    object-fit:cover;
-    border-bottom:1px solid #1f2937;
-}
-
-.card-content { 
-    padding:16px;
-    position: relative;
-    z-index:1;
-    background: rgba(0,0,0,0.4); /* fundo adicional para texto */
-}
-
+.card-images { display:flex; gap:4px; }
+.card-images img { width:50%; height:160px; object-fit:cover; border-bottom:1px solid #1f2937; }
+.card-content { padding:16px; }
 .card h3 { margin:0 0 8px 0; font-size:18px; }
-
 .meta { font-size:13px; color:#d6d6d6; margin-bottom:10px; }
-
 .map-overlay {
     position:absolute;
     bottom:8px; left:8px;
@@ -182,16 +164,11 @@ header p {
     border-radius:6px;
 }
 
-/* Backgrounds específicos para cada mapa */
-[data-map="Dust2"] { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Dust2_overview.png/320px-Dust2_overview.png'); }
-.card[data-map="Inferno"] { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Inferno_overview.png/320px-Inferno_overview.png'); }
-.card[data-map="Mirage"] { background-image: url('https://i.imgur.com/JIaEDwg_d.png?maxwidth=520&shape=thumb&fidelity=high'); }
-.card[data-map="Anubis"] { background-image: url('https://i.imgur.com/7X8F8c7_d.png?maxwidth=520&shape=thumb&fidelity=high'); }
 /* Footer */
 footer {
     text-align:center;
     padding:25px;
-    background: #ff800000;
+    background: #ff7f00;
     color:#fff;
     font-size:14px;
     font-weight:bold;
