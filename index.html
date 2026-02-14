@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Guia Interativo CS:GO - Avançado</title>
+  <title>Dust2 - CS:GO Utilitários</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,253 +10,114 @@
       color: #fff;
       margin: 0;
       padding: 0;
-      text-align: center;
     }
 
     header {
       background-color: #2c2c2c;
       padding: 20px;
+      text-align: center;
       font-size: 24px;
     }
 
-    .selector-container {
+    .tabs {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin: 15px 0;
-      flex-wrap: wrap;
+      margin: 20px 0;
     }
 
-    .selector-button {
+    .tab-button {
       background-color: #444;
       border: none;
       color: #fff;
       padding: 10px 20px;
+      margin: 0 5px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 18px;
       border-radius: 5px;
-      transition: 0.2s;
     }
 
-    .selector-button.active {
+    .tab-button.active {
       background-color: #f39c12;
       color: #000;
     }
 
-    .map-container {
-      position: relative;
-      display: inline-block;
-      margin: 20px auto;
-      max-width: 90%;
-    }
-
-    .map-img {
-      display: block;
-      width: 100%;
-      border: 2px solid #f39c12;
-    }
-
-    .hotspot {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid #fff;
-      transition: transform 0.2s;
-    }
-
-    .hotspot:hover {
-      transform: scale(1.3);
-    }
-
-    /* Tooltip */
-    .hotspot::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 120%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #222;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-      z-index: 100;
-    }
-
-    .hotspot:hover::after {
-      opacity: 1;
-    }
-
-    /* Modal */
-    .modal {
+    .content-section {
       display: none;
-      position: fixed;
-      top: 0; left: 0; right:0; bottom:0;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+      max-width: 800px;
+      margin: 0 auto 40px;
     }
 
-    .modal-content {
-      background-color: #222;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 600px;
-      width: 90%;
+    .content-section.active {
+      display: block;
+    }
+
+    h2, h3 {
       text-align: center;
     }
 
-    .modal-content img {
-      max-width: 100%;
+    .utility-img {
+      display: block;
+      margin: 10px auto;
+      max-width: 90%;
       border: 2px solid #f39c12;
-      border-radius: 5px;
-    }
-
-    .close-btn {
-      margin-top: 10px;
-      padding: 5px 15px;
-      background-color: #f39c12;
-      color: #000;
-      border: none;
-      cursor: pointer;
       border-radius: 5px;
     }
   </style>
 </head>
 <body>
 
-<header>Guia Interativo CS:GO - Avançado</header>
+<header>Dust2 - CS:GO Utilitários</header>
 
-<!-- Seleção de mapa -->
-<div class="selector-container" id="map-selector">
-  <button class="selector-button active" onclick="selectMap('dust2')">Dust2</button>
-  <button class="selector-button" onclick="selectMap('inferno')">Inferno</button>
-  <button class="selector-button" onclick="selectMap('mirage')">Mirage</button>
+<div class="tabs">
+  <button class="tab-button active" onclick="showTab('tr')">TR</button>
+  <button class="tab-button" onclick="showTab('ct')">CT</button>
 </div>
 
-<!-- Seleção de lado -->
-<div class="selector-container" id="side-selector">
-  <button class="selector-button active" onclick="selectSide('tr')">TR</button>
-  <button class="selector-button" onclick="selectSide('ct')">CT</button>
+<!-- TR Section -->
+<div id="tr" class="content-section active">
+  <h2>Terrorists (TR)</h2>
+
+  <h3>Smokes</h3>
+  <img class="utility-img" src="tr_smoke1.jpg" alt="Smoke TR 1">
+  <img class="utility-img" src="tr_smoke2.jpg" alt="Smoke TR 2">
+
+  <h3>Flashes</h3>
+  <img class="utility-img" src="tr_flash1.jpg" alt="Flash TR 1">
+  <img class="utility-img" src="tr_flash2.jpg" alt="Flash TR 2">
+
+  <h3>Molotovs</h3>
+  <img class="utility-img" src="tr_molo1.jpg" alt="Molotov TR 1">
+  <img class="utility-img" src="tr_molo2.jpg" alt="Molotov TR 2">
 </div>
 
-<!-- Mapa -->
-<div class="map-container">
-  <img class="map-img" id="map-img" src="https://profilerr.net/static/content/thumbs/560x555/9/e2/ggikyb---c560x555x50px50p--03341e42e23a2179c36d51034113ce29.png" alt="Mapa CS:GO">
-</div>
+<!-- CT Section -->
+<div id="ct" class="content-section">
+  <h2>Counter-Terrorists (CT)</h2>
 
-<!-- Modal -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3 id="modal-title">Título</h3>
-    <img id="modal-img" src="" alt="Utilitário">
-    <br>
-    <button class="close-btn" onclick="closeModal()">Fechar</button>
-  </div>
+  <h3>Smokes</h3>
+  <img class="utility-img" src="ct_smoke1.jpg" alt="Smoke CT 1">
+  <img class="utility-img" src="ct_smoke2.jpg" alt="Smoke CT 2">
+
+  <h3>Flashes</h3>
+  <img class="utility-img" src="ct_flash1.jpg" alt="Flash CT 1">
+  <img class="utility-img" src="ct_flash2.jpg" alt="Flash CT 2">
+
+  <h3>Molotovs</h3>
+  <img class="utility-img" src="ct_molo1.jpg" alt="Molotov CT 1">
+  <img class="utility-img" src="ct_molo2.jpg" alt="Molotov CT 2">
 </div>
 
 <script>
-  // Cores dos tipos de utilitário
-  const utilityColors = {
-    Smoke: 'rgba(200,200,200,0.7)',
-    Flash: 'rgba(255,255,255,0.7)',
-    Molotov: 'rgba(255,0,0,0.7)'
-  };
-
-  const mapsData = {
-    dust2: {
-      image: 'https://profilerr.net/static/content/thumbs/560x555/9/e2/ggikyb---c560x555x50px50p--03341e42e23a2179c36d51034113ce29.png',
-      tr: [
-        { type: 'Smoke', name: 'Smoke A', top: '30%', left: '70%', img: 'dust2_tr_smoke1.jpg' },
-        { type: 'Flash', name: 'Flash B', top: '50%', left: '40%', img: 'dust2_tr_flash1.jpg' },
-        { type: 'Molotov', name: 'Molotov C', top: '70%', left: '60%', img: 'dust2_tr_molo1.jpg' }
-      ],
-      ct: [
-        { type: 'Smoke', name: 'Smoke CT1', top: '40%', left: '60%', img: 'dust2_ct_smoke1.jpg' },
-        { type: 'Flash', name: 'Flash CT1', top: '55%', left: '35%', img: 'dust2_ct_flash1.jpg' },
-        { type: 'Molotov', name: 'Molotov CT1', top: '75%', left: '50%', img: 'dust2_ct_molo1.jpg' }
-      ]
-    },
-    inferno: {
-      image: 'inferno_map.png',
-      tr: [
-        { type: 'Smoke', name: 'Smoke T1', top: '25%', left: '60%', img: 'inferno_tr_smoke1.jpg' }
-      ],
-      ct: [
-        { type: 'Molotov', name: 'Molotov CT1', top: '50%', left: '50%', img: 'inferno_ct_molo1.jpg' }
-      ]
-    },
-    mirage: {
-      image: 'mirage_map.png',
-      tr: [
-        { type: 'Flash', name: 'Flash T1', top: '35%', left: '45%', img: 'mirage_tr_flash1.jpg' }
-      ],
-      ct: [
-        { type: 'Smoke', name: 'Smoke CT1', top: '60%', left: '55%', img: 'mirage_ct_smoke1.jpg' }
-      ]
-    }
-  };
-
-  let currentMap = 'dust2';
-  let currentSide = 'tr';
-
-  const mapContainer = document.querySelector('.map-container');
-
-  function renderMap() {
-    // Atualiza imagem do mapa
-    const mapImg = document.getElementById('map-img');
-    mapImg.src = mapsData[currentMap].image;
-
-    // Remove hotspots existentes
-    document.querySelectorAll('.hotspot').forEach(h => h.remove());
-
-    // Adiciona novos hotspots
-    const hotspots = mapsData[currentMap][currentSide];
-    hotspots.forEach(h => {
-      const div = document.createElement('div');
-      div.className = 'hotspot';
-      div.style.top = h.top;
-      div.style.left = h.left;
-      div.style.backgroundColor = utilityColors[h.type] || 'rgba(243,156,18,0.7)';
-      div.setAttribute('data-tooltip', `${h.type}: ${h.name}`);
-      div.onclick = () => showModal(h.name, h.img);
-      mapContainer.appendChild(div);
-    });
-  }
-
-  function selectMap(map) {
-    currentMap = map;
-    document.querySelectorAll('#map-selector .selector-button').forEach(btn => btn.classList.remove('active'));
+  function showTab(tabId) {
+    // Esconde todas as seções
+    document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+    // Remove classe ativa dos botões
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+    // Mostra a seção selecionada
+    document.getElementById(tabId).classList.add('active');
+    // Ativa o botão selecionado
     event.currentTarget.classList.add('active');
-    renderMap();
   }
-
-  function selectSide(side) {
-    currentSide = side;
-    document.querySelectorAll('#side-selector .selector-button').forEach(btn => btn.classList.remove('active'));
-    event.currentTarget.classList.add('active');
-    renderMap();
-  }
-
-  function showModal(title, imgSrc) {
-    document.getElementById('modal-title').innerText = title;
-    document.getElementById('modal-img').src = imgSrc;
-    document.getElementById('modal').style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('modal').style.display = 'none';
-  }
-
-  // Inicializa
-  renderMap();
 </script>
 
 </body>
