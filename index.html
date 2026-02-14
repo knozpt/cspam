@@ -48,7 +48,7 @@ header p {
     margin:auto;
     padding:20px;
     position: relative;
-    z-index:1;
+    z-index:1; /* para ficar acima do overlay */
 }
 
 /* Filters */
@@ -91,13 +91,12 @@ header p {
     opacity:1;
 }
 
-/* Ícones SVG */
+/* Ícones nos botões */
 .button .icon {
     width: 16px;
     height: 16px;
-    margin-right: 6px;
     vertical-align: middle;
-    fill: #fff;
+    margin-right: 6px;
 }
 
 /* Side buttons */
@@ -118,7 +117,7 @@ header p {
 
 /* Cards */
 .card {
-    background: #9b4d00;
+    background: #9b4d00; /* leve transparência para ver background */
     border-radius:16px;
     overflow:hidden;
     transition:all 0.25s ease;
@@ -221,20 +220,14 @@ footer {
         <div class="filter-group" data-filter="type">
             <span class="label">Utility:</span>
             <span class="button active" data-filter="type" data-value="All">All</span>
-
             <span class="button" data-filter="type" data-value="Smoke">
-                <svg class="icon" xmlns="https://p7.hiclipart.com/preview/149/77/171/counter-strike-global-offensive-smoke-grenade-mk-2-grenade-grenade.jpg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 0-2 2v4a2 2 0 0 0 4 0V4a2 2 0 0 0-2-2zM6 8a2 2 0 0 0-2 2v6a2 2 0 0 0 4 0v-6a2 2 0 0 0-2-2zm12 0a2 2 0 0 0-2 2v6a2 2 0 0 0 4 0v-6a2 2 0 0 0-2-2z"/></svg>
-                Smoke
+                <img src="https://p7.hiclipart.com/preview/149/77/171/counter-strike-global-offensive-smoke-grenade-mk-2-grenade-grenade.jpg" alt="Smoke Icon" class="icon"> Smoke
             </span>
-
             <span class="button" data-filter="type" data-value="Flash">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l1-8H7z"/></svg>
-                Flash
+                <img src="https://i.imgur.com/fFjF6fH.png" alt="Flash Icon" class="icon"> Flash
             </span>
-
             <span class="button" data-filter="type" data-value="Molo">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 3 3 7 7 13 4-6 7-10 7-13 0-4-3-7-7-7zm0 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
-                Molo
+                <img src="https://i.imgur.com/3UGpK7K.png" alt="Molotov Icon" class="icon"> Molo
             </span>
         </div>
 
