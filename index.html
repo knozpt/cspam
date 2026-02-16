@@ -161,14 +161,31 @@ header p {
 .card h3 { margin:0 0 8px 0; font-size:18px; }
 .meta { font-size:13px; color:#d6d6d6; margin-bottom:10px; }
 .map-overlay {
-    position:absolute;
-    bottom:2px; 
-    left:6px;
-    background: rgba(0,0,0,0.6);
-    color:#fff;
-    font-size:12ppx;
-    padding:2px 2px;
-    border-radius:8px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffa600;
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    padding: 5px 10px;
+    border-radius: 8px;
+
+    border: 1px solid rgba(255,166,0,0.4);
+    backdrop-filter: blur(4px);
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: all 0.2s ease;
+}
+
+/* pequeno efeito ao passar o rato */
+.card:hover .map-overlay {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.6);
 }
 
 /* Footer */
