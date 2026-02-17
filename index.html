@@ -272,10 +272,8 @@ buttons.forEach(btn => {
 document.addEventListener("DOMContentLoaded", () => {
     // Side inicial
     document.querySelectorAll(`[data-filter="side"]`).forEach(btn => {
-        btn.classList.remove('active');
-        if(btn.dataset.value === activeFilters.side){
-            btn.classList.add('active');
-        }
+        if(btn.dataset.value === "All") btn.classList.add('active');
+        
     });
 
     // Map inicial
