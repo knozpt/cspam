@@ -20,8 +20,7 @@ body{
     background: url('https://i.imgur.com/1QBzw09.png') no-repeat center center fixed;
     background-size: cover;
 }
-
-/* Fundo escuro sobre a imagem */
+/* Overlay escuro */
 body::before{
     content:''; position:fixed; top:0; left:0; width:100%; height:100%;
     background: rgba(0,0,0,0.6); z-index:0;
@@ -30,7 +29,7 @@ body::before{
 /* PARTICLES BACKGROUND */
 #particles-js{position:fixed; top:0; left:0; width:100%; height:100%; z-index:1;}
 
-/* HERO - banner menor */
+/* HERO */
 .hero{
     height:40vh;
     display:flex;
@@ -149,14 +148,14 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
 <div class="filters">
     <div class="filter-group">
         <span class="label">Side:</span>
-        <span class="button active" data-filter="side" data-value="All">All</span>
+        <span class="button" data-filter="side" data-value="All">All</span>
         <span class="button" data-filter="side" data-value="T">T</span>
         <span class="button" data-filter="side" data-value="CT">CT</span>
     </div>
 
     <div class="filter-group" data-filter="map">
         <span class="label">Map:</span>
-        <span class="button active" data-filter="map" data-value="All">All</span>
+        <span class="button" data-filter="map" data-value="All">All</span>
         <span class="button" data-filter="map" data-value="Dust2">Dust2</span>
         <span class="button" data-filter="map" data-value="Inferno">Inferno</span>
         <span class="button" data-filter="map" data-value="Mirage">Mirage</span>
@@ -166,7 +165,7 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
 
     <div class="filter-group">
         <span class="label">Utility:</span>
-        <span class="button active" data-filter="type" data-value="All">All</span>
+        <span class="button" data-filter="type" data-value="All">All</span>
         <span class="button" data-filter="type" data-value="Smoke">Smoke</span>
         <span class="button" data-filter="type" data-value="Flash">Flash</span>
         <span class="button" data-filter="type" data-value="Molo">Molotov</span>
@@ -233,36 +232,61 @@ particlesJS('particles-js',{
 
 <!-- FILTRAGEM -->
 <script>
-const buttons=document.querySelectorAll('.button');
-let activeFilters={side:"All",type:"All",map:"All"};
-
-buttons.forEach(btn=>{
-    btn.addEventListener('click',()=>{
-        const filter=btn.dataset.filter;
-        const value=btn.dataset.value;
-        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        activeFilters[filter]=value;
-        filterCards();
-    });
-});
+const buttons = document.querySelectorAll('.button');
+let activeFilters = { side: "T", type: "All", map: "All" }; // Inicial T ativo
 
 function filterCards(){
-    const cards=document.querySelectorAll('.card');
-    cards.forEach(card=>{
-        const matchSide=activeFilters.side==="All"||activeFilters.side===card.dataset.side;
-        const matchType=activeFilters.type==="All"||activeFilters.type===card.dataset.type;
-        const matchMap=activeFilters.map==="All"||activeFilters.map===card.dataset.map;
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const matchSide = activeFilters.side === "All" || activeFilters.side === card.dataset.side;
+        const matchType = activeFilters.type === "All" || activeFilters.type === card.dataset.type;
+        const matchMap = activeFilters.map === "All" || activeFilters.map === card.dataset.map;
 
         if(matchSide && matchType && matchMap){
-            card.style.display="block";
+            card.style.display = "block";
             setTimeout(()=>card.classList.remove('hide'),10);
-        }else{
+        } else {
             card.classList.add('hide');
             setTimeout(()=>card.style.display="none",350);
         }
     });
 }
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        const value = btn.dataset.value;
+
+        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilters[filter] = value;
+
+        filterCards();
+    });
+});
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", () => {
+    // Side inicial
+    document.querySelectorAll(`[data-filter="side"]`).forEach(btn => {
+        btn.classList.remove('active');
+        if(btn.dataset.value === activeFilters.side){
+            btn.classList.add('active');
+        }
+    });
+
+    // Map inicial
+    document.querySelectorAll(`[data-filter="map"]`).forEach(btn => {
+        if(btn.dataset.value === "All") btn.classList.add('active');
+    });
+
+    // Utility inicial
+    document.querySelectorAll(`[data-filter="type"]`).forEach(btn => {
+        if(btn.dataset.value === "All") btn.classList.add('active');
+    });
+
+    filterCards();
+});
 </script>
 
 </body>
