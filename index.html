@@ -73,21 +73,27 @@ body::before{
 }
 .button:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(255,166,0,0.7);}
 .button.active{
-    background:linear-gradient(90deg,#ff7b00,#ffa600);
     border:none;
     box-shadow:0 0 24px rgba(255,166,0,0.9);
 }
 
-/* Botão CT azul */
-[data-value="CT"]{
-    background:#2563eb;
-    color:#fff;
-    border:none;
-}
-[data-value="CT"].active{
-    background:#1d4ed8;
-    box-shadow:0 0 24px rgba(37,99,235,0.7);
-}
+/* BOTÕES SIDE */
+[data-value="T"]{background: #ff7b00; color:#000;}
+[data-value="T"].active{background:#ffa600;}
+[data-value="CT"]{background:#2563eb; color:#fff;}
+[data-value="CT"].active{background:#1d4ed8;}
+
+/* BOTÕES MAPAS */
+[data-value="Dust2"]{background:#f97316;color:#000;}
+[data-value="Dust2"].active{background:#ea580c;color:#fff;}
+[data-value="Inferno"]{background:#dc2626;color:#fff;}
+[data-value="Inferno"].active{background:#b91c1c;}
+[data-value="Mirage"]{background:#facc15;color:#000;}
+[data-value="Mirage"].active{background:#eab308;}
+[data-value="Anubis"]{background:#14b8a6;color:#000;}
+[data-value="Anubis"].active{background:#0d9488;color:#fff;}
+[data-value="Nuke"]{background:#10b981;color:#000;}
+[data-value="Nuke"].active{background:#059669;color:#fff;}
 
 /* CARDS */
 .lineups{
@@ -102,10 +108,10 @@ body::before{
     border-radius:20px;
     overflow:hidden;
     border:1px solid rgba(255,255,255,0.08);
-    transition:opacity .35s ease, transform .35s ease, box-shadow .3s ease;
     box-shadow:0 10px 30px rgba(0,0,0,0.5);
     opacity:1;
     transform:translateY(0);
+    transition: opacity .5s ease, transform .5s ease;
 }
 .card.hide{
     opacity:0;
@@ -174,7 +180,6 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
 
 <div class="lineups">
 
-<!-- Dust2 -->
 <div class="card" data-side="T" data-type="Smoke" data-map="Dust2">
     <div class="card-images">
         <img src="https://i.imgur.com/OX3VJgY.jpeg">
@@ -187,7 +192,6 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
     </div>
 </div>
 
-<!-- Mirage -->
 <div class="card" data-side="T" data-type="Flash" data-map="Mirage">
     <div class="card-images">
         <img src="https://i.imgur.com/7fHJ6qV.jpeg">
@@ -200,7 +204,6 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
     </div>
 </div>
 
-<!-- Inferno -->
 <div class="card" data-side="CT" data-type="Molo" data-map="Inferno">
     <div class="card-images">
         <img src="https://i.imgur.com/WK6c0Fh.png">
