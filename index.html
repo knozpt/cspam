@@ -21,19 +21,14 @@ body{
     background-size: cover;
 }
 
-/* Fundo escuro transparente sobre a imagem */
+/* Fundo escuro sobre a imagem */
 body::before{
-    content:'';
-    position:fixed;
-    top:0;left:0;width:100%;height:100%;
-    background: rgba(0,0,0,0.6);
-    z-index:0;
+    content:''; position:fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.6); z-index:0;
 }
 
-/* PARTICLE BACKGROUND */
-#particles-js{
-    position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;
-}
+/* PARTICLES BACKGROUND */
+#particles-js{position:fixed; top:0; left:0; width:100%; height:100%; z-index:1;}
 
 /* HERO - banner menor */
 .hero{
@@ -55,11 +50,7 @@ body::before{
     -webkit-text-fill-color:transparent;
     letter-spacing:2px;
 }
-.hero p{
-    margin-top:10px;
-    font-size:16px;
-    color:#ccc;
-}
+.hero p{margin-top:10px;font-size:16px;color:#ccc;}
 
 /* CONTAINER */
 .container{max-width:1300px;margin:auto;padding:40px 20px;position:relative;z-index:2;}
@@ -165,7 +156,7 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
 
     <div class="filter-group" data-filter="map">
         <span class="label">Map:</span>
-        <span class="button" data-filter="map" data-value="All">All</span>
+        <span class="button active" data-filter="map" data-value="All">All</span>
         <span class="button" data-filter="map" data-value="Dust2">Dust2</span>
         <span class="button" data-filter="map" data-value="Inferno">Inferno</span>
         <span class="button" data-filter="map" data-value="Mirage">Mirage</span>
@@ -184,7 +175,8 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
 
 <div class="lineups">
 
-<div class="card" data-side="T" data-type="Smoke">
+<!-- Dust2 -->
+<div class="card" data-side="T" data-type="Smoke" data-map="Dust2">
     <div class="card-images">
         <img src="https://i.imgur.com/OX3VJgY.jpeg">
         <img src="https://i.imgur.com/pRQwpOs.jpeg">
@@ -196,7 +188,8 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
     </div>
 </div>
 
-<div class="card" data-side="T" data-type="Flash">
+<!-- Mirage -->
+<div class="card" data-side="T" data-type="Flash" data-map="Mirage">
     <div class="card-images">
         <img src="https://i.imgur.com/7fHJ6qV.jpeg">
         <img src="https://i.imgur.com/7fHJ6qV.jpeg">
@@ -208,7 +201,8 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
     </div>
 </div>
 
-<div class="card" data-side="CT" data-type="Molo">
+<!-- Inferno -->
+<div class="card" data-side="CT" data-type="Molo" data-map="Inferno">
     <div class="card-images">
         <img src="https://i.imgur.com/WK6c0Fh.png">
         <img src="https://i.imgur.com/KN3GeGB.png">
@@ -227,6 +221,7 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
 © Designed by knozpt
 </footer>
 
+<!-- PARTICLES.JS -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 particlesJS('particles-js',{
@@ -236,9 +231,10 @@ particlesJS('particles-js',{
 });
 </script>
 
+<!-- FILTRAGEM -->
 <script>
 const buttons=document.querySelectorAll('.button');
-let activeFilters={side:"All",type:"All"};
+let activeFilters={side:"All",type:"All",map:"All"};
 
 buttons.forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -256,7 +252,9 @@ function filterCards(){
     cards.forEach(card=>{
         const matchSide=activeFilters.side==="All"||activeFilters.side===card.dataset.side;
         const matchType=activeFilters.type==="All"||activeFilters.type===card.dataset.type;
-        if(matchSide && matchType){
+        const matchMap=activeFilters.map==="All"||activeFilters.map===card.dataset.map;
+
+        if(matchSide && matchType && matchMap){
             card.style.display="block";
             setTimeout(()=>card.classList.remove('hide'),10);
         }else{
