@@ -3,48 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CS2 Subcategorias Exemplo</title>
+<title>CS2 Lineups - Subcategorias</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://i.imgur.com/hwn6WSh.png">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    font-family:sans-serif;
-    background:#111;
+    font-family:'Inter',sans-serif;
     color:#fff;
-    padding:20px;
+    background:#000;
+    overflow-x:hidden;
 }
-.filters{display:flex;gap:10px;margin-bottom:20px;}
+
+/* HERO */
+.hero{
+    height:40vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:50px;
+    font-weight:800;
+    background:linear-gradient(to right,#ff7b00,#ffa600);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    letter-spacing:2px;
+}
+.hero p{margin-top:10px;font-size:16px;color:#ccc;}
+
+/* FILTERS */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0;}
 .button{
     padding:8px 15px;
     border-radius:8px;
     cursor:pointer;
-    background:#333;
+    background:#222;
     color:#fff;
     border:1px solid #555;
+    font-weight:600;
+    transition:0.25s;
 }
-.button.active{background:#ffa600;color:#000;}
+.button:hover{transform:translateY(-2px);}
+.button.active{border:none;}
+
+/* Side */
+[data-value="T"].active{background:#ffa600;color:#000;}
+[data-value="CT"].active{background:#1d4ed8;color:#fff;}
+
+/* Maps */
+[data-value="Dust2"]{background:#f97316;color:#000;}
+[data-value="Dust2"].active{background:#ea580c;color:#fff;}
+[data-value="Inferno"]{background:#dc2626;color:#fff;}
+[data-value="Inferno"].active{background:#b91c1c;}
+[data-value="Mirage"]{background:#facc15;color:#000;}
+[data-value="Mirage"].active{background:#eab308;}
+[data-value="Anubis"]{background:#14b8a6;color:#000;}
+[data-value="Anubis"].active{background:#0d9488;color:#fff;}
+[data-value="Nuke"]{background:#10b981;color:#000;}
+[data-value="Nuke"].active{background:#059669;color:#fff;}
+
+/* Type */
+[data-value="Smoke"].active,
+[data-value="Flash"].active,
+[data-value="Molo"].active{background:#ffa600e6;color:#000;}
+
+/* Subtype */
+.subtype-group{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;}
+.subtype-group .button{background:#333;color:#fff;}
+.subtype-group .button.active{background:#ff7b00;color:#000;}
+
+/* CARDS */
+.lineups{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
 .card{
-    background:#222;
-    padding:15px;
-    margin-bottom:10px;
-    border-radius:10px;
+    border-radius:15px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.1);
+    transition:0.3s;
+    background:#111;
+    opacity:1;
 }
+.card.hide{opacity:0;pointer-events:none;transform:translateY(15px);}
+.card:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 10px 30px rgba(255,166,0,0.5);}
+.card-images img{width:100%;height:150px;object-fit:cover;}
+.card-content{padding:10px;}
+.card h3{font-size:18px;margin-bottom:5px;}
+.card .meta{font-size:13px;color:#aaa;}
+.card .badge{display:inline-block;background:#ff7b00;color:#000;padding:2px 8px;border-radius:12px;font-size:12px;margin-top:5px;}
+
+/* Map backgrounds for cards */
+.card[data-map="Dust2"]{background-image:url('https://i.imgur.com/1QBzw09.png');background-size:cover;background-position:center;}
+.card[data-map="Inferno"]{background-image:url('https://i.imgur.com/qnE1Abk.png');background-size:cover;background-position:center;}
+.card[data-map="Mirage"]{background-image:url('https://i.imgur.com/DvQoQe3.png');background-size:cover;background-position:center;}
+.card[data-map="Anubis"]{background-image:url('https://i.imgur.com/7vXH1VJ.png');background-size:cover;background-position:center;}
+.card[data-map="Nuke"]{background-image:url('https://i.imgur.com/Xk6HUbb.png');background-size:cover;background-position:center;}
+.card .card-content{background:rgba(0,0,0,0.6);}
+
+footer{text-align:center;padding:20px;margin-top:40px;color:#777;}
 </style>
 </head>
+
 <body>
 
-<h2>Exemplo de Subcategorias</h2>
+<section class="hero">
+<h1>CS2 Lineups</h1>
+<p>Escolhe e aprende</p>
+</section>
 
 <!-- Filters -->
+<div class="filters">
+    <span class="label">Side:</span>
+    <span class="button active" data-filter="side" data-value="All">All</span>
+    <span class="button" data-filter="side" data-value="T">T</span>
+    <span class="button" data-filter="side" data-value="CT">CT</span>
+</div>
+
+<div class="filters">
+    <span class="label">Map:</span>
+    <span class="button active" data-filter="map" data-value="All">All</span>
+    <span class="button" data-filter="map" data-value="Dust2">Dust2</span>
+    <span class="button" data-filter="map" data-value="Inferno">Inferno</span>
+    <span class="button" data-filter="map" data-value="Mirage">Mirage</span>
+    <span class="button" data-filter="map" data-value="Anubis">Anubis</span>
+    <span class="button" data-filter="map" data-value="Nuke">Nuke</span>
+</div>
+
 <div class="filters">
     <span class="label">Utility:</span>
     <span class="button active" data-filter="type" data-value="All">All</span>
     <span class="button" data-filter="type" data-value="Smoke">Smoke</span>
     <span class="button" data-filter="type" data-value="Flash">Flash</span>
+    <span class="button" data-filter="type" data-value="Molo">Molotov</span>
 </div>
 
-<!-- Sub-Filters -->
-<div class="filters" id="subtype-group">
-    <span class="label">Smoke Sub:</span>
+<!-- Subcategories (appear sempre, mas serão filtradas) -->
+<div class="subtype-group">
     <span class="button active" data-subtype="All">All</span>
     <span class="button" data-subtype="Spam 1">Spam 1</span>
     <span class="button" data-subtype="Spam 2">Spam 2</span>
@@ -52,53 +157,107 @@ body{
 
 <!-- Cards -->
 <div class="lineups">
-    <div class="card" data-type="Smoke" data-subtype="Spam 1">
-        Dust2 Mid Door Smoke - Spam 1
+    <div class="card" data-side="T" data-type="Smoke" data-subtype="Spam 1" data-map="Dust2">
+        <div class="card-images"><img src="https://i.imgur.com/OX3VJgY.jpeg"></div>
+        <div class="card-content">
+            <h3>Dust2 Mid Door Smoke</h3>
+            <div class="meta">T • Smoke • Spam 1</div>
+            <span class="badge">Dust2</span>
+        </div>
     </div>
-    <div class="card" data-type="Smoke" data-subtype="Spam 2">
-        Dust2 Long Smoke - Spam 2
+    <div class="card" data-side="T" data-type="Smoke" data-subtype="Spam 2" data-map="Dust2">
+        <div class="card-images"><img src="https://i.imgur.com/pRQwpOs.jpeg"></div>
+        <div class="card-content">
+            <h3>Dust2 Long Smoke</h3>
+            <div class="meta">T • Smoke • Spam 2</div>
+            <span class="badge">Dust2</span>
+        </div>
     </div>
-    <div class="card" data-type="Flash" data-subtype="Flash A">
-        Mirage B Short Flash
+    <div class="card" data-side="T" data-type="Flash" data-subtype="Flash A" data-map="Mirage">
+        <div class="card-images"><img src="https://i.imgur.com/7fHJ6qV.jpeg"></div>
+        <div class="card-content">
+            <h3>Mirage B Short Flash</h3>
+            <div class="meta">T • Flash</div>
+            <span class="badge">Mirage</span>
+        </div>
+    </div>
+    <div class="card" data-side="CT" data-type="Molo" data-subtype="Molotov A" data-map="Inferno">
+        <div class="card-images"><img src="https://i.imgur.com/WK6c0Fh.png"></div>
+        <div class="card-content">
+            <h3>Inferno B Site Molotov</h3>
+            <div class="meta">CT • Molotov</div>
+            <span class="badge">Inferno</span>
+        </div>
     </div>
 </div>
 
+<footer>© Designed by knozpt</footer>
+
 <script>
+// Filtragem principal
 const typeButtons = document.querySelectorAll('[data-filter="type"]');
+const sideButtons = document.querySelectorAll('[data-filter="side"]');
+const mapButtons = document.querySelectorAll('[data-filter="map"]');
 const subtypeButtons = document.querySelectorAll('[data-subtype]');
 const cards = document.querySelectorAll('.card');
 
-let activeType = 'All';
-let activeSubtype = 'All';
+let activeFilters = {side:"All", type:"All", map:"All", subtype:"All"};
 
 function filterCards(){
-    cards.forEach(card => {
-        const matchType = activeType==='All' || card.dataset.type === activeType;
-        const matchSubtype = activeSubtype==='All' || card.dataset.subtype === activeSubtype;
-        card.style.display = (matchType && matchSubtype) ? 'block' : 'none';
+    cards.forEach(card=>{
+        const matchSide = activeFilters.side==="All" || card.dataset.side===activeFilters.side;
+        const matchType = activeFilters.type==="All" || card.dataset.type===activeFilters.type;
+        const matchMap = activeFilters.map==="All" || card.dataset.map===activeFilters.map;
+        const matchSubtype = activeFilters.subtype==="All" || card.dataset.subtype===activeFilters.subtype;
+        if(matchSide && matchType && matchMap && matchSubtype){
+            card.style.display="block";
+            setTimeout(()=>card.classList.remove('hide'),10);
+        }else{
+            card.classList.add('hide');
+            setTimeout(()=>card.style.display="none",300);
+        }
     });
 }
 
-// Type filter
-typeButtons.forEach(btn=>{
+// Side
+sideButtons.forEach(btn=>{
     btn.addEventListener('click',()=>{
-        typeButtons.forEach(b=>b.classList.remove('active'));
+        sideButtons.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        activeType = btn.dataset.value;
-        // Reset subcategory
-        activeSubtype = 'All';
-        subtypeButtons.forEach(b=>b.classList.remove('active'));
-        subtypeButtons[0].classList.add('active'); // All
+        activeFilters.side = btn.dataset.value;
         filterCards();
     });
 });
 
-// Subtype filter
+// Type
+typeButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        typeButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilters.type = btn.dataset.value;
+        activeFilters.subtype = "All"; // reset sub
+        subtypeButtons.forEach(b=>b.classList.remove('active'));
+        subtypeButtons[0].classList.add('active');
+        filterCards();
+    });
+});
+
+// Map
+mapButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        mapButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilters.map = btn.dataset.value;
+        filterCards();
+    });
+});
+
+// Subtype
 subtypeButtons.forEach(btn=>{
     btn.addEventListener('click',()=>{
         subtypeButtons.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        activeSubtype = btn.dataset.subtype;
+        activeFilters.subtype = btn.dataset.subtype;
         filterCards();
     });
 });
