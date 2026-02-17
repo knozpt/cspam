@@ -3,316 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CS2 Lineups</title>
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="https://i.imgur.com/hwn6WSh.png">
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<title>CS2 Subcategorias Exemplo</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    font-family:'Inter',sans-serif;
+    font-family:sans-serif;
+    background:#111;
     color:#fff;
-    overflow-x:hidden;
-    background: url('https://i.imgur.com/1QBzw09.png') no-repeat center center fixed;
-    background-size: cover;
+    padding:20px;
 }
-/* Overlay escuro */
-body::before{
-    content:''; position:fixed; top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.6); z-index:0;
-}
-
-/* PARTICLES BACKGROUND */
-#particles-js{position:fixed; top:0; left:0; width:100%; height:100%; z-index:1;}
-
-/* HERO */
-.hero{
-    height:40vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    position:relative;
-    z-index:2;
-}
-.hero h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:50px;
-    font-weight:800;
-    background:linear-gradient(to right,#ff7b00,#ffa600);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    letter-spacing:2px;
-}
-.hero p{margin-top:10px;font-size:16px;color:#ccc;}
-
-/* CONTAINER */
-.container{max-width:1300px;margin:auto;padding:40px 20px;position:relative;z-index:2;}
-
-/* FILTERS */
-.filters{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:20px;}
-.filter-group{
-    background:rgba(255,255,255,0.05);
-    padding:15px 20px;
-    border-radius:16px;
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,0.08);
-}
-.label{font-weight:600;margin-right:10px;}
+.filters{display:flex;gap:10px;margin-bottom:20px;}
 .button{
-    padding:10px 18px;margin:6px;border-radius:10px;cursor:pointer;font-weight:600;font-size:14px;
-    border:1px solid rgba(255,255,255,0.15);
-    background:rgba(255, 255, 255, 0.051);
-    transition:all .25s ease;
-    display:inline-flex;align-items:center;justify-content:center;
+    padding:8px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    background:#333;
+    color:#fff;
+    border:1px solid #555;
 }
-.button:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(255,166,0,0.7);}
-.button.active{border:none;box-shadow:0 0 24px rgba(255, 166, 0, 0.902);}
-
-/* BOTÕES SIDE */
-[data-value="T"].active{background:#ffa600;}
-[data-value="CT"].active{background:#1d4ed8;}
-
-/* BOTÕES MAPAS */
-[data-value="Dust2"]{background:#f97316;color:#000;}
-[data-value="Dust2"].active{background:#ea580c;color:#fff;}
-[data-value="Inferno"]{background:#dc2626;color:#fff;}
-[data-value="Inferno"].active{background:#b91c1c;}
-[data-value="Mirage"]{background:#facc15;color:#000;}
-[data-value="Mirage"].active{background:#eab308;}
-[data-value="Anubis"]{background:#14b8a6;color:#000;}
-[data-value="Anubis"].active{background:#0d9488;color:#fff;}
-[data-value="Nuke"]{background:#10b981;color:#000;}
-[data-value="Nuke"].active{background:#059669;color:#fff;}
-
-/* BOTÕES Utility */
-[data-value="Smoke"].active{background:#ffa600e6;}
-[data-value="Flash"].active{background:#ffa600e6;}
-[data-value="Molo"].active{background:#ffa600e6;}
-
-/* SUBTYPE FILTER */
-#subtype-group{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
-
-/* CARDS */
-.lineups{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-    position:relative;
-    z-index:2;
-}
+.button.active{background:#ffa600;color:#000;}
 .card{
-    background:linear-gradient(145deg,#111827,#1f2937);
-    border-radius:20px;
-    overflow:hidden;
-    border:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
-    opacity:1;
-    transform:translateY(0);
-    transition: opacity .5s ease, transform .5s ease;
+    background:#222;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:10px;
 }
-.card.hide{
-    opacity:0;
-    transform:translateY(15px);
-    pointer-events:none;
-}
-.card:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 15px 40px rgba(255,166,0,0.5);}
-.card-images{display:flex;}
-.card-images img{width:50%;height:200px;object-fit:cover;}
-.card-content{padding:20px;}
-.card h3{font-size:20px;margin-bottom:10px;}
-.meta{font-size:13px;color:#aaa;margin-bottom:10px;}
-.badge{
-    display:inline-block;
-    padding:4px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:600;
-    background:#ff7b00;
-    color:#000;
-}
-
-/* FOOTER */
-footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.08);color:#777;margin-top:60px;}
-@media(max-width:768px){.hero h1{font-size:30px}.filters{flex-direction:column}}
 </style>
 </head>
-
 <body>
 
-<div id="particles-js"></div>
+<h2>Exemplo de Subcategorias</h2>
 
-<section class="hero">
-    <h1>CS2 - Spam</h1>
-    <p>Escolhe e aprende</p>
-</section>
-
-<div class="container">
-
-<!-- FILTERS -->
+<!-- Filters -->
 <div class="filters">
-    <!-- Side -->
-    <div class="filter-group">
-        <span class="label">Side:</span>
-        <span class="button" data-filter="side" data-value="All">All</span>
-        <span class="button" data-filter="side" data-value="T">T</span>
-        <span class="button" data-filter="side" data-value="CT">CT</span>
-    </div>
-
-    <!-- Map -->
-    <div class="filter-group" data-filter="map">
-        <span class="label">Map:</span>
-        <span class="button" data-filter="map" data-value="All">All</span>
-        <span class="button" data-filter="map" data-value="Dust2">Dust2</span>
-        <span class="button" data-filter="map" data-value="Inferno">Inferno</span>
-        <span class="button" data-filter="map" data-value="Mirage">Mirage</span>
-        <span class="button" data-filter="map" data-value="Anubis">Anubis</span>
-        <span class="button" data-filter="map" data-value="Nuke">Nuke</span>
-    </div>
-
-    <!-- Utility -->
-    <div class="filter-group">
-        <span class="label">Utility:</span>
-        <span class="button" data-filter="type" data-value="All">All</span>
-        <span class="button" data-filter="type" data-value="Smoke">Smoke</span>
-        <span class="button" data-filter="type" data-value="Flash">Flash</span>
-        <span class="button" data-filter="type" data-value="Molo">Molotov</span>
-    </div>
-
-    <!-- Subtype -->
-    <div class="filter-group" id="subtype-group"></div>
+    <span class="label">Utility:</span>
+    <span class="button active" data-filter="type" data-value="All">All</span>
+    <span class="button" data-filter="type" data-value="Smoke">Smoke</span>
+    <span class="button" data-filter="type" data-value="Flash">Flash</span>
 </div>
 
-<!-- LINEUPS -->
+<!-- Sub-Filters -->
+<div class="filters" id="subtype-group">
+    <span class="label">Smoke Sub:</span>
+    <span class="button active" data-subtype="All">All</span>
+    <span class="button" data-subtype="Spam 1">Spam 1</span>
+    <span class="button" data-subtype="Spam 2">Spam 2</span>
+</div>
+
+<!-- Cards -->
 <div class="lineups">
-    <!-- Dust2 Smoke -->
-    <div class="card" data-side="T" data-type="Smoke" data-map="Dust2" data-subtype="Spam 1">
-        <div class="card-images">
-            <img src="https://i.imgur.com/OX3VJgY.jpeg">
-            <img src="https://i.imgur.com/pRQwpOs.jpeg">
-        </div>
-        <div class="card-content">
-            <h3>Dust2 Mid Door Smoke</h3>
-            <div class="meta">T • Smoke</div>
-            <span class="badge">Dust2</span>
-        </div>
+    <div class="card" data-type="Smoke" data-subtype="Spam 1">
+        Dust2 Mid Door Smoke - Spam 1
     </div>
-
-    <!-- Mirage Flash -->
-    <div class="card" data-side="T" data-type="Flash" data-map="Mirage" data-subtype="Flash A">
-        <div class="card-images">
-            <img src="https://i.imgur.com/7fHJ6qV.jpeg">
-            <img src="https://i.imgur.com/7fHJ6qV.jpeg">
-        </div>
-        <div class="card-content">
-            <h3>Mirage B Short Flash</h3>
-            <div class="meta">T • Flash</div>
-            <span class="badge">Mirage</span>
-        </div>
+    <div class="card" data-type="Smoke" data-subtype="Spam 2">
+        Dust2 Long Smoke - Spam 2
     </div>
-
-    <!-- Inferno Molo -->
-    <div class="card" data-side="CT" data-type="Molo" data-map="Inferno" data-subtype="Molotov 1">
-        <div class="card-images">
-            <img src="https://i.imgur.com/WK6c0Fh.png">
-            <img src="https://i.imgur.com/KN3GeGB.png">
-        </div>
-        <div class="card-content">
-            <h3>Inferno B Site Molotov</h3>
-            <div class="meta">CT • Molotov</div>
-            <span class="badge">Inferno</span>
-        </div>
+    <div class="card" data-type="Flash" data-subtype="Flash A">
+        Mirage B Short Flash
     </div>
 </div>
-</div>
 
-<footer>
-© Designed by knozpt
-</footer>
-
-<!-- PARTICLES.JS -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-particlesJS('particles-js',{
-    "particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffa600"},"shape":{"type":"circle"},"opacity":{"value":0.3},"size":{"value":3},"line_linked":{"enable":true,"distance":150,"color":"#ff7b00","opacity":0.2,"width":1},"move":{"enable":true,"speed":2}},
-    "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"}}},
-    "retina_detect":true
-});
-</script>
+const typeButtons = document.querySelectorAll('[data-filter="type"]');
+const subtypeButtons = document.querySelectorAll('[data-subtype]');
+const cards = document.querySelectorAll('.card');
 
-<!-- FILTRAGEM -->
-<script>
-const buttons = document.querySelectorAll('.button');
-let activeFilters = { side: "All", type: "All", map: "All" };
-let activeSubFilter = "All";
-
-const subFilters = {
-    Smoke: ["Spam 1","Spam 2","Spam 3"],
-    Flash: ["Flash A","Flash B"],
-    Molo: ["Molotov 1","Molotov 2"]
-};
-
-const subtypeGroup = document.getElementById("subtype-group");
+let activeType = 'All';
+let activeSubtype = 'All';
 
 function filterCards(){
-    const cards = document.querySelectorAll(".card");
     cards.forEach(card => {
-        const matchSide = activeFilters.side === "All" || activeFilters.side === card.dataset.side;
-        const matchType = activeFilters.type === "All" || activeFilters.type === card.dataset.type;
-        const matchMap = activeFilters.map === "All" || activeFilters.map === card.dataset.map;
-        const matchSub = activeSubFilter === "All" || activeSubFilter === card.dataset.subtype;
-
-        if(matchSide && matchType && matchMap && matchSub){
-            card.style.display = "block";
-            setTimeout(()=>card.classList.remove('hide'),10);
-        } else {
-            card.classList.add("hide");
-            setTimeout(()=>card.style.display="none",350);
-        }
+        const matchType = activeType==='All' || card.dataset.type === activeType;
+        const matchSubtype = activeSubtype==='All' || card.dataset.subtype === activeSubtype;
+        card.style.display = (matchType && matchSubtype) ? 'block' : 'none';
     });
 }
 
-buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        const filter = btn.dataset.filter;
-        const value = btn.dataset.value;
-
-        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        activeFilters[filter] = value;
-
-        if(filter === "type" && subFilters[value]){
-            subtypeGroup.style.display = "flex";
-            subtypeGroup.innerHTML = '<span class="label">Sub-Filtro:</span>';
-            subFilters[value].forEach(sub => {
-                const subBtn = document.createElement("span");
-                subBtn.classList.add("button");
-                subBtn.textContent = sub;
-                subBtn.addEventListener("click", () => {
-                    subtypeGroup.querySelectorAll(".button").forEach(b => b.classList.remove("active"));
-                    subBtn.classList.add("active");
-                    activeSubFilter = sub;
-                    filterCards();
-                });
-                subtypeGroup.appendChild(subBtn);
-            });
-            activeSubFilter = "All";
-        } else if(filter === "type"){
-            subtypeGroup.style.display = "none";
-            activeSubFilter = "All";
-        }
-
+// Type filter
+typeButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        typeButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        activeType = btn.dataset.value;
+        // Reset subcategory
+        activeSubtype = 'All';
+        subtypeButtons.forEach(b=>b.classList.remove('active'));
+        subtypeButtons[0].classList.add('active'); // All
         filterCards();
     });
 });
 
-// Inicializar filtros
-document.addEventListener("DOMContentLoaded", () => filterCards());
+// Subtype filter
+subtypeButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        subtypeButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        activeSubtype = btn.dataset.subtype;
+        filterCards();
+    });
+});
+
+// Inicial
+filterCards();
 </script>
 
 </body>
