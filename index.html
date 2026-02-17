@@ -3,27 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CS2 Lineups | Pro Utility</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-    font-family:'Inter', sans-serif;
-    background: radial-gradient(circle at top, #111 0%, #000 70%);
+    font-family:'Inter',sans-serif;
+    background:radial-gradient(circle at top,#111 0%,#000 70%);
     color:#fff;
-    overflow-x:hidden;
 }
 
 /* ===== HERO ===== */
-
 .hero{
     height:60vh;
     display:flex;
@@ -32,16 +25,16 @@ body{
     align-items:center;
     text-align:center;
     background:
-        linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+        linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),
         url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg');
     background-size:cover;
     background-position:center;
 }
 
 .hero h1{
-    font-family:'Orbitron', sans-serif;
+    font-family:'Orbitron',sans-serif;
     font-size:70px;
-    font-weight:900;
+    font-weight:800;
     background:linear-gradient(to right,#ff7b00,#ffa600);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
@@ -50,12 +43,10 @@ body{
 
 .hero p{
     margin-top:15px;
-    color:#ccc;
-    font-size:18px;
+    color:#aaa;
 }
 
 /* ===== CONTAINER ===== */
-
 .container{
     max-width:1300px;
     margin:auto;
@@ -63,7 +54,6 @@ body{
 }
 
 /* ===== FILTERS ===== */
-
 .filters{
     display:flex;
     flex-wrap:wrap;
@@ -85,7 +75,6 @@ body{
 }
 
 .button{
-    position:relative;
     padding:10px 18px;
     margin:6px;
     border-radius:10px;
@@ -111,14 +100,7 @@ body{
     box-shadow:0 0 18px rgba(255,166,0,0.7);
 }
 
-.button .icon{
-    width:18px;
-    height:18px;
-    margin-right:8px;
-}
-
 /* ===== CARDS ===== */
-
 .lineups{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -130,8 +112,16 @@ body{
     border-radius:20px;
     overflow:hidden;
     border:1px solid rgba(255,255,255,0.08);
-    transition:all .3s ease;
+    transition:opacity .35s ease, transform .35s ease, box-shadow .3s ease;
     box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card.hide{
+    opacity:0;
+    transform:translateY(15px);
+    pointer-events:none;
 }
 
 .card:hover{
@@ -172,9 +162,9 @@ body{
     font-weight:600;
 }
 
-.easy{ background:#16a34a; }
-.medium{ background:#eab308; color:#000; }
-.hard{ background:#dc2626; }
+.easy{background:#16a34a}
+.medium{background:#eab308;color:#000}
+.hard{background:#dc2626}
 
 footer{
     text-align:center;
@@ -185,11 +175,10 @@ footer{
     margin-top:60px;
 }
 
-/* ===== RESPONSIVE ===== */
-
+/* RESPONSIVE */
 @media(max-width:768px){
-    .hero h1{ font-size:40px; }
-    .filters{ flex-direction:column; }
+    .hero h1{font-size:40px}
+    .filters{flex-direction:column}
 }
 </style>
 </head>
@@ -261,21 +250,34 @@ buttons.forEach(btn=>{
     btn.addEventListener('click',()=>{
         const filter=btn.dataset.filter;
         const value=btn.dataset.value;
-        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b=>b.classList.remove('active'));
+
+        document.querySelectorAll(`[data-filter="${filter}"]`)
+            .forEach(b=>b.classList.remove('active'));
+
         btn.classList.add('active');
         activeFilters[filter]=value;
+
         filterCards();
     });
 });
 
 function filterCards(){
     const cards=document.querySelectorAll('.card');
+
     cards.forEach(card=>{
         const side=card.dataset.side;
         const type=card.dataset.type;
+
         const matchSide=activeFilters.side==="All"||activeFilters.side===side;
         const matchType=activeFilters.type==="All"||activeFilters.type===type;
-        card.style.display=(matchSide&&matchType)?"block":"none";
+
+        if(matchSide && matchType){
+            card.style.display="block";
+            setTimeout(()=>card.classList.remove('hide'),10);
+        }else{
+            card.classList.add('hide');
+            setTimeout(()=>card.style.display="none",350);
+        }
     });
 }
 </script>
