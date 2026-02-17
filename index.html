@@ -3,32 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CS2 Lineups | Pro Utility</title>
+<title>CS2 Major Lineups</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
     font-family:'Inter',sans-serif;
-    background:radial-gradient(circle at top,#111 0%,#000 70%);
+    background:#000;
     color:#fff;
+    overflow-x:hidden;
 }
 
-/* ===== HERO ===== */
+/* ===== PARTICLE BACKGROUND ===== */
+#particles-js{
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+/* ===== HERO MAJOR ===== */
 .hero{
-    height:60vh;
+    height:65vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    background:
-        linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),
-        url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg');
-    background-size:cover;
-    background-position:center;
+    position:relative;
+    z-index:1;
 }
 
 .hero h1{
@@ -43,7 +49,8 @@ body{
 
 .hero p{
     margin-top:15px;
-    color:#aaa;
+    font-size:18px;
+    color:#ccc;
 }
 
 /* ===== CONTAINER ===== */
@@ -51,6 +58,8 @@ body{
     max-width:1300px;
     margin:auto;
     padding:40px 20px;
+    position:relative;
+    z-index:1;
 }
 
 /* ===== FILTERS ===== */
@@ -91,13 +100,13 @@ body{
 
 .button:hover{
     transform:translateY(-2px);
-    box-shadow:0 0 12px rgba(255,166,0,0.5);
+    box-shadow:0 0 18px rgba(255,166,0,0.7);
 }
 
 .button.active{
     background:linear-gradient(90deg,#ff7b00,#ffa600);
     border:none;
-    box-shadow:0 0 18px rgba(255,166,0,0.7);
+    box-shadow:0 0 24px rgba(255,166,0,0.9);
 }
 
 /* ===== CARDS ===== */
@@ -105,6 +114,8 @@ body{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
     gap:30px;
+    position:relative;
+    z-index:1;
 }
 
 .card{
@@ -126,7 +137,7 @@ body{
 
 .card:hover{
     transform:translateY(-8px) scale(1.03);
-    box-shadow:0 15px 40px rgba(255,166,0,0.3);
+    box-shadow:0 15px 40px rgba(255,166,0,0.5);
 }
 
 .card-images{
@@ -166,6 +177,7 @@ body{
 .medium{background:#eab308;color:#000}
 .hard{background:#dc2626}
 
+/* ===== FOOTER ===== */
 footer{
     text-align:center;
     padding:30px;
@@ -175,7 +187,7 @@ footer{
     margin-top:60px;
 }
 
-/* RESPONSIVE */
+/* ===== RESPONSIVE ===== */
 @media(max-width:768px){
     .hero h1{font-size:40px}
     .filters{flex-direction:column}
@@ -185,8 +197,11 @@ footer{
 
 <body>
 
+<!-- PARTICLES BACKGROUND -->
+<div id="particles-js"></div>
+
 <section class="hero">
-    <h1>CS2 LINEUPS</h1>
+    <h1>CS2 MAJOR LINEUPS</h1>
     <p>Professional Utility Database</p>
 </section>
 
@@ -239,8 +254,29 @@ footer{
 </div>
 
 <footer>
-© 2026 CS2 Pro Utility | Designed for Competitive Players
+© 2026 CS2 Major Utility | Designed for Competitive Players
 </footer>
+
+<!-- PARTICLES.JS LIBRARY -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+particlesJS('particles-js', {
+    "particles": {
+        "number": {"value":80,"density":{"enable":true,"value_area":800}},
+        "color":{"value":"#ffa600"},
+        "shape":{"type":"circle"},
+        "opacity":{"value":0.3},
+        "size":{"value":3},
+        "line_linked":{"enable":true,"distance":150,"color":"#ff7b00","opacity":0.2,"width":1},
+        "move":{"enable":true,"speed":2}
+    },
+    "interactivity":{
+        "detect_on":"canvas",
+        "events":{"onhover":{"enable":true,"mode":"repulse"}}
+    },
+    "retina_detect":true
+});
+</script>
 
 <script>
 const buttons=document.querySelectorAll('.button');
