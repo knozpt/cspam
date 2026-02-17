@@ -19,24 +19,34 @@ body{
     overflow-x:hidden;
     background: url('https://i.imgur.com/1QBzw09.png') no-repeat center center fixed;
     background-size: cover;
-    transition: background 0.5s ease;
 }
+/* Overlay escuro */
 body::before{
     content:''; position:fixed; top:0; left:0; width:100%; height:100%;
     background: rgba(0,0,0,0.6); z-index:0;
 }
 
-/* PARTICLES */
+/* PARTICLES BACKGROUND */
 #particles-js{position:fixed; top:0; left:0; width:100%; height:100%; z-index:1;}
 
 /* HERO */
 .hero{
-    height:40vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; z-index:2;
+    height:30vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    z-index:2;
 }
 .hero h1{
-    font-family:'Orbitron',sans-serif; font-size:50px; font-weight:800;
+    font-family:'Orbitron',sans-serif;
+    font-size:50px;
+    font-weight:800;
     background:linear-gradient(to right,#ff7b00,#ffa600);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
     letter-spacing:2px;
 }
 .hero p{margin-top:10px;font-size:16px;color:#ccc;}
@@ -47,68 +57,103 @@ body::before{
 /* FILTERS */
 .filters{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:40px;}
 .filter-group{
-    background:rgba(255,255,255,0.05); padding:15px 20px; border-radius:16px; backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.05);
+    padding:15px 20px;
+    border-radius:16px;
+    backdrop-filter:blur(10px);
     border:1px solid rgba(255,255,255,0.08);
 }
 .label{font-weight:600;margin-right:10px;}
 .button{
-    padding:10px 18px; margin:6px; border-radius:10px; cursor:pointer;
-    font-weight:600; font-size:14px; border:1px solid rgba(255,255,255,0.15);
-    background:rgba(255,255,255,0.05); transition:all .25s ease;
-    display:inline-flex; align-items:center; justify-content:center;
+    padding:10px 18px;margin:6px;border-radius:12px;cursor:pointer;font-weight:600;font-size:14px;
+    border:1px solid rgba(255,255,255,0.15);
+    display:inline-flex;align-items:center;justify-content:center;
+    transition: all .3s ease;
 }
-.button:hover{transform:translateY(-2px); box-shadow:0 0 18px rgba(255,166,0,0.7);}
-.button.active{border:none; box-shadow:0 0 24px rgba(255,166,0,0.9);}
+.button:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(255,166,0,0.7);}
+.button.active{border:none;box-shadow:0 0 24px rgba(255, 166, 0, 0.902);}
 
-/* SIDE BUTTONS */
-[data-value="T"].active{background:#ffa600;}
-[data-value="CT"].active{background:#1d4ed8;}
+/* BOTÕES SIDE */
+[data-value="T"].active{background:#ffa600;color:#000;}
+[data-value="CT"].active{background:#1d4ed8;color:#fff;}
 
-/* MAP BUTTONS */
-[data-value="Dust2"]{background:#f97316;color:#000;}
-[data-value="Dust2"].active{background:#ea580c;color:#fff;}
-[data-value="Inferno"]{background:#dc2626;color:#fff;}
-[data-value="Inferno"].active{background:#b91c1c;}
-[data-value="Mirage"]{background:#facc15;color:#000;}
-[data-value="Mirage"].active{background:#eab308;}
-[data-value="Anubis"]{background:#14b8a6;color:#000;}
-[data-value="Anubis"].active{background:#0d9488;color:#fff;}
-[data-value="Nuke"]{background:#10b981;color:#000;}
-[data-value="Nuke"].active{background:#059669;color:#fff;}
-
-/* UTILITY BUTTONS */
-[data-value="Smoke"].active,[data-value="Flash"].active,[data-value="Molo"].active{background:#ffa600e6;}
-
-/* SUBTYPE BUTTONS */
-#subtype-group .button{
-    background: rgba(255,255,255,0.1);
-    color: #fff;
+/* BOTÕES MAPAS COM IMAGEM */
+[data-value="Dust2"]{
+    background: url('https://i.imgur.com/dCPWbZU.png') center/cover no-repeat;
+    color:#fff; font-weight:600; text-shadow:1px 1px 2px #000;
 }
-#subtype-group .button:hover{background: rgba(255,255,255,0.3);}
-#subtype-group .button.active{background:#ff7b00; color:#000;}
+[data-value="Dust2"].active{border:2px solid #ff7b00; box-shadow:0 0 10px #ff7b00;}
+
+[data-value="Inferno"]{
+    background: url('https://i.imgur.com/mLQ0QdD.jpeg') center/cover no-repeat;
+    color:#fff; text-shadow:1px 1px 2px #000;
+}
+[data-value="Inferno"].active{border:2px solid #dc2626; box-shadow:0 0 10px #dc2626;}
+
+[data-value="Mirage"]{
+    background: url('https://i.imgur.com/JIaEDwg.png') center/cover no-repeat;
+    color:#fff; text-shadow:1px 1px 2px #000;
+}
+[data-value="Mirage"].active{border:2px solid #facc15; box-shadow:0 0 10px #facc15;}
+
+[data-value="Anubis"]{
+    background: url('https://i.imgur.com/pp37qLu.png') center/cover no-repeat;
+    color:#fff; text-shadow:1px 1px 2px #000;
+}
+[data-value="Anubis"].active{border:2px solid #14b8a6; box-shadow:0 0 10px #14b8a6;}
+
+[data-value="Nuke"]{
+    background: url('https://i.imgur.com/DSRqZEm.jpeg') center/cover no-repeat;
+    color:#fff; text-shadow:1px 1px 2px #000;
+}
+[data-value="Nuke"].active{border:2px solid #10b981; box-shadow:0 0 10px #10b981;}
+
+/* BOTÕES Utility */
+[data-value="Smoke"].active,
+[data-value="Flash"].active,
+[data-value="Molo"].active{background:#ffa600e6;color:#000;}
 
 /* CARDS */
 .lineups{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; position:relative; z-index:2;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    position:relative;
+    z-index:2;
 }
 .card{
-    background:linear-gradient(145deg,#111827,#1f2937); border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 10px 30px rgba(0,0,0,0.5); opacity:1; transform:translateY(0);
+    background:linear-gradient(145deg,#ffa600dc,#534427e6);
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    opacity:1;
+    transform:translateY(0);
     transition: opacity .5s ease, transform .5s ease;
 }
 .card.hide{opacity:0; transform:translateY(15px); pointer-events:none;}
 .card:hover{transform:translateY(-8px) scale(1.03); box-shadow:0 15px 40px rgba(255,166,0,0.5);}
 .card-images{display:flex;}
-.card-images img{width:50%; height:200px; object-fit:cover;}
+.card-images img{width:50%;height:200px;object-fit:cover;}
 .card-content{padding:20px;}
 .card h3{font-size:20px;margin-bottom:10px;}
 .meta{font-size:13px;color:#aaa;margin-bottom:10px;}
-.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;background:#ff7b00;color:#000;}
+.badge{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    background:#ff7b00;
+    color:#000;
+}
 
+/* FOOTER */
 footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.08);color:#777;margin-top:60px;}
 @media(max-width:768px){.hero h1{font-size:30px}.filters{flex-direction:column}}
 </style>
 </head>
+
 <body>
 
 <div id="particles-js"></div>
@@ -121,7 +166,6 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
 <div class="container">
 
 <div class="filters">
-    <!-- SIDE -->
     <div class="filter-group">
         <span class="label">Side:</span>
         <span class="button" data-filter="side" data-value="All">All</span>
@@ -129,7 +173,6 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
         <span class="button" data-filter="side" data-value="CT">CT</span>
     </div>
 
-    <!-- MAP -->
     <div class="filter-group" data-filter="map">
         <span class="label">Map:</span>
         <span class="button" data-filter="map" data-value="All">All</span>
@@ -140,7 +183,6 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
         <span class="button" data-filter="map" data-value="Nuke">Nuke</span>
     </div>
 
-    <!-- UTILITY -->
     <div class="filter-group">
         <span class="label">Utility:</span>
         <span class="button" data-filter="type" data-value="All">All</span>
@@ -148,79 +190,76 @@ footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rg
         <span class="button" data-filter="type" data-value="Flash">Flash</span>
         <span class="button" data-filter="type" data-value="Molo">Molotov</span>
     </div>
-
-    <!-- SUBTYPE -->
-    <div class="filter-group" id="subtype-group" style="display:none;">
-        <span class="label">Subtype:</span>
-    </div>
-
 </div>
 
 <div class="lineups">
-    <div class="card" data-side="T" data-type="Smoke" data-map="Dust2" data-subtype="Spam 1">
-        <div class="card-images"><img src="https://i.imgur.com/OX3VJgY.jpeg"><img src="https://i.imgur.com/pRQwpOs.jpeg"></div>
-        <div class="card-content"><h3>Dust2 Mid Door Smoke</h3><div class="meta">T • Smoke</div><span class="badge">Dust2</span></div>
+
+<div class="card" data-side="T" data-type="Smoke" data-map="Dust2">
+    <div class="card-images">
+        <img src="https://i.imgur.com/OX3VJgY.jpeg">
+        <img src="https://i.imgur.com/pRQwpOs.jpeg">
     </div>
-    <div class="card" data-side="T" data-type="Flash" data-map="Mirage" data-subtype="Pop Flash">
-        <div class="card-images"><img src="https://i.imgur.com/7fHJ6qV.jpeg"><img src="https://i.imgur.com/7fHJ6qV.jpeg"></div>
-        <div class="card-content"><h3>Mirage B Short Flash</h3><div class="meta">T • Flash</div><span class="badge">Mirage</span></div>
+    <div class="card-content">
+        <h3>Dust2 Mid Door Smoke</h3>
+        <div class="meta">T • Smoke</div>
+        <span class="badge">Dust2</span>
     </div>
-    <div class="card" data-side="CT" data-type="Molo" data-map="Inferno" data-subtype="Molotov 1">
-        <div class="card-images"><img src="https://i.imgur.com/WK6c0Fh.png"><img src="https://i.imgur.com/KN3GeGB.png"></div>
-        <div class="card-content"><h3>Inferno B Site Molotov</h3><div class="meta">CT • Molotov</div><span class="badge">Inferno</span></div>
+</div>
+
+<div class="card" data-side="T" data-type="Flash" data-map="Mirage">
+    <div class="card-images">
+        <img src="https://i.imgur.com/7fHJ6qV.jpeg">
+        <img src="https://i.imgur.com/7fHJ6qV.jpeg">
     </div>
+    <div class="card-content">
+        <h3>Mirage B Short Flash</h3>
+        <div class="meta">T • Flash</div>
+        <span class="badge">Mirage</span>
+    </div>
+</div>
+
+<div class="card" data-side="CT" data-type="Molo" data-map="Inferno">
+    <div class="card-images">
+        <img src="https://i.imgur.com/WK6c0Fh.png">
+        <img src="https://i.imgur.com/KN3GeGB.png">
+    </div>
+    <div class="card-content">
+        <h3>Inferno B Site Molotov</h3>
+        <div class="meta">CT • Molotov</div>
+        <span class="badge">Inferno</span>
+    </div>
+</div>
+
 </div>
 </div>
 
-<footer>© Designed by knozpt</footer>
+<footer>
+© Designed by knozpt
+</footer>
 
+<!-- PARTICLES.JS -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-// Particles
-particlesJS('particles-js', {
+particlesJS('particles-js',{
     "particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffa600"},"shape":{"type":"circle"},"opacity":{"value":0.3},"size":{"value":3},"line_linked":{"enable":true,"distance":150,"color":"#ff7b00","opacity":0.2,"width":1},"move":{"enable":true,"speed":2}},
     "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"}}},
     "retina_detect":true
 });
+</script>
 
-// Filtros
+<!-- FILTRAGEM -->
+<script>
 const buttons = document.querySelectorAll('.button');
-const subtypeGroup = document.getElementById("subtype-group");
-const body = document.body;
-let activeFilters = { side:"All", type:"All", map:"All", subtype:"All" };
-
-// Map backgrounds
-const mapBackgrounds = {
-    Dust2: "url('https://i.imgur.com/1QBzw09.png')",
-    Inferno: "url('https://i.imgur.com/7fHJ6qV.jpeg')",
-    Mirage: "url('https://i.imgur.com/KN3GeGB.png')",
-    Anubis: "url('https://i.imgur.com/pRQwpOs.jpeg')",
-    Nuke: "url('https://i.imgur.com/WK6c0Fh.png')",
-    All: "url('https://i.imgur.com/1QBzw09.png')"
-};
+let activeFilters = { side: "All", type: "All", map: "All" };
 
 function filterCards(){
     const cards = document.querySelectorAll('.card');
-
-    // Subtype visível apenas para Smoke e Flash
-    if(activeFilters.type === "Smoke" || activeFilters.type === "Flash"){
-        subtypeGroup.style.display = "flex";
-        gerarSubtypes();
-    } else {
-        subtypeGroup.style.display = "none";
-        activeFilters.subtype = "All";
-    }
-
-    // Troca fundo conforme mapa
-    body.style.backgroundImage = mapBackgrounds[activeFilters.map] || mapBackgrounds["All"];
-
     cards.forEach(card => {
         const matchSide = activeFilters.side === "All" || activeFilters.side === card.dataset.side;
         const matchType = activeFilters.type === "All" || activeFilters.type === card.dataset.type;
         const matchMap = activeFilters.map === "All" || activeFilters.map === card.dataset.map;
-        const matchSubtype = activeFilters.subtype === "All" || activeFilters.subtype === card.dataset.subtype;
 
-        if(matchSide && matchType && matchMap && matchSubtype){
+        if(matchSide && matchType && matchMap){
             card.style.display = "block";
             setTimeout(()=>card.classList.remove('hide'),10);
         } else {
@@ -230,50 +269,26 @@ function filterCards(){
     });
 }
 
-// Gerar subcategorias
-function gerarSubtypes(){
-    const cards = document.querySelectorAll('.card');
-    const subtypesSet = new Set();
-    cards.forEach(c => { if(c.dataset.type === activeFilters.type) subtypesSet.add(c.dataset.subtype); });
-
-    // Limpar
-    subtypeGroup.querySelectorAll('.button').forEach(b => b.remove());
-
-    // Botão All
-    const btnAll = document.createElement("span");
-    btnAll.classList.add("button","active"); btnAll.dataset.subtype="All"; btnAll.textContent="All";
-    subtypeGroup.appendChild(btnAll);
-
-    // Subtype buttons
-    subtypesSet.forEach(sub => {
-        const btn = document.createElement("span");
-        btn.classList.add("button"); btn.dataset.subtype=sub; btn.textContent=sub;
-        subtypeGroup.appendChild(btn);
-    });
-
-    subtypeGroup.querySelectorAll('.button').forEach(btn => {
-        btn.addEventListener("click", ()=>{
-            subtypeGroup.querySelectorAll('.button').forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            activeFilters.subtype = btn.dataset.subtype;
-            filterCards();
-        });
-    });
-}
-
-// Eventos principais
 buttons.forEach(btn => {
-    btn.addEventListener("click", ()=>{
+    btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
         const value = btn.dataset.value;
-        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+
+        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         activeFilters[filter] = value;
+
         filterCards();
     });
 });
 
-document.addEventListener("DOMContentLoaded", filterCards);
+document.addEventListener("DOMContentLoaded", () => {
+    // Inicializar todos os filtros como "All"
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+        if(btn.dataset.value==="All") btn.classList.add('active');
+    });
+    filterCards();
+});
 </script>
 
 </body>
