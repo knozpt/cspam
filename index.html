@@ -162,6 +162,13 @@ footer{
 </style>
 </style>
 </head>
+<!-- IMAGE VIEWER -->
+<div id="imageModal" class="image-modal">
+    <span class="close">&times;</span>
+    <span class="arrow prev">&#10094;</span>
+    <img id="modalImg">
+    <span class="arrow next">&#10095;</span>
+</div>
 
 <body>
 
@@ -280,6 +287,81 @@ particlesJS('particles-js',{
 });
 </script>
 
+
+/* ============================= */
+/* IMAGE VIEWER PRO */
+/* ============================= */
+
+.image-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    backdrop-filter:blur(8px);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:fadeIn .3s ease;
+    overflow:hidden;
+}
+
+.image-modal img{
+    max-width:90%;
+    max-height:85vh;
+    border-radius:18px;
+    transform:scale(0.85);
+    opacity:0;
+    transition:all .3s ease;
+    box-shadow:0 0 50px rgba(255,166,0,0.5);
+}
+
+.image-modal.show img{
+    transform:scale(1);
+    opacity:1;
+}
+
+/* Close */
+.image-modal .close{
+    position:absolute;
+    top:25px;
+    right:40px;
+    font-size:42px;
+    color:#fff;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.image-modal .close:hover{
+    color:#ffa600;
+    transform:scale(1.2);
+}
+
+/* Arrows */
+.image-modal .arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:50px;
+    color:#fff;
+    cursor:pointer;
+    padding:20px;
+    user-select:none;
+    transition:.2s;
+}
+
+.image-modal .arrow:hover{
+    color:#ffa600;
+    transform:translateY(-50%) scale(1.2);
+}
+
+.image-modal .prev{ left:20px; }
+.image-modal .next{ right:20px; }
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
 <!-- FILTRAGEM -->
 <script>
 const buttons = document.querySelectorAll('.button');
@@ -323,6 +405,87 @@ document.addEventListener("DOMContentLoaded", () => {
     filterCards();
 });
 </script>
+<script>
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const closeBtn = document.querySelector(".close");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
 
+let images = [];
+let currentIndex = 0;
+
+/* Coletar imagens */
+document.querySelectorAll(".card-images img").forEach((img, index)=>{
+    images.push(img.src);
+
+    img.addEventListener("click", ()=>{
+        currentIndex = images.indexOf(img.src);
+        openModal();
+    });
+});
+
+function openModal(){
+    modal.style.display = "flex";
+    modalImg.src = images[currentIndex];
+    setTimeout(()=> modal.classList.add("show"),10);
+}
+
+function closeModal(){
+    modal.classList.remove("show");
+    setTimeout(()=> modal.style.display="none",300);
+}
+
+function showNext(){
+    currentIndex = (currentIndex + 1) % images.length;
+    modalImg.src = images[currentIndex];
+}
+
+function showPrev(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    modalImg.src = images[currentIndex];
+}
+
+/* Eventos */
+closeBtn.addEventListener("click", closeModal);
+nextBtn.addEventListener("click", showNext);
+prevBtn.addEventListener("click", showPrev);
+
+modal.addEventListener("click",(e)=>{
+    if(e.target === modal) closeModal();
+});
+
+/* Teclado */
+document.addEventListener("keydown",(e)=>{
+    if(modal.style.display === "flex"){
+        if(e.key === "Escape") closeModal();
+        if(e.key === "ArrowRight") showNext();
+        if(e.key === "ArrowLeft") showPrev();
+    }
+});
+
+/* Swipe Mobile */
+let touchStartX = 0;
+let touchEndX = 0;
+
+modal.addEventListener("touchstart", e=>{
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+modal.addEventListener("touchend", e=>{
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe(){
+    if(touchEndX < touchStartX - 50){
+        showNext();
+    }
+    if(touchEndX > touchStartX + 50){
+        showPrev();
+    }
+}
+
+</script>
 </body>
 </html>
