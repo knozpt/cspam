@@ -369,14 +369,23 @@ const nextBtn = document.querySelector(".next");
 let images = [];
 let currentIndex = 0;
 
-/* Coletar imagens */
-document.querySelectorAll(".card-images img").forEach((img, index)=>{
-    images.push(img.src);
+/* Abrir apenas imagens do card clicado */
+document.querySelectorAll(".card-images img").forEach(img => {
 
-    img.addEventListener("click", ()=>{
+    img.addEventListener("click", () => {
+
+        const card = img.closest(".card");
+        const cardImages = card.querySelectorAll(".card-images img");
+
+        // Reset array
+        images = [];
+        cardImages.forEach(i => images.push(i.src));
+
         currentIndex = images.indexOf(img.src);
+
         openModal();
     });
+
 });
 
 function openModal(){
@@ -420,25 +429,17 @@ document.addEventListener("keydown",(e)=>{
 
 /* Swipe Mobile */
 let touchStartX = 0;
-let touchEndX = 0;
 
 modal.addEventListener("touchstart", e=>{
     touchStartX = e.changedTouches[0].screenX;
 });
 
 modal.addEventListener("touchend", e=>{
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
+    let touchEndX = e.changedTouches[0].screenX;
 
-function handleSwipe(){
-    if(touchEndX < touchStartX - 50){
-        showNext();
-    }
-    if(touchEndX > touchStartX + 50){
-        showPrev();
-    }
-}
+    if(touchEndX < touchStartX - 50) showNext();
+    if(touchEndX > touchStartX + 50) showPrev();
+});
 </script>
 
 <!-- PARTICLES.JS -->
