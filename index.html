@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CS2 Lineups</title>
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="https://i.imgur.com/hwn6WSh.png">
-
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -20,16 +17,12 @@ body{
     background: url('https://i.imgur.com/1QBzw09.png') no-repeat center center fixed;
     background-size: cover;
 }
-/* Overlay escuro */
 body::before{
-    content:''; position:fixed; top:0; left:0; width:100%; height:100%; margin: 0;
+    content:''; position:fixed; inset:0;
     background: rgba(0,0,0,0.6); z-index:0;
 }
+#particles-js{position:fixed; inset:0; z-index:1;}
 
-/* PARTICLES BACKGROUND */
-#particles-js{position:fixed; top:0; left:0; width:100%; height:100%; z-index:1;}
-
-/* HERO */
 .hero{
     height:30vh;
     display:flex;
@@ -47,14 +40,11 @@ body::before{
     background:linear-gradient(to right,#ff7b00,#ffa600);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    letter-spacing:2px;
 }
 .hero p{margin-top:10px;font-size:16px;color:#ccc;}
 
-/* CONTAINER */
 .container{max-width:1300px;margin:auto;padding:40px 20px;position:relative;z-index:2;}
 
-/* FILTERS */
 .filters{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:40px;}
 .filter-group{
     background:rgba(255,255,255,0.05);
@@ -75,43 +65,22 @@ body::before{
 
 /* BOTÕES SIDE */
 [data-value="T"].active{background:#ffa600;color:#000;}
-[data-value="CT"].active{background:#1d4ed8;color:#fff;border: none;box-shadow: 0 0 24px #00a2ff;}
+[data-value="CT"].active{background:#1d4ed8;color:#fff;border:none;box-shadow:0 0 24px #00a2ff;}
 
 /* BOTÕES MAPAS COM IMAGEM */
-[data-value="Dust2"]{
-    background: url('https://i.imgur.com/dCPWbZU.png') center/cover no-repeat;
-    color:#fff; font-weight:600; text-shadow:1px 1px 2px #000;
-}
+[data-value="Dust2"]{background:url('https://i.imgur.com/dCPWbZU.png') center/cover no-repeat;color:#fff;font-weight:600;text-shadow:1px 1px 2px #000;}
 [data-value="Dust2"].active{border:2px solid #ff7b00; box-shadow:0 0 10px #ff7b00;}
-
-[data-value="Inferno"]{
-    background: url('https://i.imgur.com/mLQ0QdD.jpeg') center/cover no-repeat;
-    color:#fff; text-shadow:1px 1px 2px #000;
-}
+[data-value="Inferno"]{background:url('https://i.imgur.com/mLQ0QdD.jpeg') center/cover no-repeat;color:#fff;text-shadow:1px 1px 2px #000;}
 [data-value="Inferno"].active{border:2px solid #dc2626; box-shadow:0 0 10px #dc2626;}
-
-[data-value="Mirage"]{
-    background: url('https://i.imgur.com/JIaEDwg.png') center/cover no-repeat;
-    color:#fff; text-shadow:1px 1px 2px #000;
-}
+[data-value="Mirage"]{background:url('https://i.imgur.com/JIaEDwg.png') center/cover no-repeat;color:#fff;text-shadow:1px 1px 2px #000;}
 [data-value="Mirage"].active{border:2px solid #facc15; box-shadow:0 0 10px #facc15;}
-
-[data-value="Anubis"]{
-    background: url('https://i.imgur.com/pp37qLu.png') center/cover no-repeat;
-    color:#fff; text-shadow:1px 1px 2px #000;
-}
+[data-value="Anubis"]{background:url('https://i.imgur.com/pp37qLu.png') center/cover no-repeat;color:#fff;text-shadow:1px 1px 2px #000;}
 [data-value="Anubis"].active{border:2px solid #14b8a6; box-shadow:0 0 10px #14b8a6;}
-
-[data-value="Nuke"]{
-    background: url('https://i.imgur.com/DSRqZEm.jpeg') center/cover no-repeat;
-    color:#fff; text-shadow:1px 1px 2px #000;
-}
+[data-value="Nuke"]{background:url('https://i.imgur.com/DSRqZEm.jpeg') center/cover no-repeat;color:#fff;text-shadow:1px 1px 2px #000;}
 [data-value="Nuke"].active{border:2px solid #10b981; box-shadow:0 0 10px #10b981;}
 
 /* BOTÕES Utility */
-[data-value="Smoke"].active,
-[data-value="Flash"].active,
-[data-value="Molo"].active{background:#ffa600e6;color:#000;}
+[data-value="Smoke"].active,[data-value="Flash"].active,[data-value="Molo"].active{background:#ffa600e6;color:#000;}
 
 /* CARDS */
 .lineups{
@@ -134,25 +103,14 @@ body::before{
 .card.hide{opacity:0; transform:translateY(15px); pointer-events:none;}
 .card:hover{transform:translateY(-8px) scale(1.03); box-shadow:0 15px 40px rgba(255,166,0,0.5);}
 .card-images{display:flex;}
-.card-images img{width:50%;height:200px;object-fit:cover;}
+.card-images img{width:50%;height:200px;object-fit:cover;cursor:pointer;}
 .card-content{padding:20px;}
 .card h3{font-size:20px;margin-bottom:10px;}
 .card-description{font-size:14px;color:#e5e5e5;line-height:1.6;margin:12px 0;opacity:0.85;}
 .meta{font-size:13px;color:#aaa;margin-bottom:10px;}
-.badge{
-    display:inline-block;
-    padding:4px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:600;
-    background:#ff7b00;
-    color:#000;
-}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;background:#ff7b00;color:#000;}
 
-/* ============================= */
-/* IMAGE VIEWER PRO */
-/* ============================= */
-
+/* IMAGE VIEWER */
 .image-modal{
     display:none;
     position:fixed;
@@ -165,7 +123,6 @@ body::before{
     animation:fadeIn .3s ease;
     overflow:hidden;
 }
-
 .image-modal img{
     max-width:90%;
     max-height:85vh;
@@ -175,74 +132,19 @@ body::before{
     transition:all .3s ease;
     box-shadow:0 0 50px rgba(255,166,0,0.5);
 }
-
-.image-modal.show img{
-    transform:scale(1);
-    opacity:1;
-}
-
-/* Close */
-.image-modal .close{
-    position:absolute;
-    top:25px;
-    right:40px;
-    font-size:42px;
-    color:#fff;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.image-modal .close:hover{
-    color:#ffa600;
-    transform:scale(1.2);
-}
-
-/* Arrows */
-.image-modal .arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:50px;
-    color:#fff;
-    cursor:pointer;
-    padding:20px;
-    user-select:none;
-    transition:.2s;
-}
-
-.image-modal .arrow:hover{
-    color:#ffa600;
-    transform:translateY(-50%) scale(1.2);
-}
-
+.image-modal.show img{transform:scale(1);opacity:1;}
+.image-modal .close{position:absolute;top:25px;right:40px;font-size:42px;color:#fff;cursor:pointer;transition:.2s;}
+.image-modal .close:hover{color:#ffa600;transform:scale(1.2);}
+.image-modal .arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:50px;color:#fff;cursor:pointer;padding:20px;user-select:none;transition:.2s;}
+.image-modal .arrow:hover{color:#ffa600;transform:translateY(-50%) scale(1.2);}
 .image-modal .prev{ left:20px; }
 .image-modal .next{ right:20px; }
 
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
-}
+@keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:30px;
-    background:#0a0a0a;
-    border-top:1px solid rgba(255,255,255,0.08);
-    color:#777;
-    margin-top:auto; /* empurra o footer para baixo */
-    z-index:2;
-}
-</style>
+footer{text-align:center;padding:30px;background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.08);color:#777;margin-top:auto;z-index:2;}
 </style>
 </head>
-<!-- IMAGE VIEWER -->
-<div id="imageModal" class="image-modal">
-    <span class="close">&times;</span>
-    <span class="arrow prev">&#10094;</span>
-    <img id="modalImg">
-    <span class="arrow next">&#10095;</span>
-</div>
 
 <body>
 
@@ -283,7 +185,7 @@ footer{
 </div>
 
 <div class="lineups">
-<!----------- Dust2 ----------->
+<!-- Dust2 -->
 <div class="card" data-side="T" data-type="Smoke" data-map="Dust2">
     <div class="card-images">
         <img src="https://i.imgur.com/OX3VJgY.jpeg">
@@ -296,7 +198,7 @@ footer{
         <span class="badge">Dust2</span>
     </div>
 </div>
-<!----------- Inferno ----------->
+<!-- Inferno -->
 <div class="card" data-side="T" data-type="Smoke" data-map="Inferno">
     <div class="card-images">
         <img src="https://i.imgur.com/r3ic8HZ.png">
@@ -309,44 +211,8 @@ footer{
         <span class="badge">Inferno</span>
     </div>
 </div>
-<!----------- Mirage ----------->
-<div class="card" data-side="CT" data-type="Molo" data-map="Mirage">
-    <div class="card-images">
-        <img src="https://i.imgur.com/WK6c0Fh.png">
-        <img src="https://i.imgur.com/KN3GeGB.png">
-    </div>
-    <div class="card-content">
-        <h3>Inferno B Site Molotov</h3>
-        <div class="meta">CT • Molotov</div>
-        <span class="badge">Inferno</span>
-    </div>
 </div>
-<!----------- Anubis ----------->
- <div class="card" data-side="CT" data-type="Molo" data-map="Anubis">
-    <div class="card-images">
-        <img src="https://i.imgur.com/WK6c0Fh.png">
-        <img src="https://i.imgur.com/KN3GeGB.png">
-    </div>
-    <div class="card-content">
-        <h3>Anubis B Site Molotov</h3>
-        <div class="meta">CT • Molotov</div>
-        <span class="badge">Anubis</span>
-    </div>
-</div>
-    <!---------- Nuke ----------->
-     <div class="card" data-side="CT" data-type="Molo" data-map="Nuke">
-    <div class="card-images">
-        <img src="https://i.imgur.com/WK6c0Fh.png">
-        <img src="https://i.imgur.com/KN3GeGB.png">
-    </div>
-    <div class="card-content">
-        <h3>Inferno B Site Molotov</h3>
-        <div class="meta">CT • Molotov</div>
-        <span class="badge">Inferno</span>
-        </div>
-    </div>
 
-</div>
 </div>
 
 <footer>© Designed by knozpt</footer>
@@ -359,89 +225,7 @@ footer{
     <span class="arrow next">&#10095;</span>
 </div>
 
-<script>
-const modal = document.getElementById("imageModal");
-const modalImg = document.getElementById("modalImg");
-const closeBtn = document.querySelector(".close");
-const prevBtn = document.querySelector(".prev");
-const nextBtn = document.querySelector(".next");
-
-let images = [];
-let currentIndex = 0;
-
-/* Coletar imagens */
-document.querySelectorAll(".card-images img").forEach((img, index)=>{
-    images.push(img.src);
-
-    img.addEventListener("click", ()=>{
-        currentIndex = images.indexOf(img.src);
-        openModal();
-    });
-});
-
-function openModal(){
-    modal.style.display = "flex";
-    modalImg.src = images[currentIndex];
-    setTimeout(()=> modal.classList.add("show"),10);
-}
-
-function closeModal(){
-    modal.classList.remove("show");
-    setTimeout(()=> modal.style.display="none",300);
-}
-
-function showNext(){
-    currentIndex = (currentIndex + 1) % images.length;
-    modalImg.src = images[currentIndex];
-}
-
-function showPrev(){
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    modalImg.src = images[currentIndex];
-}
-
-/* Eventos */
-closeBtn.addEventListener("click", closeModal);
-nextBtn.addEventListener("click", showNext);
-prevBtn.addEventListener("click", showPrev);
-
-modal.addEventListener("click",(e)=>{
-    if(e.target === modal) closeModal();
-});
-
-/* Teclado */
-document.addEventListener("keydown",(e)=>{
-    if(modal.style.display === "flex"){
-        if(e.key === "Escape") closeModal();
-        if(e.key === "ArrowRight") showNext();
-        if(e.key === "ArrowLeft") showPrev();
-    }
-});
-
-/* Swipe Mobile */
-let touchStartX = 0;
-let touchEndX = 0;
-
-modal.addEventListener("touchstart", e=>{
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-modal.addEventListener("touchend", e=>{
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
-
-function handleSwipe(){
-    if(touchEndX < touchStartX - 50){
-        showNext();
-    }
-    if(touchEndX > touchStartX + 50){
-        showPrev();
-    }
-}
-</script>
-
-<!-- PARTICLES.JS -->
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 particlesJS('particles-js',{
@@ -451,7 +235,6 @@ particlesJS('particles-js',{
 });
 </script>
 
-<!-- FILTRAGEM -->
 <script>
 const buttons = document.querySelectorAll('.button');
 let activeFilters = { side: "All", type: "All", map: "All" };
@@ -462,7 +245,6 @@ function filterCards(){
         const matchSide = activeFilters.side === "All" || activeFilters.side === card.dataset.side;
         const matchType = activeFilters.type === "All" || activeFilters.type === card.dataset.type;
         const matchMap = activeFilters.map === "All" || activeFilters.map === card.dataset.map;
-
         if(matchSide && matchType && matchMap){
             card.style.display = "block";
             setTimeout(()=>card.classList.remove('hide'),10);
@@ -477,22 +259,73 @@ buttons.forEach(btn => {
     btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
         const value = btn.dataset.value;
-
         document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         activeFilters[filter] = value;
-
         filterCards();
     });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Inicializar todos os filtros como "All"
-    document.querySelectorAll('[data-filter]').forEach(btn=>{
-        if(btn.dataset.value==="All") btn.classList.add('active');
-    });
+    document.querySelectorAll('[data-filter]').forEach(btn=>{if(btn.dataset.value==="All") btn.classList.add('active');});
     filterCards();
 });
 </script>
+
+<script>
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const closeBtn = document.querySelector(".close");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+
+let images = [];
+let currentIndex = 0;
+
+document.querySelectorAll(".card-images img").forEach(img => {
+    img.addEventListener("click", () => {
+        const card = img.closest(".card");
+        const cardImages = card.querySelectorAll(".card-images img");
+        images = [];
+        cardImages.forEach(i => images.push(i.src));
+        currentIndex = images.indexOf(img.src);
+        openModal();
+    });
+});
+
+function openModal(){
+    modal.style.display = "flex";
+    modalImg.src = images[currentIndex];
+    setTimeout(()=> modal.classList.add("show"),10);
+}
+function closeModal(){
+    modal.classList.remove("show");
+    setTimeout(()=> modal.style.display="none",300);
+}
+function showNext(){ currentIndex = (currentIndex+1)%images.length; modalImg.src = images[currentIndex]; }
+function showPrev(){ currentIndex = (currentIndex-1+images.length)%images.length; modalImg.src = images[currentIndex]; }
+
+closeBtn.onclick = closeModal;
+nextBtn.onclick = showNext;
+prevBtn.onclick = showPrev;
+modal.addEventListener("click",(e)=>{if(e.target===modal) closeModal();});
+
+document.addEventListener("keydown",(e)=>{
+    if(modal.style.display==="flex"){
+        if(e.key==="Escape") closeModal();
+        if(e.key==="ArrowRight") showNext();
+        if(e.key==="ArrowLeft") showPrev();
+    }
+});
+
+let touchStartX = 0;
+modal.addEventListener("touchstart", e=> touchStartX=e.changedTouches[0].screenX);
+modal.addEventListener("touchend", e=>{
+    let touchEndX=e.changedTouches[0].screenX;
+    if(touchEndX < touchStartX-50) showNext();
+    if(touchEndX > touchStartX+50) showPrev();
+});
+</script>
+
 </body>
 </html>
