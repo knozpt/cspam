@@ -429,16 +429,32 @@ document.addEventListener("keydown",(e)=>{
 
 /* Swipe Mobile */
 let touchStartX = 0;
+let touchStartY = 0;
+const swipeThreshold = 50; // mínimo de pixels para considerar swipe
+const swipeRestraint = 100; // máximo de desvio vertical permitido
 
-modal.addEventListener("touchstart", e=>{
-    touchStartX = e.changedTouches[0].screenX;
+modal.addEventListener("touchstart", e => {
+    const touch = e.changedTouches[0];
+    touchStartX = touch.screenX;
+    touchStartY = touch.screenY;
 });
 
-modal.addEventListener("touchend", e=>{
-    let touchEndX = e.changedTouches[0].screenX;
+modal.addEventListener("touchend", e => {
+    const touch = e.changedTouches[0];
+    const touchEndX = touch.screenX;
+    const touchEndY = touch.screenY;
 
-    if(touchEndX < touchStartX - 50) showNext();
-    if(touchEndX > touchStartX + 50) showPrev();
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    // Verifica se o swipe é mais horizontal que vertical
+    if (Math.abs(deltaX) > swipeThreshold && Math.abs(deltaY) < swipeRestraint) {
+        if (deltaX > 0) {
+            showPrev(); // swipe para direita
+        } else {
+            showNext(); // swipe para esquerda
+        }
+    }
 });
 </script>
 
