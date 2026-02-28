@@ -4,172 +4,157 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CS2 Lineups</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
-    font-family:'Inter',sans-serif;
+    font-family:'Orbitron',sans-serif;
     background:#0f0f0f;
     color:#fff;
     min-height:100vh;
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
+    padding:40px 20px;
 }
 
-/* HERO TITLE */
-.hero{
+/* TITULO */
+.title{
+    font-size:50px;
     margin-bottom:60px;
-    text-align:center;
-}
-
-.hero h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:60px;
-    font-weight:800;
-    letter-spacing:4px;
     background:linear-gradient(to right,#ff7b00,#ffa600);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
-/* MAPS CONTAINER */
-.maps-container{
+/* SECTIONS */
+section{
+    width:100%;
+    max-width:1200px;
     display:flex;
-    justify-content:center;
-    gap:80px;
     flex-wrap:wrap;
+    justify-content:center;
+    gap:50px;
 }
 
 /* MAP CARD */
 .map-card{
-    width:520px;
-    height:340px;
+    width:450px;
+    height:300px;
     border-radius:35px;
     overflow:hidden;
     background-size:cover;
     background-position:center;
     position:relative;
     cursor:pointer;
-    transition:.4s ease;
     box-shadow:0 20px 50px rgba(0,0,0,0.7);
+    transition:.3s;
 }
-
-.map-card:hover{
-    transform:scale(1.05);
-}
-
-/* OVERLAY */
-.map-overlay{
+.map-card:hover{transform:scale(1.05);}
+.map-card .overlay{
     position:absolute;
     inset:0;
     background:rgba(0,0,0,0.45);
-    backdrop-filter:blur(2px);
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    gap:50px;
-}
-
-.map-overlay h2{
-    font-family:'Orbitron',sans-serif;
-    font-size:56px;
+    font-size:40px;
     font-weight:800;
-    letter-spacing:6px;
 }
 
-/* SIDE BUTTONS */
-.side-buttons{
-    display:flex;
-    gap:50px;
+/* SIDE SELECTION */
+.side-section, .utility-section{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:40px;
 }
 
-.side-btn{
+.side-section.active, .utility-section.active{display:flex;}
+
+.side-buttons button, .utility-buttons button{
     padding:20px 60px;
-    border-radius:25px;
-    font-size:30px;
-    font-weight:800;
     border:none;
+    border-radius:25px;
+    font-size:28px;
+    font-weight:800;
     cursor:pointer;
-    transition:.3s ease;
+    transition:.3s;
 }
 
-.side-btn.tr{
-    background:#f0a23b;
-    color:#fff;
-}
+.side-buttons button.tr{background:#f0a23b;color:#fff;}
+.side-buttons button.ct{background:#4a89dc;color:#000;}
 
-.side-btn.ct{
-    background:#4a89dc;
-    color:#000;
-}
-
-.side-btn:hover{
-    transform:translateY(-6px);
-    box-shadow:0 12px 30px rgba(0,0,0,0.6);
+.utility-buttons button{background:#ffa600;color:#000;}
+.side-buttons button:hover, .utility-buttons button:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.5);
 }
 
 /* RESPONSIVE */
 @media(max-width:768px){
-    .map-card{
-        width:90%;
-        height:280px;
-    }
-
-    .map-overlay h2{
-        font-size:38px;
-    }
-
-    .side-btn{
-        font-size:22px;
-        padding:15px 40px;
-    }
+    .map-card{width:90%;height:250px;}
+    .side-buttons button, .utility-buttons button{font-size:22px;padding:15px 40px;}
 }
 </style>
 </head>
 <body>
 
-<div class="hero">
-    <h1>CS2 LINEUPS</h1>
-</div>
+<h1 class="title">CS2 LINEUPS</h1>
 
-<div class="maps-container">
-
-    <!-- DUST2 -->
-    <div class="map-card" style="background-image: url('https://i.imgur.com/dCPWbZU.png');">
-        <div class="map-overlay">
-            <h2>DUST2</h2>
-            <div class="side-buttons">
-                <button class="side-btn tr" onclick="selectSide('Dust2','T')">TR</button>
-                <button class="side-btn ct" onclick="selectSide('Dust2','CT')">CT</button>
-            </div>
-        </div>
+<!-- SEÇÃO MAPAS -->
+<section id="maps-section">
+    <div class="map-card" style="background-image:url('https://i.imgur.com/dCPWbZU.png');" onclick="selectMap('Dust2')">
+        <div class="overlay">DUST2</div>
     </div>
-
-    <!-- INFERNO -->
-    <div class="map-card" style="background-image: url('https://i.imgur.com/mLQ0QdD.jpeg');">
-        <div class="map-overlay">
-            <h2>INFERNO</h2>
-            <div class="side-buttons">
-                <button class="side-btn tr" onclick="selectSide('Inferno','T')">TR</button>
-                <button class="side-btn ct" onclick="selectSide('Inferno','CT')">CT</button>
-            </div>
-        </div>
+    <div class="map-card" style="background-image:url('https://i.imgur.com/mLQ0QdD.jpeg');" onclick="selectMap('Inferno')">
+        <div class="overlay">INFERNO</div>
     </div>
+</section>
 
-</div>
+<!-- SEÇÃO SIDE -->
+<section id="side-section" class="side-section">
+    <h2 id="sideTitle"></h2>
+    <div class="side-buttons">
+        <button class="tr" onclick="selectSide('T')">TR</button>
+        <button class="ct" onclick="selectSide('CT')">CT</button>
+    </div>
+</section>
+
+<!-- SEÇÃO UTILITY -->
+<section id="utility-section" class="utility-section">
+    <h2 id="utilityTitle"></h2>
+    <div class="utility-buttons">
+        <button onclick="showUtility('Smoke')">Smoke</button>
+        <button onclick="showUtility('Flash')">Flash</button>
+        <button onclick="showUtility('Molotov')">Molotov</button>
+    </div>
+</section>
 
 <script>
-function selectSide(map, side){
-    alert("Mapa: " + map + " | Side: " + side);
+let currentMap = "";
+let currentSide = "";
 
-    // Depois podes fazer:
-    // window.location.href = map + ".html?side=" + side;
+// Selecionar mapa
+function selectMap(map){
+    currentMap = map;
+    document.getElementById('maps-section').style.display = 'none';
+    document.getElementById('side-section').classList.add('active');
+    document.getElementById('sideTitle').innerText = map;
+}
+
+// Selecionar side
+function selectSide(side){
+    currentSide = side;
+    document.getElementById('side-section').classList.remove('active');
+    document.getElementById('utility-section').classList.add('active');
+    document.getElementById('utilityTitle').innerText = currentMap + ' - ' + currentSide;
+}
+
+// Mostrar utility selecionada
+function showUtility(type){
+    alert('Mapa: ' + currentMap + '\nSide: ' + currentSide + '\nUtility: ' + type);
+    // Aqui você pode mostrar cards filtrados ou abrir modal
 }
 </script>
 
