@@ -7,16 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-    font-family:'Orbitron',sans-serif;
-    background:#0f0f0f;
-    color:#fff;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:40px 20px;
-}
 
 /* TITULO */
 .title{
@@ -27,69 +17,75 @@ body{
     -webkit-text-fill-color:transparent;
 }
 
-/* SECTIONS */
-section{
-    width:100%;
-    max-width:1200px;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:50px;
+/* CONTAINER DE MAPAS */
+.map-container {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:30px;
+  margin-top:50px;
 }
 
-/* MAP CARD */
-.map-card{
-    width:450px;
-    height:300px;
-    border-radius:35px;
-    overflow:hidden;
-    background-size:cover;
-    background-position:center;
-    position:relative;
-    cursor:pointer;
-    box-shadow:0 20px 50px rgba(0,0,0,0.7);
-    transition:.3s;
-}
-.map-card:hover{transform:scale(1.05);}
-.map-card .overlay{
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.45);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:40px;
-    font-weight:800;
+/* CARD DE MAPA */
+.map-card {
+  position: relative;
+  width:200px;
+  height:150px;
+  border-radius:15px;
+  overflow:hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border:2px solid #333;
+  background-size: cover;
+  background-position: center;
+
+   /* CENTRALIZA CONTEÚDO */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical */
+  align-items: center;      /* horizontal */
+  text-align: center;
 }
 
-/* SIDE SELECTION */
-.side-section, .utility-section{
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    gap:40px;
+/* OVERLAY ESCURO */
+.map-card::before {
+  content:'';
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+  pointer-events: none;
 }
 
-.side-section.active, .utility-section.active{display:flex;}
-
-.side-buttons button, .utility-buttons button{
-    padding:20px 60px;
-    border:none;
-    border-radius:25px;
-    font-size:28px;
-    font-weight:800;
-    cursor:pointer;
-    transition:.3s;
+/* NOME DO MAPA */
+.map-card h2 {
+  position: relative;
+  justify-content:center;
+  margin:10px 0;
+  font-size:1.2rem;
+  z-index:1;
 }
 
-.side-buttons button.tr{background:#f0a23b;color:#fff;}
-.side-buttons button.ct{background:#4a89dc;color:#000;}
-
-.utility-buttons button{background:#ffa600;color:#000;}
-.side-buttons button:hover, .utility-buttons button:hover{
-    transform:translateY(-5px);
-    box-shadow:0 12px 30px rgba(0,0,0,0.5);
+/* BOTÕES DE LADO */
+.side-buttons {
+  position: relative;
+  z-index:1;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top: 20px;
 }
+.side-buttons button {
+  padding:8px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+.side-buttons .ct { background:#1e90ff; color:#000; }
+.side-buttons .ct:hover { opacity:0.8; }
+.side-buttons .tr { background:#ff9d00; color:#fff; }
+.side-buttons .tr:hover { opacity:0.8; }
 
 /* RESPONSIVE */
 @media(max-width:768px){
