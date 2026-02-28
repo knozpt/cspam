@@ -242,16 +242,19 @@ footer{
 <div class="container">
 
 <div class="filters">
+
+    <!-- SIDE -->
     <div class="filter-group">
         <span class="label">Side:</span>
-        <span class="button" data-filter="side" data-value="All">All</span>
+        <span class="button active" data-filter="side" data-value="All">All</span>
         <span class="button" data-filter="side" data-value="T">T</span>
         <span class="button" data-filter="side" data-value="CT">CT</span>
     </div>
 
-    <div class="filter-group" data-filter="map">
+    <!-- MAP -->
+    <div class="filter-group">
         <span class="label">Map:</span>
-        <span class="button" data-filter="map" data-value="All">All</span>
+        <span class="button active" data-filter="map" data-value="All">All</span>
         <span class="button" data-filter="map" data-value="Dust2">Dust2</span>
         <span class="button" data-filter="map" data-value="Inferno">Inferno</span>
         <span class="button" data-filter="map" data-value="Mirage">Mirage</span>
@@ -259,9 +262,13 @@ footer{
         <span class="button" data-filter="map" data-value="Nuke">Nuke</span>
     </div>
 
+</div>
+
+<!-- UTILITY (APARECE APENAS DENTRO DO MAPA) -->
+<div id="utilityMenu" class="filters" style="display:none;">
     <div class="filter-group">
         <span class="label">Utility:</span>
-        <span class="button" data-filter="type" data-value="All">All</span>
+        <span class="button active" data-filter="type" data-value="All">All</span>
         <span class="button" data-filter="type" data-value="Smoke">Smoke</span>
         <span class="button" data-filter="type" data-value="Flash">Flash</span>
         <span class="button" data-filter="type" data-value="Molo">Molotov</span>
@@ -462,6 +469,7 @@ let activeFilters = { side: "All", type: "All", map: "All" };
 
 function filterCards(){
     const cards = document.querySelectorAll('.card');
+
     cards.forEach(card => {
         const matchSide = activeFilters.side === "All" || activeFilters.side === card.dataset.side;
         const matchType = activeFilters.type === "All" || activeFilters.type === card.dataset.type;
@@ -479,22 +487,41 @@ function filterCards(){
 
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
+
         const filter = btn.dataset.filter;
         const value = btn.dataset.value;
 
+        // remover active do mesmo grupo
         document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+
         activeFilters[filter] = value;
+
+        // Mostrar Utility só quando mapa ≠ All
+        if(filter === "map"){
+            const utilityMenu = document.getElementById("utilityMenu");
+
+            if(value === "All"){
+                utilityMenu.style.display = "none";
+                activeFilters.type = "All";
+
+                // Resetar botões utility
+                document.querySelectorAll('[data-filter="type"]').forEach(b=>{
+                    b.classList.remove('active');
+                    if(b.dataset.value === "All") b.classList.add('active');
+                });
+
+            } else {
+                utilityMenu.style.display = "flex";
+            }
+        }
 
         filterCards();
     });
 });
 
+// Inicialização
 document.addEventListener("DOMContentLoaded", () => {
-    // Inicializar todos os filtros como "All"
-    document.querySelectorAll('[data-filter]').forEach(btn=>{
-        if(btn.dataset.value==="All") btn.classList.add('active');
-    });
     filterCards();
 });
 </script>
