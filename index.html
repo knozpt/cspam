@@ -1,158 +1,503 @@
+
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CS2 Lineups</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://i.imgur.com/hwn6WSh.png">
+
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:'Inter',sans-serif;
+    color:#fff;
+    overflow-x:hidden;
+    background: url('https://i.imgur.com/1QBzw09.png') no-repeat center center fixed;
+    background-size: cover;
+}
+/* Overlay escuro */
+body::before{
+    content:''; position:fixed; top:0; left:0; width:100%; height:100%; margin: 0;
+    background: rgba(0,0,0,0.6); z-index:0;
+}
 
-/* TITULO */
-.title{
+/* PARTICLES BACKGROUND */
+#particles-js{position:fixed; top:0; left:0; width:100%; height:100%; z-index:1;}
+
+/* HERO */
+.hero{
+    height:30vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+.hero h1{
+    font-family:'Orbitron',sans-serif;
     font-size:50px;
-    margin-bottom:60px;
+    font-weight:800;
     background:linear-gradient(to right,#ff7b00,#ffa600);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+    letter-spacing:2px;
+}
+.hero p{margin-top:10px;font-size:16px;color:#ccc;}
+
+/* CONTAINER */
+.container{max-width:1300px;margin:auto;padding:40px 20px;position:relative;z-index:2;}
+
+/* FILTERS */
+.filters{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:40px;}
+.filter-group{
+    background:rgba(255,255,255,0.05);
+    padding:15px 20px;
+    border-radius:16px;
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.08);
+}
+.label{font-weight:600;margin-right:10px;}
+.button{
+    padding:10px 18px;margin:6px;border-radius:12px;cursor:pointer;font-weight:600;font-size:14px;
+    border:1px solid rgba(255,255,255,0.15);
+    display:inline-flex;align-items:center;justify-content:center;
+    transition: all .3s ease;
+}
+.button:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(255,166,0,0.7);}
+.button.active{border:none;box-shadow:0 0 24px rgba(255, 166, 0, 0.902);}
+
+/* BOTÕES SIDE */
+[data-value="T"].active{background:#ffa600;color:#000;}
+[data-value="CT"].active{background:#1d4ed8;color:#fff;border: none;box-shadow: 0 0 24px #00a2ff;}
+
+/* BOTÕES MAPAS COM IMAGEM */
+[data-value="Dust2"]{
+    background: url('https://i.imgur.com/dCPWbZU.png') center/cover no-repeat;
+    color:#fff; font-weight:600; text-shadow:1px 1px 2px #000;
+}
+[data-value="Dust2"].active{border:2px solid #ff7b00; box-shadow:0 0 10px #ff7b00;}
+
+[data-value="Inferno"]{
+    background: url('https://i.imgur.com/mLQ0QdD.jpeg') center/cover no-repeat;
+    color:#fff; text-shadow:1px 1px 2px #000;
+}
+[data-value="Inferno"].active{border:2px solid #dc2626; box-shadow:0 0 10px #dc2626;}
+
+[data-value="Mirage"]{
+    background: url('https://i.imgur.com/JIaEDwg.png') center/cover no-repeat;
+    color:#fff; text-shadow:1px 1px 2px #000;
+}
+[data-value="Mirage"].active{border:2px solid #facc15; box-shadow:0 0 10px #facc15;}
+
+[data-value="Anubis"]{
+    background: url('https://i.imgur.com/pp37qLu.png') center/cover no-repeat;
+    color:#fff; text-shadow:1px 1px 2px #000;
+}
+[data-value="Anubis"].active{border:2px solid #14b8a6; box-shadow:0 0 10px #14b8a6;}
+
+[data-value="Nuke"]{
+    background: url('https://i.imgur.com/DSRqZEm.jpeg') center/cover no-repeat;
+    color:#fff; text-shadow:1px 1px 2px #000;
+}
+[data-value="Nuke"].active{border:2px solid #10b981; box-shadow:0 0 10px #10b981;}
+
+/* BOTÕES Utility */
+[data-value="Smoke"].active,
+[data-value="Flash"].active,
+[data-value="Molo"].active{background:#ffa600e6;color:#000;}
+
+/* CARDS */
+.lineups{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    position:relative;
+    z-index:2;
+}
+.card{
+    background:linear-gradient(145deg,#ffa600dc,#534427e6);
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    opacity:1;
+    transform:translateY(0);
+    transition: opacity .5s ease, transform .5s ease;
+}
+.card.hide{opacity:0; transform:translateY(15px); pointer-events:none;}
+.card:hover{transform:translateY(-8px) scale(1.03); box-shadow:0 15px 40px rgba(255,166,0,0.5);}
+.card-images{display:flex;}
+.card-images img{width:50%;height:250px;object-fit:cover;}
+.card-content{padding:20px;}
+.card h3{font-size:20px;margin-bottom:10px;}
+.card-description{font-size:14px;color:#e5e5e5;line-height:1.6;margin:12px 0;opacity:0.85;}
+.meta{font-size:13px;color:#aaa;margin-bottom:10px;}
+.badge{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    background:#ff7b00;
+    color:#000;
 }
 
-/* CONTAINER DE MAPAS */
-.map-container {
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:30px;
-  margin-top:50px;
+/* ============================= */
+/* IMAGE VIEWER PRO */
+/* ============================= */
+
+.image-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95); /* escurece bem e sobrepõe */
+    backdrop-filter:blur(10px);
+    justify-content:center;
+    align-items:center;
+    z-index:9999; /* garante sobreposição */
+    animation:fadeIn .3s ease;
+    overflow:hidden;
 }
 
-/* CARD DE MAPA */
-.map-card {
-  position: relative;
-  width:200px;
-  height:150px;
-  border-radius:15px;
-  overflow:hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border:2px solid #333;
-  background-size: cover;
-  background-position: center;
-
-   /* CENTRALIZA CONTEÚDO */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  /* vertical */
-  align-items: center;      /* horizontal */
-  text-align: center;
+.image-modal img{
+    max-width:90%;
+    max-height:85vh;
+    border-radius:18px;
+    transform:scale(0.85);
+    opacity:0;
+    transition:all .3s ease;
+    box-shadow:0 0 50px rgba(255,166,0,0.5);
 }
 
-/* OVERLAY ESCURO */
-.map-card::before {
-  content:'';
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.2));
-  pointer-events: none;
+.image-modal.show img{
+    transform:scale(1);
+    opacity:1;
 }
 
-/* NOME DO MAPA */
-.map-card h2 {
-  position: relative;
-  justify-content:center;
-  margin:10px 0;
-  font-size:1.2rem;
-  z-index:1;
+.image-modal .close{
+    position:absolute;
+    top:25px;
+    right:40px;
+    font-size:42px;
+    color:#ffa600;
+    cursor:pointer;
+    transition:.2s;
+    z-index:10000; /* acima de tudo */
 }
+.image-modal .close:hover{ color:#ffa600; transform:scale(1.2); }
 
-/* BOTÕES DE LADO */
-.side-buttons {
-  position: relative;
-  z-index:1;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-top: 20px;
+.image-modal .arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:50px;
+    color:#ffa600;
+    cursor:pointer;
+    padding:20px;
+    user-select:none;
+    transition:.2s;
+    z-index:10000; /* acima da imagem */
 }
-.side-buttons button {
-  padding:8px 15px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  transition:0.3s;
-}
-.side-buttons .ct { background:#1e90ff; color:#000; }
-.side-buttons .ct:hover { opacity:0.8; }
-.side-buttons .tr { background:#ff9d00; color:#fff; }
-.side-buttons .tr:hover { opacity:0.8; }
+.image-modal .arrow:hover{ color:#ffa600; transform:translateY(-50%) scale(1.2); }
+.image-modal .prev{ left:20px; }
+.image-modal .next{ right:20px; }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-    .map-card{width:90%;height:250px;}
-    .side-buttons button, .utility-buttons button{font-size:22px;padding:15px 40px;}
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    background:#0a0a0a;
+    border-top:1px solid rgba(255,255,255,0.08);
+    color:#777;
+    margin-top:auto; /* empurra o footer para baixo */
+    z-index:2;
 }
 </style>
+</style>
 </head>
+<!-- IMAGE VIEWER -->
+<div id="imageModal" class="image-modal">
+    <span class="close">&times;</span>
+    <span class="arrow prev">&#10094;</span>
+    <img id="modalImg">
+    <span class="arrow next">&#10095;</span>
+</div>
+
 <body>
 
-<h1 class="title">CS2 LINEUPS</h1>
+<div id="particles-js"></div>
 
-<!-- SEÇÃO MAPAS -->
-<section id="maps-section">
-    <div class="map-card" style="background-image:url('https://i.imgur.com/dCPWbZU.png');" onclick="selectMap('Dust2')">
-        <div class="overlay">DUST2</div>
-    </div>
-    <div class="map-card" style="background-image:url('https://i.imgur.com/mLQ0QdD.jpeg');" onclick="selectMap('Inferno')">
-        <div class="overlay">INFERNO</div>
-    </div>
+<section class="hero">
+    <h1>CS2 - Spam</h1>
+    <p>Escolhe e aprende</p>
 </section>
 
-<!-- SEÇÃO SIDE -->
-<section id="side-section" class="side-section">
-    <h2 id="sideTitle"></h2>
-    <div class="side-buttons">
-        <button class="tr" onclick="selectSide('T')">TR</button>
-        <button class="ct" onclick="selectSide('CT')">CT</button>
-    </div>
-</section>
+<div class="container">
 
-<!-- SEÇÃO UTILITY -->
-<section id="utility-section" class="utility-section">
-    <h2 id="utilityTitle"></h2>
-    <div class="utility-buttons">
-        <button onclick="showUtility('Smoke')">Smoke</button>
-        <button onclick="showUtility('Flash')">Flash</button>
-        <button onclick="showUtility('Molotov')">Molotov</button>
+<div class="filters">
+    <div class="filter-group">
+        <span class="label">Side:</span>
+        <span class="button" data-filter="side" data-value="All">All</span>
+        <span class="button" data-filter="side" data-value="T">T</span>
+        <span class="button" data-filter="side" data-value="CT">CT</span>
     </div>
-</section>
+
+    <div class="filter-group" data-filter="map">
+        <span class="label">Map:</span>
+        <span class="button" data-filter="map" data-value="All">All</span>
+        <span class="button" data-filter="map" data-value="Dust2">Dust2</span>
+        <span class="button" data-filter="map" data-value="Inferno">Inferno</span>
+        <span class="button" data-filter="map" data-value="Mirage">Mirage</span>
+        <span class="button" data-filter="map" data-value="Anubis">Anubis</span>
+        <span class="button" data-filter="map" data-value="Nuke">Nuke</span>
+    </div>
+
+    <div class="filter-group">
+        <span class="label">Utility:</span>
+        <span class="button" data-filter="type" data-value="All">All</span>
+        <span class="button" data-filter="type" data-value="Smoke">Smoke</span>
+        <span class="button" data-filter="type" data-value="Flash">Flash</span>
+        <span class="button" data-filter="type" data-value="Molo">Molotov</span>
+    </div>
+</div>
+
+<div class="lineups">
+<!----------- Dust2 ----------->
+<div class="card" data-side="T" data-type="Smoke" data-map="Dust2">
+    <div class="card-images">
+        <img src="https://i.imgur.com/OX3VJgY.jpeg">
+        <img src="https://i.imgur.com/pRQwpOs.jpeg">
+    </div>
+    <div class="card-content">
+        <h3>Dust2 Mid Door Smoke</h3>
+        <div class="meta">T • Smoke</div>
+        <p class="card-description">Jumptrow</p>
+        <span class="badge">Dust2</span>
+    </div>
+</div>
+<!----------- Inferno ----------->
+<div class="card" data-side="T" data-type="Smoke" data-map="Inferno">
+    <div class="card-images">
+        <img src="https://i.imgur.com/Vhf9DaX.png">
+        <img src="https://i.imgur.com/HfXIPsM.png">
+    </div>
+    <div class="card-content">
+        <h3>Caixões</h3>
+        <div class="meta">T • Smoke</div>
+        <p class="card-description">W + Jumptrow</p>
+        <span class="badge">Inferno</span>
+    </div>
+</div>
+
+<div class="card" data-side="T" data-type="Smoke" data-map="Inferno">
+    <div class="card-images">
+        <img src="https://cdn.discordapp.com/attachments/888622645548023820/1473709429487829012/IMG_0755.jpg?ex=6997325c&is=6995e0dc&hm=0623574a0e434f4ffa9e7b4ad411da3e19b7043ff05de755668708d884c19c91&">
+        <img src="https://cdn.discordapp.com/attachments/888622645548023820/1473709429839892712/IMG_0756.jpg?ex=6997325c&is=6995e0dc&hm=1b6aede62ec51b61cc703812fdcc3102a07a1962e5701c2cf7982ccd6f20bd0b&">
+    </div>
+    <div class="card-content">
+        <h3>Smoke Long</h3>
+        <div class="meta">T • Smoke</div>
+        <p class="card-description">Jumptrow</p>
+        <span class="badge">Inferno</span>
+    </div>
+</div>
+<!----------- Mirage ----------->
+<div class="card" data-side="T" data-type="Smoke" data-map="Mirage">
+    <div class="card-images">
+        <img src="https://i.imgur.com/CrA7eBW.jpeg">
+        <img src="https://i.imgur.com/CpGXjts.jpeg">
+    </div>
+    <div class="card-content">
+        <h3>Insta Smoke Window</h3>
+        <div class="meta">T • Smoke</div>
+        <p class="card-description">W + Jumptrow</p>
+        <span class="badge">Mirage</span>
+    </div>
+</div>
+<!----------- Anubis ----------->
+ <div class="card" data-side="CT" data-type="Molo" data-map="Anubis">
+    <div class="card-images">
+        <img src="https://i.imgur.com/WK6c0Fh.png">
+        <img src="https://i.imgur.com/KN3GeGB.png">
+    </div>
+    <div class="card-content">
+        <h3>Anubis B Site Molotov</h3>
+        <div class="meta">CT • Molotov</div>
+        <span class="badge">Anubis</span>
+    </div>
+</div>
+    <!---------- Nuke ----------->
+     <div class="card" data-side="CT" data-type="Molo" data-map="Nuke">
+    <div class="card-images">
+        <img src="https://i.imgur.com/WK6c0Fh.png">
+        <img src="https://i.imgur.com/KN3GeGB.png">
+    </div>
+    <div class="card-content">
+        <h3>Inferno B Site Molotov</h3>
+        <div class="meta">CT • Molotov</div>
+        <span class="badge">Inferno</span>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<footer>© Designed by knozpt</footer>
+
+<!-- IMAGE VIEWER -->
+<div id="imageModal" class="image-modal">
+    <span class="close">&times;</span>
+    <span class="arrow prev">&#10094;</span>
+    <img id="modalImg">
+    <span class="arrow next">&#10095;</span>
+</div>
 
 <script>
-let currentMap = "";
-let currentSide = "";
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const closeBtn = modal.querySelector(".close");
+const prevBtn = modal.querySelector(".prev");
+const nextBtn = modal.querySelector(".next");
 
-// Selecionar mapa
-function selectMap(map){
-    currentMap = map;
-    document.getElementById('maps-section').style.display = 'none';
-    document.getElementById('side-section').classList.add('active');
-    document.getElementById('sideTitle').innerText = map;
+let images = [];
+let currentIndex = 0;
+
+// Abrir modal apenas com as imagens do card clicado
+document.querySelectorAll(".card-images img").forEach(img => {
+    img.addEventListener("click", () => {
+        const card = img.closest(".card");
+        const cardImages = card.querySelectorAll(".card-images img");
+        images = [];
+        cardImages.forEach(i => images.push(i.src));
+        currentIndex = images.indexOf(img.src);
+        openModal();
+    });
+});
+
+function openModal(){
+    modal.style.display = "flex";
+    modalImg.src = images[currentIndex];
+    setTimeout(()=> modal.classList.add("show"), 10);
 }
 
-// Selecionar side
-function selectSide(side){
-    currentSide = side;
-    document.getElementById('side-section').classList.remove('active');
-    document.getElementById('utility-section').classList.add('active');
-    document.getElementById('utilityTitle').innerText = currentMap + ' - ' + currentSide;
+function closeModal(){
+    modal.classList.remove("show");
+    setTimeout(()=> modal.style.display="none", 300);
 }
 
-// Mostrar utility selecionada
-function showUtility(type){
-    alert('Mapa: ' + currentMap + '\nSide: ' + currentSide + '\nUtility: ' + type);
-    // Aqui você pode mostrar cards filtrados ou abrir modal
+function showNext(){
+    currentIndex = (currentIndex + 1) % images.length;
+    modalImg.src = images[currentIndex];
 }
+
+function showPrev(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    modalImg.src = images[currentIndex];
+}
+
+// Eventos
+closeBtn.addEventListener("click", closeModal);
+nextBtn.addEventListener("click", showNext);
+prevBtn.addEventListener("click", showPrev);
+
+// Fechar clicando fora da imagem (overlay)
+modal.addEventListener("click", e=>{
+    if(e.target === modal) closeModal();
+});
+
+// Teclado
+document.addEventListener("keydown", e=>{
+    if(modal.style.display === "flex"){
+        if(e.key === "Escape") closeModal();
+        if(e.key === "ArrowRight") showNext();
+        if(e.key === "ArrowLeft") showPrev();
+    }
+});
+
+// Swipe mobile
+let touchStartX = 0;
+let touchStartY = 0;
+const swipeThreshold = 50;
+const swipeRestraint = 100;
+
+modal.addEventListener("touchstart", e=>{
+    const touch = e.changedTouches[0];
+    touchStartX = touch.screenX;
+    touchStartY = touch.screenY;
+});
+
+modal.addEventListener("touchend", e=>{
+    const touch = e.changedTouches[0];
+    const deltaX = touch.screenX - touchStartX;
+    const deltaY = touch.screenY - touchStartY;
+
+    if(Math.abs(deltaX) > swipeThreshold && Math.abs(deltaY) < swipeRestraint){
+        if(deltaX > 0) showPrev();
+        else showNext();
+    }
+});
 </script>
 
+<!-- PARTICLES.JS -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+particlesJS('particles-js',{
+    "particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffa600"},"shape":{"type":"circle"},"opacity":{"value":0.3},"size":{"value":3},"line_linked":{"enable":true,"distance":150,"color":"#ff7b00","opacity":0.2,"width":1},"move":{"enable":true,"speed":2}},
+    "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"}}},
+    "retina_detect":true
+});
+</script>
+
+<!-- FILTRAGEM -->
+<script>
+const buttons = document.querySelectorAll('.button');
+let activeFilters = { side: "All", type: "All", map: "All" };
+
+function filterCards(){
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const matchSide = activeFilters.side === "All" || activeFilters.side === card.dataset.side;
+        const matchType = activeFilters.type === "All" || activeFilters.type === card.dataset.type;
+        const matchMap = activeFilters.map === "All" || activeFilters.map === card.dataset.map;
+
+        if(matchSide && matchType && matchMap){
+            card.style.display = "block";
+            setTimeout(()=>card.classList.remove('hide'),10);
+        } else {
+            card.classList.add('hide');
+            setTimeout(()=>card.style.display="none",350);
+        }
+    });
+}
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        const value = btn.dataset.value;
+
+        document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilters[filter] = value;
+
+        filterCards();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Inicializar todos os filtros como "All"
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+        if(btn.dataset.value==="All") btn.classList.add('active');
+    });
+    filterCards();
+});
+</script>
 </body>
 </html>
