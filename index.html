@@ -23,10 +23,27 @@ body{
 .title{
     font-family:'Orbitron',sans-serif;
     font-size:50px;
-    margin-bottom:60px;
+    margin-bottom:20px;
     background:linear-gradient(to right,#ff7b00,#ffa600);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+}
+
+.back-btn{
+    margin-bottom:40px;
+    padding:12px 30px;
+    font-size:18px;
+    font-weight:600;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#222;
+    color:#fff;
+    transition:.3s;
+}
+.back-btn:hover{
+    background:#ff7b00;
+    transform:translateY(-3px);
 }
 
 section{
@@ -38,11 +55,13 @@ section{
     gap:40px;
 }
 
+.hidden{display:none;}
+
 /* MAP CARDS */
 .map-card{
     width:450px;
-    height:280px;
-    border-radius:30px;
+    height:260px;
+    border-radius:25px;
     overflow:hidden;
     background-size:cover;
     background-position:center;
@@ -60,11 +79,11 @@ section{
     justify-content:center;
     align-items:center;
     font-family:'Orbitron',sans-serif;
-    font-size:40px;
+    font-size:38px;
     font-weight:800;
 }
 
-/* BOTÕES */
+/* BUTTONS */
 .btn{
     padding:18px 50px;
     border:none;
@@ -83,10 +102,7 @@ section{
     box-shadow:0 10px 25px rgba(0,0,0,0.6);
 }
 
-/* ESCONDER SEÇÕES */
-.hidden{display:none;}
-
-/* CARDS LINEUPS */
+/* LINEUP CARDS */
 .lineups{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -111,6 +127,7 @@ section{
 <body>
 
 <h1 class="title">CS2 LINEUPS</h1>
+<button id="backBtn" class="back-btn hidden" onclick="goBack()">← Voltar</button>
 
 <!-- MAPAS -->
 <section id="maps-section">
@@ -141,77 +158,73 @@ section{
 </section>
 
 <script>
-let currentMap = "";
-let currentSide = "";
-let currentUtility = "";
+let currentMap="";
+let currentSide="";
+let currentUtility="";
+const backBtn=document.getElementById("backBtn");
 
-// Base de dados simples
-const lineupsData = [
-    {
-        map:"Dust2",
-        side:"T",
-        type:"Smoke",
-        title:"Mid Door Smoke",
-        img:"https://i.imgur.com/OX3VJgY.jpeg"
-    },
-    {
-        map:"Inferno",
-        side:"T",
-        type:"Smoke",
-        title:"Caixões Smoke",
-        img:"https://i.imgur.com/Vhf9DaX.png"
-    }
+const lineupsData=[
+{map:"Dust2",side:"T",type:"Smoke",title:"Mid Door Smoke",img:"https://i.imgur.com/OX3VJgY.jpeg"},
+{map:"Inferno",side:"T",type:"Smoke",title:"Caixões Smoke",img:"https://i.imgur.com/Vhf9DaX.png"},
+{map:"Inferno",side:"CT",type:"Molotov",title:"B Site Molotov",img:"https://i.imgur.com/WK6c0Fh.png"}
 ];
 
-// Selecionar mapa
 function selectMap(map){
-    currentMap = map;
-    document.getElementById('maps-section').classList.add('hidden');
-    document.getElementById('side-section').classList.remove('hidden');
+currentMap=map;
+document.getElementById('maps-section').classList.add('hidden');
+document.getElementById('side-section').classList.remove('hidden');
+backBtn.classList.remove("hidden");
 }
 
-// Selecionar side
 function selectSide(side){
-    currentSide = side;
-    document.getElementById('side-section').classList.add('hidden');
-    document.getElementById('utility-section').classList.remove('hidden');
+currentSide=side;
+document.getElementById('side-section').classList.add('hidden');
+document.getElementById('utility-section').classList.remove('hidden');
 }
 
-// Selecionar utility
 function selectUtility(type){
-    currentUtility = type;
-    document.getElementById('utility-section').classList.add('hidden');
-    document.getElementById('lineups-section').classList.remove('hidden');
-    loadLineups();
+currentUtility=type;
+document.getElementById('utility-section').classList.add('hidden');
+document.getElementById('lineups-section').classList.remove('hidden');
+loadLineups();
 }
 
-// Carregar lineups filtrados
+function goBack(){
+if(!document.getElementById('lineups-section').classList.contains("hidden")){
+document.getElementById('lineups-section').classList.add("hidden");
+document.getElementById('utility-section').classList.remove("hidden");
+return;
+}
+if(!document.getElementById('utility-section').classList.contains("hidden")){
+document.getElementById('utility-section').classList.add("hidden");
+document.getElementById('side-section').classList.remove("hidden");
+return;
+}
+if(!document.getElementById('side-section').classList.contains("hidden")){
+document.getElementById('side-section').classList.add("hidden");
+document.getElementById('maps-section').classList.remove("hidden");
+backBtn.classList.add("hidden");
+}
+}
+
 function loadLineups(){
-    const container = document.getElementById("lineupsContainer");
-    container.innerHTML = "";
-
-    const filtered = lineupsData.filter(l =>
-        l.map === currentMap &&
-        l.side === currentSide &&
-        l.type === currentUtility
-    );
-
-    if(filtered.length === 0){
-        container.innerHTML = "<p>Nenhuma lineup encontrada.</p>";
-        return;
-    }
-
-    filtered.forEach(l => {
-        container.innerHTML += `
-            <div class="card">
-                <img src="${l.img}">
-                <div class="card-content">
-                    <h3>${l.title}</h3>
-                    <div class="meta">${l.map} • ${l.side} • ${l.type}</div>
-                </div>
-            </div>
-        `;
-    });
+const container=document.getElementById("lineupsContainer");
+container.innerHTML="";
+const filtered=lineupsData.filter(l=>l.map===currentMap&&l.side===currentSide&&l.type===currentUtility);
+if(filtered.length===0){
+container.innerHTML="<p>Nenhuma lineup encontrada.</p>";
+return;
+}
+filtered.forEach(l=>{
+container.innerHTML+=`
+<div class="card">
+<img src="${l.img}">
+<div class="card-content">
+<h3>${l.title}</h3>
+<div class="meta">${l.map} • ${l.side} • ${l.type}</div>
+</div>
+</div>`;
+});
 }
 </script>
 
