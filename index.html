@@ -5,166 +5,250 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CS2 Lineups</title>
 
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://i.imgur.com/hwn6WSh.png">
+
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
-  font-family:'Inter',sans-serif;
-  background:#6b6b6b;
-  color:white;
+    font-family:'Inter',sans-serif;
+    color:#fff;
+    overflow-x:hidden;
+    background: url('https://i.imgur.com/1QBzw09.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Overlay escuro */
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background: rgba(0,0,0,0.65);
+    z-index:0;
+}
+
+/* PARTICLES */
+#particles-js{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:1;
+}
+
+/* HERO */
+.hero{
+    height:30vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:60px;
+    font-weight:800;
+    background:linear-gradient(to right,#ff7b00,#ffa600);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    letter-spacing:3px;
+}
+
+.hero p{
+    margin-top:10px;
+    font-size:16px;
+    color:#ccc;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+    position:relative;
+    z-index:2;
 }
 
 /* ================= HOME ================= */
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:40px 20px;
-}
-
 .maps-container{
-  display:flex;
-  flex-direction:column;
-  gap:60px;
+    display:flex;
+    flex-direction:column;
+    gap:60px;
 }
 
 .map-box{
-  height:320px;
-  border-radius:30px;
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-  border:4px solid #333;
+    height:320px;
+    border-radius:30px;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    border:3px solid rgba(255,255,255,0.1);
+    transition:.3s;
+}
+
+.map-box:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 40px rgba(255,166,0,0.4);
 }
 
 .map-box::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.5);
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.55);
 }
 
 .map-box h2{
-  position:relative;
-  font-family:'Orbitron';
-  font-size:50px;
-  z-index:2;
-  letter-spacing:2px;
+    position:relative;
+    font-family:'Orbitron';
+    font-size:50px;
+    z-index:2;
+    letter-spacing:2px;
 }
 
 .side-buttons{
-  position:relative;
-  z-index:2;
-  margin-top:25px;
-  display:flex;
-  gap:25px;
+    position:relative;
+    z-index:2;
+    margin-top:25px;
+    display:flex;
+    gap:25px;
 }
 
 .side-select{
-  padding:14px 35px;
-  border-radius:16px;
-  font-weight:bold;
-  border:none;
-  cursor:pointer;
-  font-size:18px;
-  transition:.2s;
+    padding:14px 35px;
+    border-radius:16px;
+    font-weight:bold;
+    border:none;
+    cursor:pointer;
+    font-size:18px;
+    transition:.2s;
 }
 
 .side-select:hover{
-  transform:scale(1.1);
+    transform:scale(1.1);
 }
 
 .side-select[data-side="T"]{
-  background:#ffa600;
-  color:black;
+    background:#ffa600;
+    color:black;
 }
 
 .side-select[data-side="CT"]{
-  background:#1d4ed8;
-  color:white;
+    background:#1d4ed8;
+    color:white;
 }
 
 /* ================= MAP VIEW ================= */
 
 #mapView{
-  display:none;
+    display:none;
 }
 
 #mapTitle{
-  font-family:'Orbitron';
-  font-size:60px;
-  margin-bottom:30px;
-  text-align:center;
+    font-family:'Orbitron';
+    font-size:60px;
+    margin-bottom:30px;
+    text-align:center;
 }
 
 .utility-tabs{
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin-bottom:40px;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin-bottom:40px;
 }
 
 .utility-tab{
-  padding:18px 40px;
-  border-radius:20px;
-  background:#1c1c1c;
-  border:none;
-  color:white;
-  font-size:20px;
-  cursor:pointer;
-  transition:.2s;
+    padding:16px 40px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:.2s;
 }
 
 .utility-tab.active{
-  background:#f0a23a;
-  color:black;
+    background:#ffa600;
+    color:black;
+    box-shadow:0 0 20px rgba(255,166,0,0.8);
 }
 
 #backBtn{
-  margin-bottom:20px;
-  padding:10px 20px;
-  border-radius:12px;
-  border:none;
-  background:#222;
-  color:white;
-  cursor:pointer;
+    margin-bottom:20px;
+    padding:10px 20px;
+    border-radius:12px;
+    border:none;
+    background:rgba(255,255,255,0.1);
+    color:white;
+    cursor:pointer;
 }
 
+/* LINEUPS */
+
 .lineups{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-  gap:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:30px;
 }
 
 .card{
-  background:#111;
-  border-radius:30px;
-  padding:30px;
-  border:4px solid #f0a23a;
+    background:linear-gradient(145deg,#ffa600dc,#3a2e16e6);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 40px rgba(255,166,0,0.6);
 }
 
 .card h3{
-  color:#f0a23a;
-  margin-bottom:10px;
+    margin-bottom:10px;
 }
 
 .card p{
-  opacity:.8;
+    opacity:.85;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#0a0a0a;
+    margin-top:60px;
+    color:#777;
 }
 </style>
 </head>
 
 <body>
 
+<div id="particles-js"></div>
+
+<section class="hero">
+    <h1>CS2 - Spam</h1>
+    <p>Escolhe e aprende</p>
+</section>
+
 <div class="container">
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 <section id="homeMaps" class="maps-container">
 
   <div class="map-box" data-map="Dust2"
@@ -185,23 +269,12 @@ body{
     </div>
   </div>
 
-  <div class="map-box" data-map="Mirage"
-       style="background-image:url('https://i.imgur.com/JIaEDwg.png')">
-    <h2>MIRAGE</h2>
-    <div class="side-buttons">
-      <button class="side-select" data-side="T">TR</button>
-      <button class="side-select" data-side="CT">CT</button>
-    </div>
-  </div>
-
 </section>
 
-<!-- ================= MAP VIEW ================= -->
-
+<!-- MAP VIEW -->
 <section id="mapView">
 
   <button id="backBtn">← Voltar</button>
-
   <h1 id="mapTitle"></h1>
 
   <div class="utility-tabs">
@@ -212,15 +285,9 @@ body{
 
   <div class="lineups">
 
-    <!-- EXEMPLO LINEUPS -->
     <div class="card" data-map="Dust2" data-side="T" data-type="Smoke">
       <h3>Smoke Mid</h3>
       <p>Smoke para cobrir o meio.</p>
-    </div>
-
-    <div class="card" data-map="Dust2" data-side="CT" data-type="Flash">
-      <h3>Flash Long</h3>
-      <p>Flash rápida para retake long.</p>
     </div>
 
     <div class="card" data-map="Inferno" data-side="T" data-type="Smoke">
@@ -233,6 +300,26 @@ body{
 </section>
 
 </div>
+
+<footer>© Designed by knozpt</footer>
+
+<!-- PARTICLES -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+particlesJS('particles-js',{
+  particles:{
+    number:{value:80,density:{enable:true,value_area:800}},
+    color:{value:"#ffa600"},
+    shape:{type:"circle"},
+    opacity:{value:0.3},
+    size:{value:3},
+    line_linked:{enable:true,distance:150,color:"#ff7b00",opacity:0.2,width:1},
+    move:{enable:true,speed:2}
+  },
+  interactivity:{detect_on:"canvas",events:{onhover:{enable:true,mode:"repulse"}}},
+  retina_detect:true
+});
+</script>
 
 <script>
 let selectedMap = null;
