@@ -407,15 +407,11 @@ document.getElementById("backBtn").onclick=()=>{
 
 document.querySelectorAll(".utility-tab").forEach(tab=>{
   tab.onclick=()=>{
+       // Reset visual das tabs
     document.querySelectorAll(".utility-tab").forEach(t=>{
-        t.classList.remove("active");
+      t.classList.remove("active");
     });
-
-    tab.classList.add("active");
-    selectedType=tab.dataset.type;
-    filter();
-  };
-});
+    document.querySelector('.utility-tab[data-type="Smoke"]').classList.add("active");
 
 function filter(){
   document.querySelectorAll(".card").forEach(card=>{
