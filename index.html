@@ -33,7 +33,6 @@ body::before{
     height:100%;
     z-index:1;
 }
-
 /* HERO */
 .hero{
     height:18vh;
@@ -88,24 +87,38 @@ body::before{
     justify-content:center;
     align-items:center;
     overflow:hidden;
-    border:1px solid #ffa600; /* borda laranja por padrão */
+
+    border:1px solid #ffa600; /* borda laranja constante */
     box-shadow: 0 0 25px #ffa600, 0 0 40px #ffa60070, 0 0 60px #ffa60050; /* brilho laranja */
     transition:0.3s;
 }
-
-/* Animação pulsar */
+/* ANIMAÇÃO PULSAR */
 @keyframes pulseGlow {
-    0% {transform: scale(1); box-shadow: 0 0 25px #ffa600,0 0 40px #ffa60070,0 0 60px #ffa60050;}
-    50% {transform: scale(1.05); box-shadow:0 0 35px #ffa600,0 0 60px #ffa600aa,0 0 80px #ffa60080;}
-    100% {transform: scale(1); box-shadow: 0 0 25px #ffa600,0 0 40px #ffa60070,0 0 60px #ffa60050;}
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 25px #ffa600,
+                    0 0 40px #ffa60070,
+                    0 0 60px #ffa60050;
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 35px #ffa600,
+                    0 0 60px #ffa600aa,
+                    0 0 80px #ffa60080;
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 25px #ffa600,
+                    0 0 40px #ffa60070,
+                    0 0 60px #ffa60050;
+    }
 }
 
-/* Hover */
+/* ATIVAR PULSAR NO HOVER */
 .map-box:hover {
     animation: pulseGlow 1s infinite ease-in-out;
     cursor: pointer;
 }
-
 .map-box::before{
     content:'';
     position:absolute;
@@ -117,7 +130,7 @@ body::before{
     font-family:'Orbitron';
     font-size:20px;
     z-index:2;
-    text-shadow:0 0 8px #ffa600,0 0 15px #ffa60070;
+    text-shadow:0 0 8px #ffa600,0 0 15px #ffa60070; /* brilho no título do mapa */
 }
 
 .side-buttons{
@@ -135,22 +148,22 @@ body::before{
     cursor:pointer;
     font-weight:bold;
     transition:0.3s;
-    box-shadow:0 0 10px #ffa600,0 0 20px #ffa60070,0 0 30px #ffa60050;
+    box-shadow:0 0 10px #ffa600,0 0 20px #ffa60070,0 0 30px #ffa60050; /* brilho constante nos botões */
 }
 
 /* TR / CT */
 .side-select[data-side="T"]{background:#ffa600;color:#ffffff;}
 .side-select[data-side="CT"]{background:#1d4ed8;color:#fff;}
 
-
 /* MAP VIEW */
 #mapView{display:none;}
+
 #mapTitle{
     text-align:center;
     font-family:'Orbitron';
     font-size:28px;
     margin-bottom:15px;
-    text-shadow:0 0 12px #ffa600,0 0 20px #ffa60070;
+    text-shadow:0 0 12px #ffa600,0 0 20px #ffa60070; /* brilho no título */
 }
 
 .utility-tabs{
@@ -166,15 +179,17 @@ body::before{
     font-size:12px;
     border-radius:10px;
     border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.08);
     cursor:pointer;
     transition:0.3s;
-    box-shadow:0 0 10px #ffa60040;
+    box-shadow:0 0 10px #ffa60040; /* brilho leve por padrão */
 }
 
-/* Tipos de utilitário com cores diferentes */
-.utility-tab.active.smoke { background:#ffa600; box-shadow:0 0 20px #ffa600,0 0 35px #ffa60070; color:#fff; }
-.utility-tab.active.flash { background:#1d4ed8; box-shadow:0 0 20px #1d4ed8,0 0 35px #1d4ed870; color:#fff; }
-.utility-tab.active.molo  { background:#dc2626; box-shadow:0 0 20px #dc2626,0 0 35px #dc262670; color:#fff; }
+.utility-tab.active{
+    background:#ffa600;
+    color:#ffffff;
+    box-shadow:0 0 20px #ffa600,0 0 35px #ffa60070; /* brilho intenso quando ativo */
+}
 
 /* BACK BUTTON */
 #backBtn{
@@ -188,9 +203,10 @@ body::before{
     cursor:pointer;
     background:#ffa600;
     color:#000;
-    box-shadow: 0 0 10px #ffa600, 0 0 20px #ffa60070, 0 0 35px #ffa60050;
-    transition:0.3s;
+    box-shadow: 0 0 10px #ffa600, 0 0 20px #ffa60070, 0 0 35px #ffa60050;transition:0.3s;
+
 }
+
 #backBtn:hover{
     transform:translateY(-2px);
     box-shadow:0 0 15px #ffa600,0 0 30px #ffa60090,0 0 45px #ffa60070;
@@ -209,26 +225,91 @@ body::before{
     border-radius:15px;
     overflow:hidden;
     transition:0.3s;
-    box-shadow:0 0 20px #ffa60070,0 0 35px #ffa60050;
+    box-shadow:0 0 20px #ffa60070,0 0 35px #ffa60050; /* brilho nos cards */
 }
-.card:hover{transform: translateY(-3px); box-shadow:0 0 25px #ffa600aa,0 0 45px #ffa60070;}
 
-.card-images{display:flex;}
-.card-images img{width:50%;height:140px;object-fit:cover;cursor:pointer;}
-.card-content{padding:12px;}
-.card .card-btn {padding: 4px 10px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition:0.3s;}
+.card:hover{
+    transform: translateY(-3px);
+    box-shadow:0 0 25px #ffa600aa,0 0 45px #ffa60070;
+}
 
-/* TR / CT nos cards */
-.card.side-T .card-btn {background:#ffa600;color:#fff;box-shadow:0 0 10px #ffa600,0 0 20px #ffa60070,0 0 30px #ffa60050;}
-.card.side-T .card-btn:hover {transform:translateY(-2px);box-shadow:0 0 15px #ffa600,0 0 25px #ffa60090,0 0 35px #ffa60070;}
-.card.side-CT .card-btn {background:#1d4ed8;color:#fff;box-shadow:0 0 10px #1d4ed8,0 0 20px #1d4ed870,0 0 30px #1d4ed850;}
-.card.side-CT .card-btn:hover {transform:translateY(-2px);box-shadow:0 0 15px #1d4ed8,0 0 25px #1d4ed890,0 0 35px #1d4ed870;}
+.card-images{
+    display:flex;
+}
+
+.card-images img{
+    width:50%;
+    height:140px;
+    object-fit:cover;
+    cursor:pointer;
+}
+
+.card-content{
+    padding:12px;
+}
+
+/* Botões do card com brilho dinâmico */
+.card .card-btn {
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition:0.3s;
+}
+
+/* TR / CT */
+.card.side-T .card-btn {
+    background:#ffa600;
+    color:#ffffff;
+    box-shadow:0 0 10px #ffa600,0 0 20px #ffa60070,0 0 30px #ffa60050;
+}
+.card.side-T .card-btn:hover {
+    box-shadow:0 0 15px #ffa600,0 0 25px #ffa60090,0 0 35px #ffa60070;
+    transform:translateY(-2px);
+}
+
+.card.side-CT .card-btn {
+    background:#1d4ed8;
+    color:#fff;
+    box-shadow:0 0 10px #1d4ed8,0 0 20px #1d4ed870,0 0 30px #1d4ed850;
+}
+.card.side-CT .card-btn:hover {
+    box-shadow:0 0 15px #1d4ed8,0 0 25px #1d4ed890,0 0 35px #1d4ed870;
+    transform:translateY(-2px);
+}
 
 /* MODAL */
-.image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;z-index:9999;}
-.image-modal img{max-width:95%;max-height:85vh;border-radius:10px;}
-.image-modal .close,.image-modal .arrow{position:absolute;color:#ffa600;font-size:30px;cursor:pointer;user-select:none;}
-.image-modal .close{top:20px;right:25px;}
+.image-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.image-modal img{
+    max-width:95%;
+    max-height:85vh;
+    border-radius:10px;
+}
+
+.image-modal .close,
+.image-modal .arrow{
+    position:absolute;
+    color:#ffa600;
+    font-size:30px;
+    cursor:pointer;
+    user-select:none;
+}
+
+.image-modal .close{
+    top:20px;
+    right:25px;
+}
+
 .image-modal .prev{left:20px; top:50%; transform:translateY(-50%);}
 .image-modal .next{right:20px; top:50%; transform:translateY(-50%);}
 
@@ -243,6 +324,7 @@ body::before{
 </head>
 
 <body>
+
 <div id="particles-js"></div>
 
 <section class="hero">
@@ -301,14 +383,27 @@ body::before{
   <h1 id="mapTitle"></h1>
 
   <div class="utility-tabs">
-    <button class="utility-tab active smoke" data-type="Smoke">Smokes</button>
-    <button class="utility-tab flash" data-type="Flash">Flash</button>
-    <button class="utility-tab molo" data-type="Molo">Molotov</button>
+    <button class="utility-tab active" data-type="Smoke">Smokes</button>
+    <button class="utility-tab" data-type="Flash">Flash</button>
+    <button class="utility-tab" data-type="Molo">Molotov</button>
   </div>
 
   <div class="lineups">
-    <!-- Exemplo de lineup -->
+<!---------------------------------------------------Dust2----------------------------------------------------------------------->
     <div class="card" data-map="Dust2" data-side="T" data-type="Smoke">
+      <div class="card-images">
+        <img src="https://i.imgur.com/OX3VJgY.jpeg">
+        <img src="https://i.imgur.com/pRQwpOs.jpeg">
+      </div>
+      <div class="card-content">
+        <h3>Smoke Mid</h3>
+        <p>Jumpthrow.</p>
+        <p></p>
+        <button class="card-btn">Usar Smoke</button>
+      </div>
+    </div>
+<!---------------------------------------------------Mirage----------------------------------------------------------------------->
+<div class="card" data-map="Mirage" data-side="T" data-type="Smoke">
       <div class="card-images">
         <img src="https://i.imgur.com/OX3VJgY.jpeg">
         <img src="https://i.imgur.com/pRQwpOs.jpeg">
@@ -319,6 +414,7 @@ body::before{
         <button class="card-btn">Usar Smoke</button>
       </div>
     </div>
+<!---------------------------------------------------Inferno----------------------------------------------------------------------->
   </div>
 </section>
 
@@ -369,20 +465,8 @@ document.getElementById("backBtn").onclick=()=>{
 
 document.querySelectorAll(".utility-tab").forEach(tab=>{
   tab.onclick=()=>{
-    document.querySelectorAll(".utility-tab").forEach(t=>{
-        t.classList.remove("active");
-        t.style.background="rgba(255,255,255,0.08)";
-        t.style.boxShadow="0 0 10px #ffa60040";
-        t.style.color="#fff";
-    });
-
+    document.querySelectorAll(".utility-tab").forEach(t=>t.classList.remove("active"));
     tab.classList.add("active");
-
-    // cores dinâmicas
-    if(tab.dataset.type==="Smoke"){ tab.classList.add("smoke"); tab.classList.remove("flash","molo"); }
-    else if(tab.dataset.type==="Flash"){ tab.classList.add("flash"); tab.classList.remove("smoke","molo"); }
-    else if(tab.dataset.type==="Molo"){ tab.classList.add("molo"); tab.classList.remove("smoke","flash"); }
-
     selectedType=tab.dataset.type;
     filter();
   };
