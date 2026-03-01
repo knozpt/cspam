@@ -73,7 +73,7 @@ body::before{
     display:flex;
     flex-direction:column;
     gap:35px;
-    align-items: center; /* centraliza horizontalmente */
+    align-items:center; /* centraliza os map-boxes */
 }
 
 .map-box{
@@ -118,16 +118,28 @@ body::before{
     font-size:11px;
     cursor:pointer;
     font-weight:bold;
+    transition:0.3s;
 }
 
+/* Brilho dinâmico baseado no lado */
 .side-select[data-side="T"]{
     background:#ffa600;
     color:#000;
+    box-shadow: 0 0 10px #ffa600, 0 0 20px #ffa60070, 0 0 30px #ffa60050;
+}
+.side-select[data-side="T"]:hover{
+    box-shadow: 0 0 15px #ffa600, 0 0 25px #ffa60090, 0 0 35px #ffa60070;
+    transform: translateY(-2px);
 }
 
 .side-select[data-side="CT"]{
     background:#1d4ed8;
     color:#fff;
+    box-shadow: 0 0 10px #1d4ed8, 0 0 20px #1d4ed870, 0 0 30px #1d4ed850;
+}
+.side-select[data-side="CT"]:hover{
+    box-shadow: 0 0 15px #1d4ed8, 0 0 25px #1d4ed890, 0 0 35px #1d4ed870;
+    transform: translateY(-2px);
 }
 
 /* MAP VIEW */
@@ -155,13 +167,16 @@ body::before{
     border:1px solid rgba(255,255,255,0.2);
     background:rgba(255,255,255,0.08);
     cursor:pointer;
+    transition:0.3s;
 }
 
 .utility-tab.active{
     background:#ffa600;
     color:#000;
+    box-shadow: 0 0 12px #ffa600, 0 0 20px #ffa60070;
 }
 
+/* BACK BUTTON */
 #backBtn{
     margin-bottom:15px;
     padding:6px 12px;
@@ -178,13 +193,19 @@ body::before{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:18px;
-    justify-content: center; /* centraliza os cards na grid */
+    justify-content: center; /* centraliza os cards */
 }
 
 .card{
     background:linear-gradient(145deg,#ffa600dc,#3a2e16e6);
     border-radius:15px;
     overflow:hidden;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform: translateY(-3px);
+    box-shadow:0 0 20px #ffa600aa,0 0 30px #ffa60077;
 }
 
 .card-images{
@@ -202,14 +223,20 @@ body::before{
     padding:12px;
 }
 
-.card h3{
-    font-size:13px;
-    margin-bottom:4px;
+.card-content button{
+    padding:6px 12px;
+    border-radius:8px;
+    border:none;
+    background:#ffa600;
+    color:#000;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+    box-shadow:0 0 10px #ffa600,0 0 20px #ffa60070,0 0 30px #ffa60050;
 }
-
-.card p{
-    font-size:11px;
-    opacity:.85;
+.card-content button:hover{
+    box-shadow:0 0 15px #ffa600,0 0 25px #ffa60090,0 0 35px #ffa60070;
+    transform: translateY(-2px);
 }
 
 /* MODAL */
@@ -307,6 +334,7 @@ body::before{
       <div class="card-content">
         <h3>Smoke Mid</h3>
         <p>Jumpthrow.</p>
+        <button>Usar Smoke</button>
       </div>
     </div>
 
@@ -324,7 +352,6 @@ body::before{
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
 <script>
 particlesJS('particles-js',{
   particles:{number:{value:50},color:{value:"#ffa600"},shape:{type:"circle"},
@@ -394,7 +421,7 @@ function openModal(){
 
 function closeModal(){modal.style.display="none";}
 function next(){current=(current+1)%images.length;modalImg.src=images[current];}
-function prev(){current=(current-1+images.length)%images.length;modalImg.src=images[current];}
+function prev(){current=(current+images.length)%images.length;modalImg.src=images[current];}
 
 modal.querySelector(".close").onclick=closeModal;
 modal.querySelector(".next").onclick=next;
