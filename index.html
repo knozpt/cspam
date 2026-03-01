@@ -182,16 +182,11 @@ body::before{
     cursor:pointer;
     transition:0.3s;
     color:#ffffff;
-    box-shadow:0 0 10px #ffa60040; /* brilho leve por padrão */
+    box-shadow:0 0 10px #ffa60040; /* brilho leve por 
 }
-.utility-tab.active{
-    color:#ffffff;
-    box-shadow:0 0 20px #ffa600,0 0 35px #ffa60070; /* brilho intenso quando ativo */
-}
-/* Tipos de utilitário com cores diferentes */
-.utility-tab.active.smoke { background:#ffa600; box-shadow:0 0 20px #ffa600,0 0 35px #ffa60070; color:#fff; }
-.utility-tab.active.flash { background:#1d4ed8; box-shadow:0 0 20px #1d4ed8,0 0 35px #1d4ed870; color:#fff; }
-.utility-tab.active.molo  { background:#dc2626; box-shadow:0 0 20px #dc2626,0 0 35px #dc262670; color:#fff;}
+.utility-tab.smoke.active { background: #ffa600; color:#fff; box-shadow:0 0 20px #ffa600,0 0 35px #ffa60070; }
+.utility-tab.flash.active { background: #1d4ed8; color:#fff; box-shadow:0 0 20px #1d4ed8,0 0 35px #1d4ed870; }
+.utility-tab.molo.active { background: #dc2626; color:#fff; box-shadow:0 0 20px #dc2626,0 0 35px #dc262670; }
 
 /* BACK BUTTON */
 #backBtn{
