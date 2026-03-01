@@ -389,6 +389,15 @@ document.querySelectorAll(".side-select").forEach(btn=>{
     selectedMap=btn.closest(".map-box").dataset.map;
     selectedSide=btn.dataset.side;
 
+    // RESETAR PARA SMOKE
+    selectedType="Smoke";
+
+    // Reset visual das tabs
+    document.querySelectorAll(".utility-tab").forEach(t=>{
+      t.classList.remove("active");
+    });
+    document.querySelector('.utility-tab[data-type="Smoke"]').classList.add("active");
+
     document.querySelectorAll(".map-box").forEach(m=>m.classList.remove("side-T","side-CT"));
     if(selectedSide==="T") btn.closest(".map-box").classList.add("side-T");
     if(selectedSide==="CT") btn.closest(".map-box").classList.add("side-CT");
