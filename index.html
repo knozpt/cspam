@@ -385,18 +385,9 @@ document.querySelectorAll(".utility-tab").forEach(tab=>{
   tab.onclick=()=>{
     document.querySelectorAll(".utility-tab").forEach(t=>{
         t.classList.remove("active");
-        t.style.background="rgba(255,255,255,0.08)";
-        t.style.boxShadow="0 0 10px #ffa60040";
-        t.style.color="#fff";
     });
 
     tab.classList.add("active");
-
-    // cores dinâmicas
-    if(tab.dataset.type==="Smoke"){ tab.classList.add("smoke"); tab.classList.remove("flash","molo"); }
-    else if(tab.dataset.type==="Flash"){ tab.classList.add("flash"); tab.classList.remove("smoke","molo"); }
-    else if(tab.dataset.type==="Molo"){ tab.classList.add("molo"); tab.classList.remove("smoke","flash"); }
-
     selectedType=tab.dataset.type;
     filter();
   };
