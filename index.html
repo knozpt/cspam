@@ -239,35 +239,42 @@ body::before{
 .card.side-CT .card-btn {background:#1d4ed8;color:#fff;box-shadow:0 0 10px #1d4ed8,0 0 20px #1d4ed870,0 0 30px #1d4ed850;}
 .card.side-CT .card-btn:hover {transform:translateY(-2px);box-shadow:0 0 15px #1d4ed8,0 0 25px #1d4ed890,0 0 35px #1d4ed870;}
 
-/* MODAL */
-/* MODAL FIX IPAD */
+/* MODAL PRO */
 .image-modal{
     position:fixed;
     top:0;
     left:0;
     width:100vw;
-    height:100dvh; /* Corrige Safari */
-    background:rgba(0,0,0,0.85);
+    height:100dvh;
+    background:rgba(0,0,0,0.92);
     backdrop-filter:blur(8px);
     z-index:9999;
 
-    display:none;
-}
-
-.image-modal.active{
     display:flex;
     justify-content:center;
     align-items:center;
+
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.25s ease;
+}
+
+.image-modal.active{
+    opacity:1;
+    pointer-events:auto;
 }
 
 .image-modal img{
     max-width:90vw;
     max-height:90dvh;
-    width:auto;
-    height:auto;
     object-fit:contain;
-    border-radius:12px;
-    box-shadow:0 0 40px #ffa60080;
+    border-radius:14px;
+    box-shadow:0 0 60px #ffa60080;
+    transition:transform 0.25s ease;
+}
+
+.image-modal.zoomed img{
+    transform:scale(1.8);
 }
 
 .image-modal .close,
@@ -295,7 +302,6 @@ body::before{
     top:50%;
     transform:translateY(-50%);
 }
-
 /* MOBILE */
 @media(max-width:600px){
     .map-box{height:130px;}
@@ -491,6 +497,7 @@ function filter(){
 const modal=document.getElementById("imageModal");
 const modalImg=document.getElementById("modalImg");
 let images=[],current=0;
+let startX=0,endX=0;
 
 document.querySelectorAll(".card-images img").forEach(img=>{
   img.onclick=()=>{
@@ -501,23 +508,66 @@ document.querySelectorAll(".card-images img").forEach(img=>{
   };
 });
 
-function openModal(){modal.style.display="flex";modalImg.src=images[current];}
-function closeModal(){modal.style.display="none";}
-function next(){current=(current+1)%images.length;modalImg.src=images[current];}
-function prev(){current=(current+images.length)%images.length;modalImg.src=images[current];}
+function openModal(){
+    modal.classList.add("active");
+    modalImg.src=images[current];
+    document.body.style.overflow="hidden";
+}
 
+function closeModal(){
+    modal.classList.remove("active","zoomed");
+    document.body.style.overflow="auto";
+}
+
+function next(){
+    current=(current+1)%images.length;
+    modalImg.src=images[current];
+}
+
+function prev(){
+    current=(current-1+images.length)%images.length;
+    modalImg.src=images[current];
+}
+
+/* BOTÕES */
 modal.querySelector(".close").onclick=closeModal;
 modal.querySelector(".next").onclick=next;
 modal.querySelector(".prev").onclick=prev;
-modal.onclick=e=>{if(e.target===modal)closeModal();};
 
+modal.onclick=e=>{
+  if(e.target===modal)closeModal();
+};
+
+/* TECLADO */
 document.addEventListener("keydown",e=>{
-  if(modal.style.display==="flex"){
+  if(modal.classList.contains("active")){
     if(e.key==="Escape")closeModal();
     if(e.key==="ArrowRight")next();
     if(e.key==="ArrowLeft")prev();
   }
 });
+
+/* SWIPE TOUCH */
+modal.addEventListener("touchstart",e=>{
+  startX=e.touches[0].clientX;
+});
+
+modal.addEventListener("touchend",e=>{
+  endX=e.changedTouches[0].clientX;
+  if(startX-endX>50) next();
+  if(endX-startX>50) prev();
+});
+
+/* DUPLO TOQUE PARA ZOOM */
+let lastTap=0;
+modalImg.addEventListener("touchend",function(e){
+    let now=new Date().getTime();
+    if(now-lastTap<300){
+        modal.classList.toggle("zoomed");
+    }
+    lastTap=now;
+});
+
 </script>
 
 </body>
