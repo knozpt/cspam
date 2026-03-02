@@ -33,6 +33,7 @@ body::before{
     height:100%;
     z-index:1;
 }
+
 /* HERO */
 .hero{
     height:18vh;
@@ -88,37 +89,22 @@ body::before{
     align-items:center;
     overflow:hidden;
 
-    border:1px solid #ffa600; /* borda laranja constante */
-    box-shadow: 0 0 25px #ffa600, 0 0 40px #ffa60070, 0 0 60px #ffa60050; /* brilho laranja */
+    border:1px solid #ffa600;
+    box-shadow:0 0 25px #ffa600,0 0 40px #ffa60070,0 0 60px #ffa60050;
     transition:0.3s;
 }
-/* ANIMAÇÃO PULSAR */
-@keyframes pulseGlow {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 25px #ffa600,
-                    0 0 40px #ffa60070,
-                    0 0 60px #ffa60050;
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 35px #ffa600,
-                    0 0 60px #ffa600aa,
-                    0 0 80px #ffa60080;
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 25px #ffa600,
-                    0 0 40px #ffa60070,
-                    0 0 60px #ffa60050;
-    }
+
+@keyframes pulseGlow{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
 }
 
-/* ATIVAR PULSAR NO HOVER */
-.map-box:hover {
-    animation: pulseGlow 1s infinite ease-in-out;
-    cursor: pointer;
+.map-box:hover{
+    animation:pulseGlow 1s infinite ease-in-out;
+    cursor:pointer;
 }
+
 .map-box::before{
     content:'';
     position:absolute;
@@ -130,7 +116,7 @@ body::before{
     font-family:'Orbitron';
     font-size:20px;
     z-index:2;
-    text-shadow:0 0 8px #ffa600,0 0 15px #ffa60070; /* brilho no título do mapa */
+    text-shadow:0 0 8px #ffa600,0 0 15px #ffa60070;
 }
 
 .side-buttons{
@@ -147,12 +133,17 @@ body::before{
     font-size:11px;
     cursor:pointer;
     font-weight:bold;
-    transition:0.3s;
 }
 
-/* TR / CT */
-.side-select[data-side="T"]{background:#ffa600;color:#ffffff;box-shadow: 0 0 25px #ffa600, 0 0 40px #ffa60070, 0 0 60px #ffa60050;}
-.side-select[data-side="CT"]{background:#1d4ed8;color:#fff;box-shadow:0 0 15px #1d4ed8,0 0 25px #1d4ed890,0 0 35px #1d4ed870;}
+.side-select[data-side="T"]{
+    background:#ffa600;
+    color:#fff;
+}
+
+.side-select[data-side="CT"]{
+    background:#1d4ed8;
+    color:#fff;
+}
 
 /* MAP VIEW */
 #mapView{display:none;}
@@ -162,7 +153,6 @@ body::before{
     font-family:'Orbitron';
     font-size:28px;
     margin-bottom:15px;
-    text-shadow:0 0 12px #ffa600,0 0 20px #ffa60070; /* brilho no título */
 }
 
 .utility-tabs{
@@ -177,20 +167,16 @@ body::before{
     padding:8px 16px;
     font-size:12px;
     border-radius:10px;
-    border:1px solid rgba(255,255,255,0.08);
-    background:rgba(255,255,255,0.08);
+    border:none;
     cursor:pointer;
-    transition:0.3s;
-    color:#ffffff;
-    box-shadow:0 0 10px #ffa60040; /* brilho leve por */
-    
+    background:rgba(255,255,255,0.1);
+    color:#fff;
 }
 
-.utility-tab.smoke.active { background: #ffa600; color:#fff; box-shadow:0 0 20px #ffa600,0 0 35px #ffa60070; }
-.utility-tab.flash.active { background: #33e0ff; color:#fff; box-shadow:0 0 20px #1d4ed8,0 0 35px #1d4ed870; }
-.utility-tab.molo.active { background: #dc2626; color:#fff; box-shadow:0 0 20px #dc2626,0 0 35px #dc262670; }
+.utility-tab.active.smoke{background:#ffa600;}
+.utility-tab.active.flash{background:#33e0ff;}
+.utility-tab.active.molo{background:#dc2626;}
 
-/* BACK BUTTON */
 #backBtn{
     display:block;
     margin:0 auto 20px auto;
@@ -202,12 +188,6 @@ body::before{
     cursor:pointer;
     background:#ffa600;
     color:#000;
-    box-shadow: 0 0 10px #ffa600, 0 0 20px #ffa60070, 0 0 35px #ffa60050;
-    transition:0.3s;
-}
-#backBtn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 0 15px #ffa600,0 0 30px #ffa60090,0 0 45px #ffa60070;
 }
 
 /* LINEUPS */
@@ -215,7 +195,6 @@ body::before{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:18px;
-    justify-content: center;
 }
 
 .card{
@@ -223,40 +202,91 @@ body::before{
     border-radius:15px;
     overflow:hidden;
     transition:0.3s;
-    box-shadow:0 0 20px #ffa60070,0 0 35px #ffa60050;
 }
-.card:hover{transform: translateY(-3px); box-shadow:0 0 25px #ffa600aa,0 0 45px #ffa60070;}
+
+.card:hover{transform:translateY(-3px);}
 
 .card-images{display:flex;}
-.card-images img{width:50%;height:140px;object-fit:cover;cursor:pointer;}
+.card-images img{
+    width:50%;
+    height:140px;
+    object-fit:cover;
+    cursor:pointer;
+}
+
 .card-content{padding:12px;}
-.card .card-btn {padding: 4px 10px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition:0.3s;}
 
-/* TR / CT nos cards */
-.card.side-T .card-btn {background:#ffa600;color:#fff;box-shadow:0 0 10px #ffa600,0 0 20px #ffa60070,0 0 30px #ffa60050;}
-.card.side-T .card-btn:hover {transform:translateY(-2px);box-shadow:0 0 15px #ffa600,0 0 25px #ffa60090,0 0 35px #ffa60070;}
-.card.side-CT .card-btn {background:#1d4ed8;color:#fff;box-shadow:0 0 10px #1d4ed8,0 0 20px #1d4ed870,0 0 30px #1d4ed850;}
-.card.side-CT .card-btn:hover {transform:translateY(-2px);box-shadow:0 0 15px #1d4ed8,0 0 25px #1d4ed890,0 0 35px #1d4ed870;}
+.card-btn{
+    padding:4px 10px;
+    border-radius:8px;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+    background:#000;
+    color:#fff;
+}
 
-/* MODAL */
-.image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;z-index:9999;}
-.image-modal img{max-width:95%;max-height:85vh;border-radius:10px;}
-.image-modal .close,.image-modal .arrow{position:absolute;color:#ffa600;font-size:30px;cursor:pointer;user-select:none;}
-.image-modal .close{top:20px;right:25px;}
-.image-modal .prev{left:20px; top:50%; transform:translateY(-50%);}
-.image-modal .next{right:20px; top:50%; transform:translateY(-50%);}
+/* MODAL CORRIGIDO IPAD */
+.image-modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100dvh;
+    background:rgba(0,0,0,0.9);
+    backdrop-filter:blur(6px);
+    z-index:9999;
+    display:none;
+}
 
-/* MOBILE */
+.image-modal.active{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.image-modal img{
+    max-width:90vw;
+    max-height:90dvh;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.image-modal .close,
+.image-modal .arrow{
+    position:absolute;
+    color:#ffa600;
+    font-size:34px;
+    cursor:pointer;
+    user-select:none;
+}
+
+.image-modal .close{
+    top:20px;
+    right:25px;
+}
+
+.image-modal .prev{
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.image-modal .next{
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
 @media(max-width:600px){
-    .map-box{height:130px;}
-    .map-box h2{font-size:18px;}
-    .hero h1{font-size:26px;}
+    .map-box{height:130px;width:90%;}
     .lineups{grid-template-columns:1fr;}
 }
 </style>
 </head>
 
 <body>
+
 <div id="particles-js"></div>
 
 <section class="hero">
@@ -267,7 +297,6 @@ body::before{
 <div class="container">
 
 <section id="homeMaps" class="maps-container">
-
   <div class="map-box" data-map="Dust2" style="background-image:url('https://i.imgur.com/dCPWbZU.png')">
     <h2>Dust2</h2>
     <div class="side-buttons">
@@ -275,39 +304,6 @@ body::before{
       <button class="side-select" data-side="CT">CT</button>
     </div>
   </div>
-
-  <div class="map-box" data-map="Mirage" style="background-image:url('https://imgur.com/JIaEDwg.png')">
-    <h2>Mirage</h2>
-    <div class="side-buttons">
-      <button class="side-select" data-side="T">TR</button>
-      <button class="side-select" data-side="CT">CT</button>
-    </div>
-  </div>
-
-  <div class="map-box" data-map="Inferno" style="background-image:url('https://imgur.com/mLQ0QdD.jpeg')">
-    <h2>Inferno</h2>
-    <div class="side-buttons">
-      <button class="side-select" data-side="T">TR</button>
-      <button class="side-select" data-side="CT">CT</button>
-    </div>
-  </div>
-
-  <div class="map-box" data-map="Nuke" style="background-image:url('https://imgur.com/25RoQ30.png')">
-    <h2>Nuke</h2>
-    <div class="side-buttons">
-      <button class="side-select" data-side="T">TR</button>
-      <button class="side-select" data-side="CT">CT</button>
-    </div>
-  </div>
-
-  <div class="map-box" data-map="Anubis" style="background-image:url('https://imgur.com/V94T8Ne.png')">
-    <h2>Anubis</h2>
-    <div class="side-buttons">
-      <button class="side-select" data-side="T">TR</button>
-      <button class="side-select" data-side="CT">CT</button>
-    </div>
-  </div>
-
 </section>
 
 <section id="mapView">
@@ -321,7 +317,6 @@ body::before{
   </div>
 
   <div class="lineups">
-    <!---------------------------------------------------Dust2----------------------------------------------------------------------->
     <div class="card" data-map="Dust2" data-side="T" data-type="Smoke">
       <div class="card-images">
         <img src="https://i.imgur.com/OX3VJgY.jpeg">
@@ -330,34 +325,10 @@ body::before{
       <div class="card-content">
         <h3>Smoke Mid</h3>
         <p>Jumpthrow.</p>
-        <p></p>
         <button class="card-btn">Usar Smoke</button>
       </div>
     </div>
-<!---------------------------------------------------Mirage----------------------------------------------------------------------->
-<div class="card" data-map="Mirage" data-side="T" data-type="Smoke">
-      <div class="card-images">
-        <img src="https://i.imgur.com/CrA7eBW.jpeg">
-        <img src="https://i.imgur.com/CpGXjts.jpeg">
-      </div>
-      <div class="card-content">
-        <h3>Smoke Mid</h3>
-        <p>Jumpthrow.</p>
-        <button class="card-btn">Usar Smoke</button>
-      </div>
-    </div>
-<!---------------------------------------------------Inferno----------------------------------------------------------------------->
-<div class="card" data-map="Inferno" data-side="T" data-type="Smoke">
-      <div class="card-images">
-        <img src="https://i.imgur.com/OX3VJgY.jpeg">
-        <img src="https://i.imgur.com/pRQwpOs.jpeg">
-      </div>
-      <div class="card-content">
-        <h3>Smoke Mid</h3>
-        <p>Jumpthrow.</p>
-        <button class="card-btn">Usar Smoke</button>
-      </div>
-    </div>
+  </div>
 </section>
 
 </div>
@@ -370,15 +341,7 @@ body::before{
   <span class="arrow next">&#10095;</span>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-particlesJS('particles-js',{
-  particles:{number:{value:50},color:{value:"#ffa600"},shape:{type:"circle"},
-  opacity:{value:0.3},size:{value:2},move:{enable:true,speed:1.2}},
-  retina_detect:true
-});
-
-/* FILTROS */
 let selectedMap=null,selectedSide=null,selectedType="Smoke";
 const home=document.getElementById("homeMaps");
 const mapView=document.getElementById("mapView");
@@ -388,20 +351,6 @@ document.querySelectorAll(".side-select").forEach(btn=>{
   btn.onclick=()=>{
     selectedMap=btn.closest(".map-box").dataset.map;
     selectedSide=btn.dataset.side;
-
-    // RESETAR PARA SMOKE
-    selectedType="Smoke";
-
-    // Reset visual das tabs
-    document.querySelectorAll(".utility-tab").forEach(t=>{
-      t.classList.remove("active");
-    });
-    document.querySelector('.utility-tab[data-type="Smoke"]').classList.add("active");
-
-    document.querySelectorAll(".map-box").forEach(m=>m.classList.remove("side-T","side-CT"));
-    if(selectedSide==="T") btn.closest(".map-box").classList.add("side-T");
-    if(selectedSide==="CT") btn.closest(".map-box").classList.add("side-CT");
-
     home.style.display="none";
     mapView.style.display="block";
     mapTitle.innerText=selectedMap+" - "+selectedSide;
@@ -422,6 +371,7 @@ document.querySelectorAll(".utility-tab").forEach(tab=>{
     filter();
   };
 });
+
 function filter(){
   document.querySelectorAll(".card").forEach(card=>{
     card.style.display=
@@ -429,11 +379,6 @@ function filter(){
       card.dataset.side===selectedSide &&
       card.dataset.type===selectedType
       ? "block":"none";
-
-    card.classList.remove("side-T","side-CT");
-    if(card.style.display==="block"){
-        card.classList.add(selectedSide==="T"?"side-T":"side-CT");
-    }
   });
 }
 
@@ -451,10 +396,24 @@ document.querySelectorAll(".card-images img").forEach(img=>{
   };
 });
 
-function openModal(){modal.style.display="flex";modalImg.src=images[current];}
-function closeModal(){modal.style.display="none";}
-function next(){current=(current+1)%images.length;modalImg.src=images[current];}
-function prev(){current=(current+images.length)%images.length;modalImg.src=images[current];}
+function openModal(){
+    modal.classList.add("active");
+    modalImg.src = images[current];
+}
+
+function closeModal(){
+    modal.classList.remove("active");
+}
+
+function next(){
+    current=(current+1)%images.length;
+    modalImg.src=images[current];
+}
+
+function prev(){
+    current=(current-1+images.length)%images.length;
+    modalImg.src=images[current];
+}
 
 modal.querySelector(".close").onclick=closeModal;
 modal.querySelector(".next").onclick=next;
@@ -462,7 +421,7 @@ modal.querySelector(".prev").onclick=prev;
 modal.onclick=e=>{if(e.target===modal)closeModal();};
 
 document.addEventListener("keydown",e=>{
-  if(modal.style.display==="flex"){
+  if(modal.classList.contains("active")){
     if(e.key==="Escape")closeModal();
     if(e.key==="ArrowRight")next();
     if(e.key==="ArrowLeft")prev();
